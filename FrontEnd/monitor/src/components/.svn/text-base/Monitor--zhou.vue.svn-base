@@ -1,0 +1,369 @@
+<template>
+  <div id="monitor">
+    <Head></Head>
+
+    
+
+    <div class="content-monitor">
+      <div class="row">
+        <div class="col-sm-4 col-xs-12 nav-list">
+          
+          <div class="nav-list-one col-sm-12 col-xs-12" @click="toChaininfo">
+            <div class="col-xs-4" style="margin-top: 25px;">
+              <span class="icon icon-signal"></span>
+            </div>
+            <div class="col-xs-8 " style="padding: 15px 0;">
+              <p class="number">{{ blockStatus.height }}</p>
+              <p >当前区块高度</p>
+            </div>
+          </div>
+          
+          <div class="nav-list-two col-sm-12 col-xs-12" @click="toChaininfo">
+            <div class="col-xs-4 nodeicon">
+              <span class="icon icon-sitemap"></span>
+            </div>
+            <div class="col-xs-8 " style="padding:5px 0 ;" >
+              <p class="number">{{ nodeStatus.totalCount}}</p>
+              <p>节点数量</p>
+            </div>
+          </div>
+          
+          <div class="nav-list-three col-sm-12 col-xs-12" @click="toChaininfo">
+            <div class="col-xs-4 nodeicon">
+              <span class="icon icon-exchange"></span>
+            </div>
+            <div class="col-xs-8" style="padding:5px 0 ;">
+              <p class="number">{{ blockStatus.txncount }}</p>
+              <p>交易数量</p>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-sm-8 col-xs-12 nav-right">
+          <!--<p class="name">节点分布</p>-->
+          <img src="static/img/ditu2.png" width="100%"/>
+          <div id="oldNodes" style="">节点</div>
+          <div class="legend">
+            <p><span class="icon icon-map-marker " style="color:#57d2ff ;"></span> 正常节点</p>
+            <p><span class="icon icon-map-marker " style="color: red;"></span> 故障节点</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row main">
+        <div class="col-sm-6 main-left" style="position: relative;">
+          <p class="main-left-title">节点类型</p>
+          <div id="allnode" class="col-xs-6" style="min-height:180px"></div>
+          <div id="normalnode" class="col-xs-6" style="min-height:180px"></div>
+          <div style="position: absolute;right: 0px;bottom: 22px;color: white;font-size: 0.2em;font-weight: bold;">
+            <span>正常节点占比:</span><br />
+            <span>{{ (nornum/(nornum+dannum)*100).toFixed(1) }}%</span>
+          </div>
+        </div>
+        
+        <div class="col-sm-6 main-right">
+           <div class="main-right-content">
+              <div class="row">
+                  <!--<p class="name">节点状态</p>-->
+                <ul>
+                  <li class="list-title">
+                    <span class="col-xs-2 nodename">节点名称</span>
+                    <span class="col-xs-2">出块状态</span>
+                    <span class="col-xs-3">网络状态</span>
+                    <span class="col-xs-3" style="padding: 0;">时间</span>
+                    <span class="col-xs-2">操作</span>
+                  </li>
+                  <div v-for="item in nodeList">
+                  <li v-if="item.blockStatus==='出块异常'" class="list-content" >
+                    <span class="col-xs-2 nodename danger" >{{ item.id }}</span>
+                    <span class="col-xs-2 danger">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 danger">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-3 danger" style="padding-left: 0 ;padding-right: 0;">{{ item.date }}</span>
+                    <span class="col-xs-2 check" @click="nodeInfo(item.url)">查看</span>
+                  </li>
+                  <li v-if="item.blockStatus==='出块正常'" class="list-content" >
+                    <span class="col-xs-2 nodename " >{{ item.id }}</span>
+                    <span class="col-xs-2 ">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 ">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-3 " style="padding-left: 0 ;padding-right: 0;" >{{ item.date }}</span>
+                    <span class="col-xs-2 check" @click="nodeInfo(item.url)">查看</span>
+                  </li>
+                  </div>
+                </ul>
+               
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <Bottom></Bottom>
+  </div>
+</template>
+
+<script>
+  import '../assets/ebro/css/index.css'
+  import { mapGetters, mapActions } from 'vuex'
+  import Bottom from './bottom.vue'
+  import Head from './head.vue'
+  var Highcharts = require('highcharts');
+  require('highcharts/modules/exporting')(Highcharts);
+
+
+  export default {
+
+    watch: {
+      'nodeStatus': function(val, oldVal) {
+        this.nodeType1 = parseFloat(val.type1Num);
+        this.nodeType2 = parseFloat(val.type2Num);
+        console.log("nodetype1=" + this.nodeType1)
+        console.log("nodetype2=" + this.nodeType2)
+        //数据有变化or第一次进页面，渲染饼图
+        if(this.times == 0) {
+          this.node_pie()
+          this.normalnode()
+        } else if(val.type1Num != oldVal.type1Num) {
+          this.node_pie()
+          this.normalnode()
+        }
+        this.times = this.times + 1;
+        this.nodeDistribution()
+      },
+      'nodeList':function(){
+        var size=this.nodeList.length;
+        var nornum=0;
+        var dannum=0;
+        for (var i=0;i<size;i++) {
+        	if (this.nodeList[i].blockStatus=='出块正常') {
+        		nornum+=1;
+        	}else{
+        	  dannum+=1;
+        	}
+        }
+        this.nornum=nornum;
+        this.dannum=dannum;
+      }
+
+    },
+    mounted: function() {
+      /*    var canvas = document.getElementById("nodetype");
+            console.log('111')
+            console.log(canvas)*/
+      this.nodeDistribution();
+      this.node_pie();
+      this.normalnode();
+      $(".highcharts-point").css("stroke", "#282932");
+    },
+    computed: mapGetters({
+      nodeList: 'nodeList',
+      nodeStatus: 'nodeStatus',
+      blockStatus: 'blockStatus'
+    }),
+    created() {
+      this.$store.dispatch('nodeList')
+      this.$store.dispatch('nodeStatus')
+      this.$store.dispatch('blockStatus')
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('blockStatus')
+        this.$store.dispatch('nodeStatus')
+        this.$store.dispatch('nodeList')
+      }, 5000)
+    },
+
+    methods: {
+      toChaininfo: function() {
+        this.$router.push({
+          'path': '/chaininfo'
+        })
+      },
+      nodeInfo: function(node_url) {
+        //192.168.1.103:8080转换成192_168_1_103
+        var index = node_url.indexOf(":");
+        var ipTemp = node_url.substring(0, index);
+        var realIp = ipTemp.replace(/\./g, "_");
+        this.$router.push({
+          'path': '/nodeinfo/' + realIp
+        })
+      },
+      node_pie: function() {
+        new Highcharts.Chart('allnode', {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            backgroundColor: '#212124',
+            margin:[0,50,0,30]
+          },
+          title: {
+            text: ' '
+          },
+          credits: {
+            enabled: false // 禁用版权信息
+          },
+      
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend: {
+            align: 'right',
+            color: 'white',
+            x:50,
+            itemStyle: {
+              cursor: 'pointer',
+              color: 'white'
+            },
+            itemHoverStyle: {
+              color: 'gray'
+            },
+            symbolRadius: 'none',
+            layout: 'vertical',
+            itemWidth: 100,
+            itemMarginBottom: 2
+          },
+          series: [{
+            name: '个数',
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint: true,
+            data: [{
+              name: '验证节点',
+//            color: '#D63092',
+              color: '#1595F5',
+              y: parseFloat(this.nodeType1)
+            }, {
+              name: '服务节点',
+//            color: '#96468D',
+              color: '#C1E1FE',
+              y: parseFloat(this.nodeType2)
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+        $(".highcharts-point").css("stroke", "#282932");
+      },
+      normalnode:function(){
+        new Highcharts.Chart('normalnode', {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            backgroundColor: '#212124',
+            margin:[0,50,0,30]
+          },
+          title: {
+            text: ' '
+          },
+          credits: {
+            enabled: false // 禁用版权信息
+          },
+          
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              }
+//            showInLegend: true
+            }
+          },
+//        legend: {
+//          align: 'right',
+//          color: 'white',
+//          x:50,
+//          itemStyle: {
+//            cursor: 'pointer',
+//            color: 'white'
+//          },
+//          itemHoverStyle: {
+//            color: 'gray'
+//          },
+//          symbolRadius: 'none',
+//          layout: 'vertical',
+//          itemWidth: 100,
+//          itemMarginBottom: 2
+//        },
+          series: [{
+            name: '个数',
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint: true,
+            data: [{
+              name: '正常节点',
+              color: '#1595F5',
+              y:this.nornum
+//            y:3
+            }, {
+              name: '故障节点',
+              color: '#FF3B3B',
+              y:this.dannum
+//            y:1
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+        $(".highcharts-point").css("stroke", "#282932");
+      },
+      nodeDistribution:function(){
+        var size=this.nodeStatus.totalCount;
+        var newNodes="<div id='oldNodes'></div>";
+//      $(".main-left").append(newNodes);
+        $("#oldNodes").replaceWith(newNodes)
+        for (var i=1;i<=size;i++) {
+          var xx=parseInt(this.nodeList[i-1].x)
+          var yy=parseInt(this.nodeList[i-1].y)
+
+          var newNode="<div class='node'><p><span class='icon-map-marker'><span/></p> <p> 节点"+i+"</p></div>";
+//        $(".main-left").append(newNode);
+          $("#oldNodes").append(newNode);
+          $(".node").attr("class","node"+i);
+          $(".node"+i).css({"position":"absolute","left":xx+"px","top":yy+"px"});
+          $(".node"+i).addClass("normal");
+          if(this.nodeList[i].blockStatus==="出块异常"){
+            $(".node"+i).css("color","red");
+          }
+        }
+      }
+     },
+    data() {
+      return {
+        nodeType1: '',
+        nodeType2: '',
+        times: 0,
+        nornum:'',
+        dannum:''
+      }
+    },
+    components: {
+      Bottom,
+      Head
+    },
+    beforeDestroy() {
+      clearInterval(this.intervalBlock)
+    }
+  }
+</script>
+
+<style>
+ .danger{
+   color: red;
+   font-size: 12px;
+ }
+ .normal{
+   color: #57d2ff;
+   font-size: 14px;
+ }
+ .normal p{
+   text-align: center;
+   margin: 0;
+ }
+
+</style>
