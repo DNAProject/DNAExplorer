@@ -18,9 +18,9 @@
           	  <span class="col-sm-3">交易数</span>
           	  <span class="col-sm-3">大小</span>
           	</li>
-          	<li v-for="(item,index) in blockList" class="col-sm-12 block"v-if="index<5" @click="showblockdetial(index)">
+          	<li v-for="(item,index) in blockList" class="col-sm-12 block"v-if="index<7" @click="showblockdetial(index)">
           	  <span class="col-sm-3">{{item.height}}</span>
-          	  <span class="col-sm-3">{{item.timestamp}}</span>
+          	  <span class="col-sm-3 time-item">{{item.timestamp}}</span>
           	  <span class="col-sm-3">{{item.txnum}}</span>
           	  <span class="col-sm-3">{{item.size}}</span>
           	</li>
@@ -38,7 +38,7 @@
             </li>
             <li v-for="(item,index) in degreeList" class="col-sm-12 exhange" v-if="index<3" @click="showexchangedetial(index)">
               <span class="col-sm-3 exchange-id">{{item.txId}}</span>
-              <span class="col-sm-3">{{item.date}}</span>
+              <span class="col-sm-3 time-item"><div class="time-item">{{item.date}}</div></span>
               <span class="col-sm-3">{{item.height}}</span>
               <span class="col-sm-3">{{item.txTypeDesc}}</span>
             </li>
@@ -67,7 +67,7 @@
           	  <span class="col-sm-8">{{blockList[blocknum].hash}}</span>
           	</li>
           	<li class="row">
-          	  <span class="col-sm-4 list-titlename">区块MerKle根:</span>
+          	  <span class="col-sm-4 list-titlename ">区块MerKle根:</span>
           	  <span class="col-sm-8">{{blockList[blocknum].merkleroot}}</span>
           	</li>
           </ul>

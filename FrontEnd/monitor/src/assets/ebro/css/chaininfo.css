@@ -51,8 +51,8 @@ ul li span{
   margin-top: 30px;
 }
 .list-right-exchange{
-  margin-top: 50px;
-  padding-bottom: 50px;
+  margin-top: 30px;
+  padding-bottom: 0px;
 }
 .itemSelected{
   background-color: lightgrey;
@@ -94,3 +94,6 @@ h4{
   padding: 10px 0;
 }
 
+.time-item{
+  padding: 0 !important;
+}
