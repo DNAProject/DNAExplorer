@@ -1,0 +1,387 @@
+<template>
+  <div id="monitor">
+<<<<<<< .mine
+=======
+    <!--头部-->
+    <!--<div class="header-monitor">
+      <div class="row">
+        <div class="col-sm-6">
+          <img src="../../static/img/onchain-logo.png" class="logo"/><span>区块链监控平台</span>
+        </div>
+      </div>
+    </div>-->
+>>>>>>> .r320
+    <Head></Head>
+    <div class="content-monitor">
+      <div class="nav">
+
+        <div class="row">
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-one" >
+            <div class="nav-list-left">
+              <span class="icon-sitemap"></span>
+            </div>
+            <div class="nav-list-right">
+             
+              <p>{{ nodeStatus.totalCount}}</p>
+              <p class="name">节点数量</p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-two" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="icon-exchange"></span>
+            </div>
+            <div class="nav-list-right">
+              
+              <p>{{ blockStatus.txncount }}</p>
+              <p class="name">交易数量</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-three" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="icon-signal"></span>
+            </div>
+            <div class="nav-list-right">
+              
+              <p>{{ blockStatus.height }}</p>
+              <p class="name">区块高度</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-four">
+            <div class="nav-list-left">
+              <span class="icon-time"></span>
+            </div>
+            <div class="nav-list-right">
+              
+              <p>15s</p>
+              <p class="name">区块平均生成时间</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="main">
+        <div class="row">
+          <div class="col-md-6 main-left">
+            <p class="name">节点分布</p>
+            <img src="static/img/ditu2.png" width="100%" style="max-height: 500px;" />
+            <div id="oldNodes">节点</div>
+          </div>
+          <div class="col-md-6 main-right">
+            <div class="main-header name">
+              <p>节点列表</p>
+            </div>
+            <div class="main-right-content">
+              <div class="row">
+                
+                <ul>
+                  <li class="list-title">
+                    <span class="col-xs-2 nodename">节点名称</span>
+                    <span class="col-xs-3">出块状态</span>
+                    <span class="col-xs-3">网络状态</span>
+                    <span class="col-xs-4">时间</span>
+                  </li>
+                  <div v-for="item in nodeList">
+                  <li v-if="item.blockStatus==='出块异常'" class="list-content" @click="nodeInfo(item.url)">
+                    <span class="col-xs-2 nodename danger" >{{ item.id }}</span>
+                    <span class="col-xs-3 danger">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 danger">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-4 danger">{{ item.date }}</span>
+                  </li>
+                  <li v-if="item.blockStatus==='出块正常'" class="list-content" @click="nodeInfo(item.url)">
+                    <span class="col-xs-2 nodename " >{{ item.id }}</span>
+                    <span class="col-xs-3 ">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 ">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-4 ">{{ item.date }}</span>
+                  </li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+            <div class="main-header name">
+              <p>节点类型</p>
+            </div>
+            <div id="nodetype" style="width:100%;min-height:200px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!--<div class="content-monitor">
+      <div class="row">
+        <div class="col-sm-4 list">
+          <div >
+            <p><span class="icon icon-signal"></span></p>
+            <p>{{ blockStatus.height }}</p>
+            <p>当前区块高度</p>
+          </div>
+          <div>
+            <div class="col-xs-4">
+              <span class="icon icon-sitemap"></span>
+            </div>
+            <div class="col-xs-8">
+              <p>{{ nodeStatus.totalCount}}</p>
+              <p>节点数量</p>
+            </div>
+          </div>
+          <div >
+            <div class="col-xs-4">
+              <span class="icon icon-sitemap"></span>
+            </div>
+            <div class="col-xs-8">
+              <p>{{ blockStatus.txncount }}</p>
+              <p>交易数量</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <p class="name">节点分布</p>
+          <img src="static/img/ditu2.png" width="100%" style="max-height: 500px;" />
+          <div id="oldNodes">节点</div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-5">
+          <p>节点类型</p>
+          <div id="allnode"></div>
+          <div id="normalnode"></div>
+          <div id="dangernode"></div>
+        </div>
+        <div class="col-sm-7">
+           <div class="main-right-content">
+              <div class="row">
+                <ul>
+                  <li class="list-title">
+                    <span class="col-xs-2 nodename">节点名称</span>
+                    <span class="col-xs-3">出块状态</span>
+                    <span class="col-xs-3">网络状态</span>
+                    <span class="col-xs-4">时间</span>
+                  </li>
+                  <div v-for="item in nodeList">
+                  <li v-if="item.blockStatus==='出块异常'" class="list-content" @click="nodeInfo(item.url)">
+                    <span class="col-xs-2 nodename danger" >{{ item.id }}</span>
+                    <span class="col-xs-3 danger">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 danger">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-4 danger">{{ item.date }}</span>
+                  </li>
+                  <li v-if="item.blockStatus==='出块正常'" class="list-content" @click="nodeInfo(item.url)">
+                    <span class="col-xs-2 nodename " >{{ item.id }}</span>
+                    <span class="col-xs-3 ">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 ">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-4 ">{{ item.date }}</span>
+                  </li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>-->
+    
+    
+    <Bottom></Bottom>
+  </div>
+</template>
+
+<script>
+  import '../assets/ebro/css/index.css'
+  import { mapGetters, mapActions } from 'vuex'
+  import Bottom from './bottom.vue'
+  import Head from './head.vue'
+  var Highcharts = require('highcharts');
+  require('highcharts/modules/exporting')(Highcharts);
+
+
+  export default {
+
+    watch: {
+      'nodeStatus': function(val, oldVal) {
+        this.nodeType1 = parseFloat(val.type1Num);
+        this.nodeType2 = parseFloat(val.type2Num);
+        console.log("nodetype1=" + this.nodeType1)
+        console.log("nodetype2=" + this.nodeType2)
+
+        //数据有变化or第一次进页面，渲染饼图
+        if(this.times == 0) {
+          this.node_pie()
+        } else if(val.type1Num != oldVal.type1Num) {
+          this.node_pie()
+        }
+        this.times = this.times + 1;
+        this.nodeDistribution()
+      }
+
+
+    },
+    mounted: function() {
+      /*    var canvas = document.getElementById("nodetype");
+            console.log('111')
+            console.log(canvas)*/
+      this.nodeDistribution();
+      this.node_pie();
+      $(".highcharts-point").css("stroke", "#282932");
+    },
+    computed: mapGetters({
+      nodeList: 'nodeList',
+      nodeStatus: 'nodeStatus',
+      blockStatus: 'blockStatus'
+    }),
+    created() {
+      this.$store.dispatch('nodeList')
+      this.$store.dispatch('nodeStatus')
+      this.$store.dispatch('blockStatus')
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('blockStatus')
+        this.$store.dispatch('nodeStatus')
+        this.$store.dispatch('nodeList')
+      }, 5000)
+    },
+
+    methods: {
+      toChaininfo: function() {
+        this.$router.push({
+          'path': '/chaininfo'
+        })
+      },
+      nodeInfo: function(node_url) {
+        //192.168.1.103:8080转换成192_168_1_103
+        var index = node_url.indexOf(":");
+        var ipTemp = node_url.substring(0, index);
+        var realIp = ipTemp.replace(/\./g, "_");
+        this.$router.push({
+          'path': '/nodeinfo/' + realIp
+        })
+      },
+      node_pie: function() {
+        new Highcharts.Chart('nodetype', {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            backgroundColor: '#282932',
+            //      spacing : [0, 0 ,0, -100]
+          },
+          title: {
+            text: ' '
+          },
+          credits: {
+            enabled: false // 禁用版权信息
+          },
+          //        tooltip: {
+          //          pointFormat: '<b>{point.percentage:.1f}%</b>'
+          //        },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend: {
+            align: 'right',
+            color: 'white',
+            itemStyle: {
+              cursor: 'pointer',
+              color: 'white'
+            },
+            itemHoverStyle: {
+              color: 'gray'
+            },
+            symbolRadius: 'none',
+            layout: 'vertical',
+            itemWidth: 100,
+            itemMarginBottom: 20
+          },
+          series: [{
+            name: '个数',
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint: true,
+            data: [{
+              name: '验证节点',
+              color: '#D63092',
+              y: parseFloat(this.nodeType1)
+            }, {
+              name: '服务节点',
+              color: '#96468D',
+              y: parseFloat(this.nodeType2)
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+        $(".highcharts-point").css("stroke", "#282932");
+      },
+      nodeDistribution:function(){
+        var size=this.nodeStatus.totalCount;
+        var newNodes="<div id='oldNodes'></div>";
+//      $(".main-left").append(newNodes);
+        $("#oldNodes").replaceWith(newNodes)
+        for (var i=1;i<=size;i++) {
+          var xx=parseInt(this.nodeList[i-1].x)
+          var yy=parseInt(this.nodeList[i-1].y)
+
+          var newNode="<div class='node'><p><span class='icon-map-marker'><span/></p> <p> 节点"+i+"</p></div>";
+//        $(".main-left").append(newNode);
+          $("#oldNodes").append(newNode);
+          $(".node").attr("class","node"+i);
+          $(".node"+i).css({"position":"absolute","left":xx+"px","top":yy+"px"});
+          $(".node"+i).addClass("normal");
+          if(this.nodeList[i].blockStatus==="出块异常"){
+            $(".node"+i).css("color","red");
+          }
+        }
+      }
+     },
+    data() {
+      return {
+        nodeType1: '',
+        nodeType2: '',
+        times: 0
+      }
+    },
+    components: {
+      Bottom,
+      Head
+    },
+    beforeDestroy() {
+      clearInterval(this.intervalBlock)
+    }
+  }
+</script>
+
+<style>
+ .danger{
+   color: red;
+   font-size: 12px;
+ }
+ .normal{
+   color: #57d2ff;
+   font-size: 14px;
+ }
+ .normal p{
+   text-align: center;
+   margin: 0;
+ }
+<<<<<<< .mine
+=======
+/*#monitor{
+  height: 100%;
+}*/
+>>>>>>> .r320
+/*.content-monitor{
+  padding-bottom: 100px;
+}*/
+
+<<<<<<< .mine
+
+</style>=======
+</style>
+>>>>>>> .r320

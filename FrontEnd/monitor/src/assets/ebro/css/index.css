@@ -1,0 +1,198 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul li{
+  list-style: none;
+}
+a{
+  color:gray ;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: none;
+  color: ghostwhite;
+}
+
+.content-monitor{
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 30px;
+}
+/*区块导航*/
+.nav-list{
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  color:#B8B8C2;
+  
+}
+
+
+.nav-list p{
+  margin: 0;
+}
+.nav-list-one:hover,.nav-list-two:hover,.nav-list-three:hover{
+  cursor: pointer;
+}
+.nav-list-one{
+  max-height: 182px;
+  border-bottom: 3px solid #474174;
+  background-size: 100% 100%;
+}
+.nav-list-two{
+  border-bottom: 3px solid #7B4A7B;
+}
+.nav-list-three{
+  border-bottom:3px solid #A7497E
+}
+.nav-list-two,.nav-list-three{
+  background-size: 100% 100%;
+}
+.nav-list-name{
+  padding: 15px 0;
+}
+.number{
+  font-size: 30px;
+}
+.nav-list-two span, .nav-list-three span,.nav-list-one span{
+  font-size: 30px;
+  color: #1595F5;
+}
+.nodeicon{
+  margin-top:25px ;
+}
+.name{
+  font-size: 16px;
+  margin-left:20px ;
+  color:#57d2ff;
+}
+.nav-right img{
+  max-height: 310px;
+}
+.legend{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.legend p{
+  margin: 0;
+  color:#B8B8C2 ;
+}
+/*主要内容*/
+.main{
+  margin-top: 50px;
+  min-height: 200px;
+}
+.main-left{
+  position: relative;
+}
+.main-left-title{
+  color: #FFFFFF;
+  font-size: 16px;
+}
+.normelPro{
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  color: white;
+}
+.normelPro>span{
+  font-size: 12px;
+}
+.main-right .name{
+    font-size: 16px;
+    margin-left: 10px;
+}
+.main-right ul{
+    font-size: 12px;
+    color: gray;
+}
+.main-right ul li{
+  line-height: 20px;
+}
+.showdate{
+  padding: 0;
+}
+.list-title{
+    color: white;
+}
+.list-title>span{
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.list-content{
+ margin-top: 10px;
+}
+.list-content>span{
+  font-size: 13px;
+  padding-top: 10px;
+}
+/*.list-content:hover{
+  cursor: pointer;
+}*/
+.check:hover{
+  color: white;
+  cursor: pointer;
+}
+.main-right p{
+  padding: 5px 5px;
+}
+.main-header{
+  width:100%;
+  min-height: 30px;
+  background-color: #3F3F48;
+}
+.main-right-content{
+  padding-left: 5px;
+  color: white;
+  border-bottom: 4px solid #212124;
+  max-height: 245px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.main-right-content ul li span{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+@media only screen and(max-width:991px){
+    .main-right{
+        margin: 0;
+    }
+}
+
+.nodename{
+  padding-right: 0;
+}
+@media only screen and (max-width:990px ) {
+	.main-right{
+	  margin-left: 0;
+	  margin-right: 0;
+	}
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 2px;  
+    height: auto;  
+    opacity: 0.1;
+    background-color: #F5F5F5;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    -webkit-box-shadow: inset 0 0 2px rgba(33,33,33,0);   
+    background-color: #212124;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  
+    background-color: #555;  
+}  

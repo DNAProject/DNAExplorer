@@ -1,0 +1,96 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul li{
+  list-style: none;
+  text-align: center;
+  padding: 8px 0;
+}
+
+ul li span{
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap:break-word;
+}
+.header{
+    margin-top: -70px;
+    margin-left: 50px;
+    font-size: 18px;
+    color: #57d2ff;
+    padding: 0;
+}
+.back{
+  color: gray;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -20px;
+}
+.back:hover{
+  cursor: pointer;
+  color: white;
+}
+.chaininfo-content{
+    float: left;
+    margin-top: 10px;
+    background-color: #212124;
+    margin-left: 35px;
+    margin-right: 20px;
+    padding: 20px 20px 50px 20px;
+    color: lightgray;
+}
+
+.list-left-block,.list-left-exchange,.list-right-block ,.list-right-exchange{
+  background-color: #25262C;
+}
+.list-left-block,.list-left-exchange{
+  padding: 10px 30px 40px 30px;
+}
+.list-left-exchange{
+  margin-top: 30px;
+}
+.list-right-exchange{
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+.itemSelected{
+  background-color: lightgrey;
+  color: #212124;
+}
+.list-right-block{
+  padding-bottom: 30px;
+}
+.list-left li{
+  border-bottom: 1px dashed darkgray;
+}
+.list-left li:hover{
+  cursor: pointer;
+} 
+.list-left .list-titlename:hover{
+  color:lightgray ;
+  cursor:context-menu;
+}
+
+.exchange-id{
+  overflow :hidden;
+  text-overflow:ellipsis; 
+  white-space:nowrap;
+}
+h4{
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+}
+.detial{
+  border-bottom: 2px dotted white;
+}
+.list-right .list-titlename{
+  text-align: right;
+}
+.list-right span{
+  text-align: left;
+}
+.list-right ul li{
+  padding: 10px 0;
+}
+
