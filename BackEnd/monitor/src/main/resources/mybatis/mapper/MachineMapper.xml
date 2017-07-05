@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MachineDao">
+    <resultMap id="BaseResultMap" type="com.onchain.projects.domain.Machine">
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="node_ip" property="node_ip" jdbcType="VARCHAR"/>
+        <result column="cpu_usedPer" property="cpuUsedPer" jdbcType="VARCHAR"/>
+        <result column="mem_usedPer" property="memUsedPer" jdbcType="VARCHAR"/>
+        <result column="dis_usedPer" property="disUsedPer" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="storeMachineInfo" parameterType="com.onchain.projects.domain.Machine">
+        INSERT INTO tbl_pro_machine(date,node_ip,cpu_usedPer,mem_usedPer,dis_usedPer)
+        VALUES (#{date}, #{node_ip}, #{cpuUsedPer}, #{memUsedPer}, #{disUsedPer})
+    </insert>
+
+    <delete id="delMachineInfo" parameterType="java.lang.String">
+        DELETE FROM tbl_pro_machine
+        WHERE node_ip = #{ip}
+        ORDER BY date
+        LIMIT 1
+    </delete>
+
+    <select id="getMachineInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from tbl_pro_machine
+        where node_ip = #{ip}
+        order by date DESC
+        limit 360
+    </select>
+
+</mapper>

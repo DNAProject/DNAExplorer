@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="DegreeViewDao">
+    <resultMap id="BaseResultMap" type="com.onchain.projects.domain.Transaction">
+        <result column="txid" property="txId" jdbcType="VARCHAR"/>
+        <result column="type" property="txType" jdbcType="INTEGER"/>
+        <result column="date" property="date" jdbcType="VARCHAR"/>
+        <result column="height" property="height" jdbcType="INTEGER"/>
+        <result column="fee" property="fee" jdbcType="INTEGER"/>
+        <result column="cakey" property="caKey" jdbcType="VARCHAR"/>
+        <result column="assetname" property="assetname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="UtxoMap" type="com.onchain.projects.domain.TransactionOutput">
+        <result column="txid" property="txId" jdbcType="VARCHAR"/>
+        <result column="outputid" property="outputId" jdbcType="INTEGER"/>
+        <result column="assetid" property="assetId" jdbcType="VARCHAR"/>
+        <result column="value" property="value" jdbcType="VARCHAR"/>
+        <result column="scripthash" property="scriptHash" jdbcType="VARCHAR"/>
+        <result column="spendflag" property="spendFlag" jdbcType="INTEGER"/>
+        <result column="assetname" property="assetName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+
+    <!-- 最新存证信息-->
+    <select id="getRecentlyList" resultMap="BaseResultMap">
+    select * from tbl_pro_transactions
+ 	ORDER BY height DESC LIMIT 10
+  </select>
+
+    <select id="getTransactionsUtxo" resultMap="UtxoMap" parameterType="java.lang.String">
+    select * from tbl_pro_transactionoutputs
+    where scripthash = #{address,jdbcType=VARCHAR}
+    and spendflag = 0
+  </select>
+
+    <select id="getTransactionsUtxo2" resultMap="UtxoMap" parameterType="java.util.Map">
+    select * from tbl_pro_transactionoutputs
+    where scripthash = #{address,jdbcType=VARCHAR}
+    and assetid = #{assetid,jdbcType=VARCHAR}
+    and spendflag = 0
+  </select>
+
+    <select id="getTxnOutput" resultMap="UtxoMap">
+        select * from tbl_pro_transactionoutputs
+        where txid = #{txid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getTxnInput" resultType="com.onchain.projects.domain.TransactionInput">
+        select *
+        from tbl_pro_transactioninputs
+        where txid = #{txid}
+    </select>
+
+    <select id="getTxnOutput2" resultType="java.util.Map">
+        select scripthash,value
+        from tbl_pro_transactionoutputs
+        where txid = #{txid} and outputid=#{outputid}
+    </select>
+
+
+</mapper>
