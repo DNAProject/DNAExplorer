@@ -95,5 +95,25 @@ h4{
 }
 
 .time-item{
-  padding: 0 !important;
+  /*padding: 0 !important;*/
+  position: absolute;
+  width: 150%;
+  left: -25%;
+}
+.row-ot{
+  padding: 0 0 3px 0 !important;
+}
+.ot-item-address{
+  padding-right: 0 !important;
+}
+.ot-item-value{
+  padding-left: 5px !important;
+}
+@media (max-width: 1000px){
+  .time-item{
+    position: inherit;
+    width: 88px;
+/*    left: -25%;*/
+  }
+
 }

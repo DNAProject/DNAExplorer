@@ -20,7 +20,7 @@
           	</li>
           	<li v-for="(item,index) in blockList" class="col-sm-12 block"v-if="index<7" @click="showblockdetial(index)">
           	  <span class="col-sm-3">{{item.height}}</span>
-          	  <span class="col-sm-3 time-item">{{item.timestamp}}</span>
+          	  <span class="col-sm-3"><div class="time-item" >{{item.timestamp}}</div></span>
           	  <span class="col-sm-3">{{item.txnum}}</span>
           	  <span class="col-sm-3">{{item.size}}</span>
           	</li>
@@ -38,7 +38,7 @@
             </li>
             <li v-for="(item,index) in degreeList" class="col-sm-12 exhange" v-if="index<3" @click="showexchangedetial(index)">
               <span class="col-sm-3 exchange-id">{{item.txId}}</span>
-              <span class="col-sm-3 time-item"><div class="time-item">{{item.date}}</div></span>
+              <span class="col-sm-3"><div class="time-item">{{item.date}}</div></span>
               <span class="col-sm-3">{{item.height}}</span>
               <span class="col-sm-3">{{item.txTypeDesc}}</span>
             </li>
@@ -91,9 +91,31 @@
               <span class="col-sm-4 list-titlename">类型：</span>
               <span class="col-sm-8">{{degreeList[exchangenum].txTypeDesc}}</span>
             </li>
-            <li class="row">
+            <li class="row" v-if="assetnameShow(exchangenum)">
+              <span class="col-sm-4 list-titlename">资产类别：</span>
+              <span class="col-sm-8">{{degreeList[exchangenum].assetname}}</span>
+            </li>
+<!--            <li class="row">
               <span class="col-sm-4 list-titlename">手续费：</span>
               <span class="col-sm-8">{{degreeList[exchangenum].fee}}</span>
+            </li>-->
+            <li class="row" v-if="inputsShow(exchangenum)">
+              <span class="col-sm-4 list-titlename">交易输入：</span>
+              <div class="col-sm-8">
+                <li class="row row-ot" v-for="(item,index) in degreeList[exchangenum].inputs">
+                  <span class="col-sm-8 ot-item-address">{{item.address}}</span>
+                  <span class="col-sm-4 ot-item-value">-{{item.value}}</span>
+                </li>
+              </div>
+            </li>
+            <li class="row" v-if="outputsShow(exchangenum)">
+              <span class="col-sm-4 list-titlename">交易输出：</span>
+              <div class="col-sm-8">
+                <li class="row row-ot" v-for="(item,index) in degreeList[exchangenum].outputs">
+                  <span class="col-sm-8 ot-item-address">{{item.address}}</span>
+                  <span class="col-sm-4 ot-item-value">{{item.value}}</span>
+                </li>
+              </div>
             </li>
           </ul>
         </div>
@@ -158,6 +180,27 @@
         }
         $(".exhange").eq(index).addClass('itemSelected')
         this.exchangenum=index
+      },
+      assetnameShow:function(exchangenum){
+        var flag = false;
+        if((this.degreeList[exchangenum].txTypeDesc != "存证交易")&& (this.degreeList[exchangenum].txTypeDesc != "智能合约") ){
+          flag = true;
+        }
+        return flag;
+      },
+      inputsShow:function(exchangenum){
+        var flag = false;
+        if(this.degreeList[exchangenum].txTypeDesc == "转移交易"){
+          flag = true;
+        }
+        return flag;
+      },
+      outputsShow:function(exchangenum){
+        var flag = false;
+        if((this.degreeList[exchangenum].txTypeDesc == "发行交易")|| (this.degreeList[exchangenum].txTypeDesc == "转移交易") ){
+          flag = true;
+        }
+        return flag;
       }
     },
     components: {
