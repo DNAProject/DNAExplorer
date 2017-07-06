@@ -14,6 +14,7 @@ npm run dev
 # serve with hot reload at localhost:8080 & get data from local json server
 # before run the command please install JSON Server 
 # $ npm install -g json-server
+# change the mock-data in mock/db.json
 npm run mockdev
 
 # build for production with minification
