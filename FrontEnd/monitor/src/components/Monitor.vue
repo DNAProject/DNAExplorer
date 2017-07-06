@@ -319,12 +319,8 @@
         return this;
       },
       nodeInfo: function(node_url) {
-        //192.168.1.103:8080转换成192_168_1_103
-/*        var index = node_url.indexOf(":");
-        var ipTemp = node_url.substring(0, index);*/
-        debugger
         var realIp = node_url.replace(/\./g, "_");
-        var realIp = realIp.replace(/\:/g, "_");
+        realIp = realIp.replace(/\:/g, "_");
         this.$router.push({
           'path': '/nodeinfo/' + realIp
         })
