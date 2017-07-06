@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BlockDao">
+    <resultMap id="BaseResultMap" type="com.onchain.projects.domain.Block">
+        <id column="height" property="height" jdbcType="INTEGER"/>
+        <result column="hash" property="hash" jdbcType="VARCHAR"/>
+        <result column="prevblock" property="prevblock" jdbcType="VARCHAR"/>
+        <result column="nextblock" property="nextblock" jdbcType="VARCHAR"/>
+        <result column="merkleroot" property="merkleroot" jdbcType="VARCHAR"/>
+        <result column="timestamp" property="timestamp" jdbcType="INTEGER"/>
+        <result column="nonce" property="nonce" jdbcType="BIGINT"/>
+        <result column="miner" property="miner" jdbcType="VARCHAR"/>
+        <result column="txnum" property="txnum" jdbcType="INTEGER"/>
+        <result column="fee" property="fee" jdbcType="DOUBLE"/>
+        <result column="size" property="size" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="SummaryMap" type="com.onchain.projects.domain.Summary">
+        <id column="height" property="height" jdbcType="INTEGER"/>
+        <result column="txncount" property="txncount" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="getBlocks" resultMap="BaseResultMap">
+  	SELECT * FROM tbl_pro_blocks ORDER BY height DESC LIMIT 10
+  </select>
+
+
+    <select id="getSummaryInfo" resultMap="SummaryMap">
+        select * from tbl_pro_current
+    </select>
+
+</mapper>
