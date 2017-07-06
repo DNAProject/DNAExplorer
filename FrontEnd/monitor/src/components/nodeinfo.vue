@@ -658,7 +658,6 @@
       getcpuUsed:function(){
         var cpuUsed=0
         if(typeof(this.cpuUsed)=="undefined" || this.cpuUsed==0){
-          console.log(11111111111111)
         }
         else{
           cpuUsed=this.cpuUsed
@@ -668,7 +667,6 @@
       getcpuUnUsed:function(){
         var cpuUnUsed=1
         if(typeof(this.cpuUnUsed)=="undefined" || this.cpuUnUsed==0){
-          console.log(11111111111111)
         }
         else{
           cpuUnUsed=this.cpuUnUsed
@@ -678,7 +676,6 @@
       getmemUsed:function(){
         var memUsed=0
         if(typeof(this.memUsed)=="undefined" || this.memUsed==0){
-          console.log(11111111111111)
         }
         else{
           memUsed=this.memUsed
@@ -688,7 +685,6 @@
       getmemUnUsed:function(){
         var memUnUsed=1
         if(typeof(this.memUnUsed)=="undefined" || this.memUnUsed==0){
-          console.log(11111111111111)
         }
         else{
           memUnUsed=this.memUnUsed
@@ -698,7 +694,6 @@
       getdisUsed:function(){
         var disUsed=0
         if(typeof(this.disUsed)=="undefined" ||this.disUsed==0){
-          console.log(11111111111111)
         }else{
           disUsed=this.disUsed
         }
@@ -707,7 +702,6 @@
       getdisUnUsed:function(){
         var disUnUsed=1
         if(typeof(this.disUnUsed)=="undefined" || this.disUnUsed==0){
-          console.log(11111111111111)
         }else{
           disUnUsed=this.disUnUsed
         }
