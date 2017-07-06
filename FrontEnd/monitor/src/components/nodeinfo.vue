@@ -170,14 +170,6 @@
         + seperator2 + date.getSeconds();
         this.nowTime = currentdate
       },
-
-      nodeInfo:function (node_url) {
-        //192.168.1.103:8080转换成192_168_1_103
-        var index = node_url.indexOf(":");
-        var ipTemp = node_url.substring(0,index);
-        var realIp = ipTemp.replace(/\./g,"_");
-        this.$router.push({'path': '/nodeinfo/'+realIp})
-      },
       back: function() {
         this.$router.push({
           'path': '/monitor'
