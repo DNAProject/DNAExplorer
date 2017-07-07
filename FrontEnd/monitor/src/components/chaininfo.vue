@@ -4,43 +4,43 @@
   <div class="chaininfo">
   <div class="header">
       <div class="row">
-        <div class="col-sm-2 col-xs-offset-10 back" @click="back"> 返回首页</div>
+        <div class="col-sm-2 col-xs-4 col-xs-offset-10 back" @click="back"> 返回首页</div>
       </div>
   </div>
-    <div class="chaininfo-content">
-      <div class="list-left col-sm-7">
-        <div class="list-left-block col-sm-12">
+    <div class="chaininfo-content pc">
+      <div class="list-left col-sm-7 col-xs-12">
+        <div class="list-left-block col-sm-12 col-xs-12">
           <h4><img src="../assets/images/block.png"/>&nbsp;区块列表</h4>
           <ul>
-          	<li class="list-titlename col-sm-12">
-          	  <span class="col-sm-3">高度</span>
-          	  <span class="col-sm-3">生成时间</span>
-          	  <span class="col-sm-3">交易数</span>
-          	  <span class="col-sm-3">大小</span>
+          	<li class="list-titlename col-sm-12 col-xs-12">
+          	  <span class="col-sm-3 col-xs-3">高度</span>
+          	  <span class="col-sm-3 col-xs-3">生成时间</span>
+          	  <span class="col-sm-3 col-xs-3">交易数</span>
+          	  <span class="col-sm-3 col-xs-3">大小</span>
           	</li>
-          	<li v-for="(item,index) in blockList" class="col-sm-12 block"v-if="index<7" @click="showblockdetial(index)">
-          	  <span class="col-sm-3">{{item.height}}</span>
-          	  <span class="col-sm-3"><div class="time-item" >{{item.timestamp}}</div></span>
-          	  <span class="col-sm-3">{{item.txnum}}</span>
-          	  <span class="col-sm-3">{{item.size}}</span>
+          	<li v-for="(item,index) in blockList" class="col-sm-12 col-xs-12 block"v-if="index<7" @click="showblockdetial(index)">
+          	  <span class="col-sm-3 col-xs-3">{{item.height}}</span>
+          	  <span class="col-sm-3 col-xs-3"><div class="time-item" >{{item.timestamp}}</div></span>
+          	  <span class="col-sm-3 col-xs-3">{{item.txnum}}</span>
+          	  <span class="col-sm-3 col-xs-3">{{item.size}}</span>
           	</li>
           </ul>
         </div>
         
-        <div class="list-left-exchange col-sm-12">
+        <div class="list-left-exchange col-sm-12 col-xs-12">
           <h4><img src="../assets/images/exchange.png"/>&nbsp;交易列表</h4>
           <ul>
-            <li class="list-titlename col-sm-12">
-              <span class="col-sm-3">交易ID</span>
-              <span class="col-sm-3">时间</span>
-              <span class="col-sm-3">高度</span>
-              <span class="col-sm-3">类型</span>
+            <li class="list-titlename col-sm-12 col-xs-12">
+              <span class="col-sm-3 col-xs-3">交易ID</span>
+              <span class="col-sm-3 col-xs-3">时间</span>
+              <span class="col-sm-3 col-xs-3">高度</span>
+              <span class="col-sm-3 col-xs-3">类型</span>
             </li>
-            <li v-for="(item,index) in degreeList" class="col-sm-12 exhange" v-if="index<3" @click="showexchangedetial(index)">
-              <span class="col-sm-3 exchange-id">{{item.txId}}</span>
-              <span class="col-sm-3"><div class="time-item">{{item.date}}</div></span>
-              <span class="col-sm-3">{{item.height}}</span>
-              <span class="col-sm-3">{{item.txTypeDesc}}</span>
+            <li v-for="(item,index) in degreeList" class="col-sm-12 exhange col-xs-12" v-if="index<3" @click="showexchangedetial(index)">
+              <span class="col-sm-3 col-xs-3 exchange-id">{{item.txId}}</span>
+              <span class="col-sm-3 col-xs-3"><div class="time-item">{{item.date}}</div></span>
+              <span class="col-sm-3 col-xs-3">{{item.height}}</span>
+              <span class="col-sm-3 col-xs-3">{{item.txTypeDesc}}</span>
             </li>
           </ul>
         </div>
@@ -127,8 +127,96 @@
         </div>
       </div>
     </div>
+    
+    <!--手机端-->
+    <div class="chaininfo-content phone">
+      <div class="list-left  col-xs-12">
+        <h4 class="row">
+            <span id="block-title" class="col-xs-6 block-title active" @click="showblock"><img src="../assets/images/block.png"/>&nbsp;区块列表</span>
+            <span id="exchange-title" class="col-xs-6 exchange-title" @click="showexchange"><img src="../assets/images/exchange.png"/>&nbsp;交易列表</span>
+          </h4>
+        <div class="list-left-block col-sm-12 col-xs-12" id="block">
+          <ul >
+            <li v-for="(item,index) in blockList" class="col-sm-12 col-xs-12 block" >
+              <span class="col-xs-11 phone-list-left" @click="showblockdetials(index)">
+                <span class="col-xs-12 title">区块hash:</span>
+                <span class="col-xs-12 content">{{item.hash}}</span>
+              </span>
+              <span class="col-xs-1 text-right ico" @click="showblockdetials(index)">
+                <i class="glyphicon glyphicon-chevron-right arrow" v-if="!showblocks[index]"></i>
+                <i class="glyphicon glyphicon-chevron-down arrow" v-if="showblocks[index]"></i>
+              </span>
+              <div v-if="showblocks[index]">
+              <span class="col-xs-12 phone-list-left">
+                <span class="col-xs-3 title">高度:</span>
+                <span class="col-xs-9 content">{{item.height}}</span>
+              </span>
+              <span class="col-xs-12 phone-list-left">
+                <span class="col-xs-3 title">时间:</span>
+                <span class="col-xs-9 content">{{item.timestamp}}</span>
+              </span>
+              <span class="col-xs-12 phone-list-left">
+                <span class="col-xs-3 title">交易数:</span>
+                <span class="col-xs-9 content">{{item.txnum}}</span>
+              </span>
+              <span class="col-xs-12 phone-list-left">
+                <span class="col-xs-5 col-sm-3 title">区块Merkle根:</span>
+                <span class="col-xs-7 content">{{item.merkleroot}}</span>
+              </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="list-left-exchange hide col-sm-12 col-xs-12" id="exchange">
+          <ul >
+            <li v-for="(item,index) in degreeList" class="col-sm-12 exhange col-xs-12" >
+                <span class="col-xs-11 phone-list-left" @click="showexchangedetials(index)">
+                  <span class="col-xs-12 title">交易ID:</span>
+                  <span class="col-xs-12 content">{{item.txId}}</span>
+                </span>
+                <span class="col-xs-1 text-right ico" @click="showexchangedetials(index)">
+                  <i class="glyphicon glyphicon-chevron-right arrow" v-if="!showexchanges[index]"></i>
+                  <i class="glyphicon glyphicon-chevron-down arrow" v-if="showexchanges[index]"></i>
+                </span>
+              <div v-if="showexchanges[index]">
+                <span class="col-xs-12 phone-list-left">
+                  <span class="col-xs-4 title">交易时间:</span>
+                  <span class="col-xs-8 content">{{item.date}}</span>
+                </span>
+                <span class="col-xs-12 phone-list-left">
+                  <span class="col-xs-4 title">区块高度:</span>
+                  <span class="col-xs-8 content">{{item.height}}</span>
+                </span>
+                <span class="col-xs-12 phone-list-left">
+                  <span class="col-xs-4 title">类型:</span>
+                  <span class="col-xs-8 content">{{item.txTypeDesc}}</span>
+                </span>
+                <span class="col-xs-12 phone-list-left" v-if="assetnameShow(exchangenum)">
+                  <span class="col-xs-4 title">资产类别:</span>
+                  <span class="col-xs-8 content">{{degreeList[exchangenum].assetname}}</span>
+                </span>
+                <span class="col-xs-12 phone-list-left" v-if="inputsShow(exchangenum)">
+                  <span class="col-xs-4 title">交易输入:</span>
+                  <span v-for="(item,index) in degreeList[exchangenum].inputs" class="col-xs-8">
+                    <span class="col-xs-12 content">{{item.address}}</span>
+                    <span class="clo-xs-12 content">{{item.value}}</span>
+                  </span>
+                </span>
+                <span class="col-xs-12 phone-list-left" v-if="outputsShow(exchangenum)">
+                  <span class="col-xs-4 title">交易输出:</span>
+                  <span v-for="(item,index) in degreeList[exchangenum].outputs" class="col-xs-8">
+                    <span class="col-xs-12 content">{{item.address}}</span>
+                    <span class="clo-xs-12 content">{{item.value}}</span>
+                  </span> 
+                </span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-   
+  </div>
     </div>
 </template>
 
@@ -159,7 +247,9 @@
     data () {
       return {
         blocknum: 0,
-        exchangenum:0
+        exchangenum:0,
+        showblocks:[false,false,false,false,false,false,false,false,false,false],
+        showexchanges:[false,false,false,false,false,false,false,false,false,false]
       }
     },
     methods:{
@@ -201,6 +291,35 @@
           flag = true;
         }
         return flag;
+      },
+      showexchange:function(){
+        $('#exchange').removeClass('hide')
+        $('#block').addClass('hide')
+        $('#block-title').removeClass('active')
+        $('#exchange-title').addClass('active')
+      },
+      showblock:function(){
+        $('#exchange').addClass('hide')
+        $('#block').removeClass('hide')
+        $('#block-title').addClass('active')
+        $('#exchange-title').removeClass('active')
+      },
+      showblockdetials:function(index){
+        if(this.showblocks[index] == false ){
+          this.showblocks[index] = true;   
+        }else{
+          this.showblocks[index] = false;  
+        }   
+        this.blockList.reverse().reverse();
+      },
+      showexchangedetials:function(index){
+        if(this.showexchanges[index] == false ){
+          this.showexchanges[index] = true;   
+        }else{
+          this.showexchanges[index] = false;  
+        }   
+        this.degreeList.reverse().reverse();
+        this.exchangenum=index
       }
     },
     components: {
