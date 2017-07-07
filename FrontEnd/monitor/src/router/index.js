@@ -32,7 +32,7 @@ const routes = [
         component:nodeinfo
       },
       {
-        path:'chaininfo',
+        path:'/chaininfo',
         component:chaininfo
       }
 
@@ -42,7 +42,7 @@ const routes = [
 ];
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   scrollBehavior: () => ({ y: 0 }),
   routes
 })

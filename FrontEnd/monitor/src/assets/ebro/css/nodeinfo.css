@@ -11,8 +11,7 @@ span{
     font-size: 15px;
 }
 .header{
-    margin-top:-70px;
-    margin-left: 50px;
+    position: relative;
     font-size: 18px;
     color: #57d2ff;
 }
@@ -62,4 +61,16 @@ span{
 	.time{
 	  margin-top: 0;
 	}
+}
+@media (max-width: 768px){
+  .content{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .back{
+    padding: 0px;
+  }
+}
+.row-back{
+    margin: -12px 12px 1px 1px;
 }

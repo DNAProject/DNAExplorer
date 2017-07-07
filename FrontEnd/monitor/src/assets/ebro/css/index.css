@@ -98,6 +98,15 @@ a:hover{
   bottom: 22px;
   color: white;
 }
+.normelPro-pie{
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  color: white;
+}
+.normelPro-pie>span{
+  font-size: 12px;
+}
 .normelPro>span{
   font-size: 12px;
 }
@@ -196,3 +205,104 @@ a:hover{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);  
     background-color: #555;  
 }  
+@media (max-width: 768px){
+/*清除节点的图片*/
+  .mobile-noshow{
+    display: none;
+  }
+  .mobile-show{
+    display: block !important;
+  }
+  .mt-number-animate .mt-number-animate-dom{ 
+    width: 30px;/*设置单个数字宽度*/ 
+  }
+  .content-monitor{
+    padding-top: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .nav-list-name-mobile{
+    width:100%;
+  }
+  .nodeicon-m{
+    width: 10%;
+    margin: 0;
+    padding: 15px 0;
+  }
+  .icon-sitemap-m{
+    float: left;
+    font-size: 16px !important;
+  }
+  .nav-list-name-m{
+    width: 90%;
+  }
+  .nodeNum-m{
+    font-size: 16px;
+    float: right;
+  }
+  .nodeText-m{
+    font-size: 16px;
+    float: left;
+  }
+  .icon-exchange-m{
+    float: left;
+   font-size: 16px !important;
+  }
+  .exchangeNum-m{
+    font-size: 16px;
+    float: right;
+  }
+  .exchangeText-m{
+    font-size: 16px;
+    float: left;
+  }
+  .showMoreDetail {
+    font-size: 17px;
+    width: 60%;
+    min-width: 63px;
+    left: 20%;
+    height: 30px;
+  }
+  .col-xs-6-m{
+    width: 50%;
+    background-color: #25262c;
+    padding: 5px 15px;
+  }
+  .bottom-line-1{
+    border-bottom: 1px dashed darkgray;
+  }
+  .col-xs-12-m{
+    width: 100%;
+    padding: 5px 15px;
+/*    border-bottom: 2px solid white;*/
+  }
+  .main-right-content{
+    max-height: inherit;
+  }
+  .node-item{
+    padding: 5px 0;
+  }
+  .normelPro-right{
+    max-width: inherit !important;
+  }
+  .main {
+    margin-top: 0px;
+  }
+  .main-right {
+    top:60px;
+  }
+  .normelPro-pie{
+    top:20px;
+    left: 0px;
+  }
+  .normelPro{
+    top:60px;
+    left: 0px;
+  }
+}
+.normelPro-right{
+  max-width: 80px;
+}
+.mobile-show{
+  display: none;
+}

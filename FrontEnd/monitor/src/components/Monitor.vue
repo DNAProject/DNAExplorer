@@ -6,38 +6,38 @@
         <div class="col-sm-4 col-xs-12 nav-list">
           
           <div class="nav-list-one col-sm-12 col-xs-12" @click="toChaininfo">
-            <div class="col-xs-4 nodeicon">
+            <div class="col-xs-4 nodeicon mobile-noshow">
               <span class="icon icon-signal"></span>
             </div>
-            <div class="col-xs-8 nav-list-name" >
+            <div class="col-xs-8 nav-list-name nav-list-name-mobile" >
               <p class="numberRun number" >{{ blockStatusheight }}</p>
               <p >当前区块高度</p>
             </div>
           </div>
           
           <div class="nav-list-two col-sm-12 col-xs-12" @click="toChaininfo">
-            <div class="col-xs-4 nodeicon">
-              <span class="icon icon-sitemap"></span>
+            <div class="col-xs-4 nodeicon nodeicon-m">
+              <span class="icon icon-sitemap icon-sitemap-m"></span>
             </div>
-            <div class="col-xs-8 nav-list-name"  >
-              <p class="number">{{ nodeStatus.totalCount}}</p>
-              <p>节点数量</p>
+            <div class="col-xs-8 nav-list-name nav-list-name-m"  >
+              <p class="number nodeNum-m">{{ nodeStatus.totalCount}}</p>
+              <p class="nodeText-m">节点数量</p>
             </div>
           </div>
           
           <div class="nav-list-three col-sm-12 col-xs-12" @click="toChaininfo">
-            <div class="col-xs-4 nodeicon">
-              <span class="icon icon-exchange"></span>
+            <div class="col-xs-4 nodeicon nodeicon-m">
+              <span class="icon icon-exchange icon-exchange-m"></span>
             </div>
-            <div class="col-xs-8 nav-list-name" >
-              <p class="number">{{ txncount }}</p>
-              <p>交易数量</p>
+            <div class="col-xs-8 nav-list-name nav-list-name-m" >
+              <p class="number exchangeNum-m">{{ txncount }}</p>
+              <p class="exchangeText-m">交易数量</p>
             </div>
           </div><br>
           <div class="showMoreDetail" @click="toChaininfo">更多信息</div>
           
         </div>
-        <div class="col-sm-8 col-xs-12 nav-right">
+        <div class="col-sm-8 col-xs-12 nav-right mobile-noshow">
           <!--<p class="name">节点分布</p>-->
           <img src="static/img/ditu2.png" width="100%"/>
           <div id="oldNodes" >节点</div>
@@ -51,10 +51,14 @@
       <div class="row main">
         <div class="col-sm-6 col-xs-12 main-left">
           <p class="main-left-title">节点类型</p>
-          <div id="allnode" class="col-sm-6  col-xs-12" ></div>
-          <div id="normalnode" class="col-sm-6 col-xs-12"></div>
-          <div class="normelPro">
-            <span >正常节点占比:</span><br />
+          <div id="allnode" class="col-sm-6  col-xs-12 mobile-noshow" ></div>
+          <div id="normalnode" class="col-sm-6 col-xs-12 mobile-noshow"></div>
+          <div class="normelPro-pie col-xs-12-m normelPro-right mobile-show">
+            <span >验证节点:{{nodeType1}}</span></br>
+            <span >服务节点:{{nodeType2}}</span>            
+          </div>
+          <div class="normelPro col-xs-12-m normelPro-right">
+            <span >正常节点占比:</span>
             <span >{{ (nornum/(nornum+dannum)*100).toFixed(1) }}%</span>
           </div>
         </div>
@@ -63,7 +67,7 @@
            <div class="main-right-content">
               <div class="row">
                 <ul>
-                  <li class="list-title">
+                  <li class="list-title mobile-noshow">
                     <span class="col-xs-2 nodename">节点名称</span>
                     <span class="col-xs-2">出块状态</span>
                     <span class="col-xs-3">网络状态</span>
@@ -72,18 +76,18 @@
                   </li>
                   <div v-for="item in nodeList">
                   <li v-if="item.blockStatus==='出块异常'" class="list-content" >
-                    <span class="col-xs-2 nodename danger" >{{ item.id }}</span>
-                    <span class="col-xs-2 danger">{{ item.blockStatus }}</span>
-                    <span class="col-xs-3 danger">{{ item.rpcStatus }}</span>
-                    <span class="col-xs-3 danger showdate" >{{ item.date }}</span>
-                    <span class="col-xs-2 check" @click="nodeInfo(item.url)">查看</span>
+                    <span class="col-xs-2 nodename danger col-xs-6-m bottom-line-1" >{{ item.id }}</span>
+                    <span class="col-xs-2 danger col-xs-6-m bottom-line-1">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 danger col-xs-6-m">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-3 danger showdate col-xs-6-m" >{{ item.date }}</span>
+                    <span class="col-xs-2 check col-xs-12-m" @click="nodeInfo(item.url)">查看</span>
                   </li>
                   <li v-if="item.blockStatus==='出块正常'" class="list-content" >
-                    <span class="col-xs-2 nodename " >{{ item.id }}</span>
-                    <span class="col-xs-2 ">{{ item.blockStatus }}</span>
-                    <span class="col-xs-3 ">{{ item.rpcStatus }}</span>
-                    <span class="col-xs-3 showdate"  >{{ item.date }}</span>
-                    <span class="col-xs-2 check" @click="nodeInfo(item.url)">查看</span>
+                    <span class="col-xs-2 nodename col-xs-6-m bottom-line-1" >{{ item.id }}</span>
+                    <span class="col-xs-2 col-xs-6-m bottom-line-1">{{ item.blockStatus }}</span>
+                    <span class="col-xs-3 col-xs-6-m">{{ item.rpcStatus }}</span>
+                    <span class="col-xs-3 showdate col-xs-6-m"  >{{ item.date }}</span>
+                    <span class="col-xs-2 check col-xs-12-m" @click="nodeInfo(item.url)">查看</span>
                   </li>
                   </div>
                 </ul>
