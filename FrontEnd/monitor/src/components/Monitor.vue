@@ -53,11 +53,11 @@
           <p class="main-left-title">节点类型</p>
           <div id="allnode" class="col-sm-6  col-xs-12 mobile-noshow" ></div>
           <div id="normalnode" class="col-sm-6 col-xs-12 mobile-noshow"></div>
-          <div class="normelPro-pie col-xs-12-m normelPro-right mobile-show">
+          <div class="normelPro-pie col-xs-12-m-l normelPro-right mobile-show">
             <span >验证节点:{{nodeType1}}</span></br>
             <span >服务节点:{{nodeType2}}</span>            
           </div>
-          <div class="normelPro col-xs-12-m normelPro-right">
+          <div class="normelPro col-xs-12-m-l normelPro-right">
             <span >正常节点占比:</span>
             <span >{{ (nornum/(nornum+dannum)*100).toFixed(1) }}%</span>
           </div>
@@ -80,14 +80,14 @@
                     <span class="col-xs-2 danger col-xs-6-m bottom-line-1">{{ item.blockStatus }}</span>
                     <span class="col-xs-3 danger col-xs-6-m">{{ item.rpcStatus }}</span>
                     <span class="col-xs-3 danger showdate col-xs-6-m" >{{ item.date }}</span>
-                    <span class="col-xs-2 check col-xs-12-m" @click="nodeInfo(item.url)">查看</span>
+                    <span class="col-xs-2 check col-xs-12-m-r" @click="nodeInfo(item.url)">查看>>></span>
                   </li>
                   <li v-if="item.blockStatus==='出块正常'" class="list-content" >
                     <span class="col-xs-2 nodename col-xs-6-m bottom-line-1" >{{ item.id }}</span>
                     <span class="col-xs-2 col-xs-6-m bottom-line-1">{{ item.blockStatus }}</span>
                     <span class="col-xs-3 col-xs-6-m">{{ item.rpcStatus }}</span>
                     <span class="col-xs-3 showdate col-xs-6-m"  >{{ item.date }}</span>
-                    <span class="col-xs-2 check col-xs-12-m" @click="nodeInfo(item.url)">查看</span>
+                    <span class="col-xs-2 check col-xs-12-m-r" @click="nodeInfo(item.url)">查看>>></span>
                   </li>
                   </div>
                 </ul>
