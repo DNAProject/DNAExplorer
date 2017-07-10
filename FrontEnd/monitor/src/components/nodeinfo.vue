@@ -2,8 +2,8 @@
   <div id="nodeinfo">
     <Top></Top>
     <div class="header">
-      <div class="row row-back">
-        <div class="col-sm-2 col-xs-offset-10 back" @click="back"> 返回首页</div>
+      <div class="row">
+        <div class="col-sm-2 col-xs-4 col-xs-offset-10 back" @click="back"> 返回首页</div>
       </div>
     </div>
 
