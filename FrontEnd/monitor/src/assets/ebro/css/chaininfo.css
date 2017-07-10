@@ -112,6 +112,17 @@ h4{
 .phone{
   display: none;
 }
+li.no-exchange{
+    font-size: 16px;
+    color: red;
+    border-bottom: none;
+  }
+  @media (max-width: 1000px){
+ .time-item{
+   position: inherit;
+   width: 88px;
+ }
+}
 @media only screen and (max-width:768px ) {
   .pc{
     display: none;
@@ -127,7 +138,9 @@ h4{
     margin-top: -15px;
     margin-right: 50px;
   }
-  
+  .back{
+    padding: 0;
+  }
   .chaininfo-content{
     padding: 0;
     margin: 30px 10px;
@@ -182,5 +195,8 @@ h4{
   }
   .ico{
     padding: 0;
+  }
+  #no-exchange{
+    background-color: #212124;
   }
 }
