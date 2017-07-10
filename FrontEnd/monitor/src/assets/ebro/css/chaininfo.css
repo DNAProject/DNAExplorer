@@ -200,3 +200,8 @@ li.no-exchange{
     background-color: #212124;
   }
 }
+@media only screen and (max-width:320px ) {
+	span.title{
+	  padding: 0;
+	}
+}

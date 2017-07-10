@@ -67,8 +67,12 @@ span{
     margin-left: 0px;
     margin-right: 0px;
   }
+  .header{
+    margin-top: -15px;
+    margin-right: 50px;
+  }
   .back{
-    padding: 0px;
+    padding: 0;
   }
 }
 .row-back{
