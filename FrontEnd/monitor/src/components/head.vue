@@ -3,13 +3,20 @@
       <div class="row">
         <div class="col-sm-6">
           <!--<img src="../../static/img/onchain-logo.png" class="logo"/>-->
-          <span style="padding-left: 10px;">DNA区块链监控平台</span> 
+          <span style="padding-left: 10px;" @click="back">DNA区块链监控平台</span> 
         </div>
       </div>
     </div>
 </template>
 
 <script>
+  export default {
+    methods:{
+      back:function(){
+        this.$router.push({'path': '/monitor'})
+      }
+    }
+  }
 </script>
 
 <style>
