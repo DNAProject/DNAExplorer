@@ -49,6 +49,13 @@ export default {
   },
   getOneNodeInfo:function (ip) {
     return resource.OneNodeInfoResource.get({ip:ip})
-  }
+  },
+
+  getNameSpace: function () {
+    return resource.namespaceReource.get()
+  },
+  getStateUpdateTxn: function () {
+    return resource.stateupdatetxnReource.get({namespace:namespace,key:key,pagenumber:pagenumber, pagesize:pagesize,begintime:begintime,endtime:endtime})
+  }  
 
 }

@@ -16,3 +16,7 @@ export const DEGREESUMBYSTATUS = 'DEGREESUMBYSTATUS'
 
 export const MACHINEINFO = 'MACHINEINFO'
 export const ONENODEINFO = 'ONENODEINFO'
+
+//temporary for HoneyWell 
+export const NAMESPACE = 'NAMESPACE'
+export const STATEUPDATETXN = "STATEUPDATETXN"

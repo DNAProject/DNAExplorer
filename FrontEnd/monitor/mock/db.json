@@ -16,5 +16,158 @@
   "getCurrentSumInfo": { "height":250139,"txncount":2334567 },
   "getNodeLocalDBtotal":{"totalCount":4,"errorNum":0,"correctNum":4,"errorPer":"0","correctPer":"100","type1Num":4,"type2Num":0},
   "getNodeLocalDB":{"dataList":[{"id":"法链1","url":"139.219.229.212:20336","type":"yanzheng","blockStatus":"出块异常","rpcStatus":"节点连接正常","date":"20170704 10:29:32","systemInfo":"linux","runningTime":"2017/06/17 01:16:51","x":150,"y":162},{"id":"法链2","url":"139.219.228.100:20336","type":"yanzheng","blockStatus":"出块正常","rpcStatus":"节点连接正常","date":"20170704 10:29:40","systemInfo":"linux","runningTime":"2017/06/17 01:16:50","x":195,"y":103},{"id":"法链3","url":"42.159.234.119:20336","type":"yanzheng","blockStatus":"出块正常","rpcStatus":"节点连接正常","date":"20170704 10:29:42","systemInfo":"linux","runningTime":"2017/06/17 01:16:51","x":320,"y":107},{"id":"法链4","url":"139.219.227.128:20336","type":"yanzheng","blockStatus":"出块正常","rpcStatus":"节点连接正常","date":"20170704 10:29:32","systemInfo":"linux","runningTime":"2017/06/17 01:16:51","x":70,"y":150}],"pageNo":1,"pageSize":4,"total":4,"pages":0},
-  "profile": { "name": "typicode" }
+  "profile": { "name": "typicode" },
+  "getNameSpaceBack":[
+        {
+          "nameSpace":"000",
+          "key":[
+                  {
+                    "key":"111111",
+                    "action":"start",
+                    "value":"0000djfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },
+                  {
+                    "key":"111111",
+                    "action":"use",
+                    "value":"1hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },   
+                  {
+                    "key":"111111",
+                    "action":"use",
+                    "value":"2hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },    
+                  {
+                    "key":"111111",
+                    "action":"use",
+                    "value":"3hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },   
+                  {
+                    "key":"111111",
+                    "action":"use",
+                    "value":"4hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },         
+                  {
+                    "key":"111111",
+                    "action":"stop",
+                    "value":"9999jfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },
+                  {
+                    "key":"222222",
+                    "action":"start",
+                    "value":"0000djfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },
+                  {
+                    "key":"222222",
+                    "action":"use",
+                    "value":"1hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },     
+                  {
+                    "key":"222222",
+                    "action":"use",
+                    "value":"2hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },     
+                  {
+                    "key":"222222",
+                    "action":"use",
+                    "value":"3hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },     
+                  {
+                    "key":"222222",
+                    "action":"use",
+                    "value":"4hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },       
+                  {
+                    "key":"222222",
+                    "action":"stop",
+                    "value":"9999jfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  }
+                ]
+        },
+        {
+          "nameSpace":"111",
+          "key":[
+                  {
+                    "key":"33333",
+                    "action":"start",
+                    "value":"0000djfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },
+                  {
+                    "key":"333333",
+                    "action":"use",
+                    "value":"1hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  },       
+                  {
+                    "key":"333333",
+                    "action":"stop",
+                    "value":"9999jfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+                  }
+                ]
+        }
+
+      ],
+  "getstateupdatetxn":[
+    {
+      "key":"111111",
+      "action":"start",
+      "value":"0000djfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },
+    {
+      "key":"111111",
+      "action":"use",
+      "value":"1hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },   
+    {
+      "key":"111111",
+      "action":"use",
+      "value":"2hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },    
+    {
+      "key":"111111",
+      "action":"use",
+      "value":"3hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },   
+    {
+      "key":"111111",
+      "action":"use",
+      "value":"4hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },         
+    {
+      "key":"111111",
+      "action":"stop",
+      "value":"9999jfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },
+    {
+      "key":"222222",
+      "action":"start",
+      "value":"0000djfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },
+    {
+      "key":"222222",
+      "action":"use",
+      "value":"1hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },     
+    {
+      "key":"222222",
+      "action":"use",
+      "value":"2hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },     
+    {
+      "key":"222222",
+      "action":"use",
+      "value":"3hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },     
+    {
+      "key":"222222",
+      "action":"use",
+      "value":"4hasdjfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    },       
+    {
+      "key":"222222",
+      "action":"stop",
+      "value":"9999jfhkjahsjkhkjladsjkvjadhilfvhjdwdslf kbvncnsb encfls nenf lsb ne nlbfsnreacvfblneflsf"
+    }
+  ],
+  "getnamespace":[
+    "aaaa","bbbb","cccc"
+  ]
 }
