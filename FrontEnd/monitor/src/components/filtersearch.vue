@@ -9,29 +9,29 @@
  <div class="select-date container pc row" id="select-date" v-show="this.size!=64">
     <span class="filter-cakey-key filter-margin-top col-sm-6" style="color:white;">选择您要搜索的NameSpace:</span>
     <span class="filter-cakey-value filter-margin-top col-sm-6">
-    <select v-model="nameSpace" >
+    <select v-model="nameSpace" style="color: black;">
       <option >请选择</option>
       <option v-for="(item,index) in nameSpaceList" value='item'>{{item}}</option>
     </select>
     </span>
     <span class="filter-appid-key filter-margin-top col-sm-6" style="color:white;">请输入您要搜索的Key:</span>
     <span class="filter-appid-value filter-margin-top col-sm-6"><input v-model="key" style="border-radius: 5px;outline: none;"></span></br>
-    <span class="filter-time-key col-sm-6" style="color:white;">选择您要搜索的时间段:</span>
-    <span class="filter-time-start col-sm-6" style="color:white;">开始时间：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span></br>
+    <span class="filter-time-key col-sm-6 filter-margin-top" style="color:white;">选择您要搜索的时间段:</span>
+    <span class="filter-time-start filter-margin-top col-sm-6" style="color:white;">开始时间：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span></br>
     <span class="col-sm-6"></span>
-    <span class="filter-time-end filter-margin-top col-sm-6" style="color:white;">结束时间：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span></br>
+    <span class="filter-time-end filter-margin-top  col-sm-6" style="color:white;">结束时间：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span></br>
     <span class="col-sm-12  filter-button"><button style="width:50%;max-width:90px" @click="filterData">查询</button></span>
  </div>
  <div class="select-date container phone" id="select-date" v-show="this.size!=64">
     <span  style="color:white;" >选择您要搜索的NameSpace:
-    <select v-model="nameSpace">
+    <select v-model="nameSpace" style="color: black;">
       <option value="default">请选择</option>
       <option v-for="(item,index) in nameSpaceList" value='item'>{{item}}</option>
     </select>
     </span>
     <span  style="color:white;">请输入您要搜索的Key:</span>
     <input v-model="facilityKey" style="border-radius: 5px;outline: none;"></br></br>
-    <span style="color:white;" >选择您要搜索的时间段:</span>
+    <span style="color:white;">选择您要搜索的时间段:</span>
     <span style="color:white;">开始时间：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span>
     <span style="color:white;">结束时间：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span>
     <button style="width:60%;" @click="filterData">查询</button>
@@ -43,14 +43,26 @@
      <!--ID搜索-->
     <div class="main-content">
      <ul  class="text-left col-sm-12" v-for="(item,index) in showlist">
-        <li class="col-sm-6"><span class="col-sm-6">Key:</span><span class="col-sm-6">{{ item.key }}</span>
+        <li class="col-sm-6 showdetial" @click="showDetails(index)"><span class="col-sm-3">Key:</span><span class="col-sm-9">{{ item.key }}</span>
           <!--<span v-if="!showFlag[index]">点击查看详细信息</span>
           <span v-else>点击收起详细信息</span>-->
         </li>
-        <!--<div v-if="showFlag[index]">-->
-        <li class="col-sm-6"><span class="col-sm-6">Desc:</span><span class="col-sm-6">{{ item.action }}</span></li>
-        <li><span class="col-sm-3">详细信息:</span><span class="col-sm-9">{{ item.value }}</span></li>
-        <!--</div>-->
+        <li class="col-sm-6 showdetial" @click="showDetails(index)">
+        	<span class="col-sm-3">Desc:</span>
+        	<span class="col-sm-9">{{ item.action }}</span>
+        	<i class="glyphicon glyphicon-chevron-right arrow" v-if="!showFlag[index]"></i><i class="glyphicon glyphicon-chevron-down arrow" v-if="showFlag[index]"></i>
+        </li>
+        <div v-if="showFlag[index]">
+        <li class="col-sm-6">
+        	<span class="col-sm-3">高度:</span>
+        	<span class="col-sm-9">{{ item.height }}</span>
+        </li>
+        <li class="col-sm-6">
+        	<span class="col-sm-3">时间:</span>
+        	<span class="col-sm-9">{{ item.txtime }}</span>
+        </li>
+        <li class="col-xs-12"><span class="col-sm-2">详细信息:</span><span class="col-sm-10">{{ item.value }}</span></li>
+        </div>
       </ul>
     </div>
    
@@ -143,7 +155,7 @@
           nameSpace_backup:[],
           showFlag:[false,false,false,false,false],
           key:'',
-          nameSpaceList:['aaa','bbb','ccc'],
+          nameSpaceList:[],
           appIDFlag:false
         }
     },
@@ -155,7 +167,12 @@
       },
       'nameSpace':function(){
         debugger
-        this.nameSpaceList = this.nameSpace
+//      this.nameSpaceList = this.nameSpace
+        for (var i=0;i<this.nameSpace.length-1;i++) {
+        	if (this.nameSpaceList.indexOf(this.nameSpace[i]== -1)) {
+        		this.nameSpaceList.push(this.nameSpace[i])
+        	}
+        }
       },
       'stateUpdateTxn':function(){
         debugger
@@ -257,11 +274,25 @@
 </script>
 
 <style scoped>
-  .back{
-    color: gray;
-    font-size: 14px;
-    text-align: center;
-    margin-top: -20px;
+.header{
+    margin-top: -70px;
+    margin-left: 50px;
+    font-size: 18px;
+    color: #57d2ff;
+    padding: 0;
+}
+.back{
+  color: gray;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -20px;
+}
+.showdetial:hover{
+	cursor: pointer;
+}
+  .back:hover{
+  	cursor: pointer;
+  	color: white;
   }
   .collapse_title{
     cursor: pointer;
@@ -281,10 +312,6 @@
     margin: 0;
     margin-bottom: 50px;
     border-bottom: 4px solid #F5F5F5;
-    /*background-color: #F5F5F5;*/
-    /*border-radius: 4px;
-    border: solid 1px #e6e6e6;
-    box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.24), 0 3px 8px rgba(0, 0, 0, 0.05);*/
   }
  
   ul li span{
@@ -318,11 +345,10 @@
     width:100%;
     float: left;
   }
-  
+  .main-content ul li span{
+  	text-align: left;
+  }
   .select-date{
-   /*float: right;
-   margin-top: 20px;
-   margin-right: 20px;*/
   width: 100%;
   padding-top: 40px;
   text-align: center;
@@ -410,6 +436,13 @@
         display: block;
         
        }
+       .header{
+       margin-top: -15px;
+       margin-right: 50px;
+      }
+  		.back{
+    		padding: 0;
+  		}
        .phone span{
          font-size: 0.8em;
        }

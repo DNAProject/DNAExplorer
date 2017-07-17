@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-sm-6">
           <!--<img src="../../static/img/onchain-logo.png" class="logo"/>-->
-          <span style="padding-left: 10px;" @click="back">DNA区块链监控平台</span> 
+          <span style="padding-left: 10px;z-index: 99;position: relative;" @click="back" >DNA区块链监控平台</span> 
         </div>
       </div>
     </div>
@@ -23,6 +23,9 @@
   .header-monitor span{
     color: #C6C7CD;
     font-size: 20px;
+  }
+  .header-monitor span:hover{
+  	cursor: pointer;
   }
   .header-monitor{
   padding: 10px;

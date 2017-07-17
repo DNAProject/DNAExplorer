@@ -54,8 +54,10 @@ export default {
   getNameSpace: function () {
     return resource.namespaceReource.get()
   },
-  getStateUpdateTxn: function () {
+//getStateUpdateTxn: function () {
+//  return resource.stateupdatetxnReource.get({namespace:namespace,key:key,pagenumber:pagenumber, pagesize:pagesize,begintime:begintime,endtime:endtime})
+//}  
+  getStateUpdateTxn: function (namespace,key,pagenumber,pagesize,begintime,endtime) {
     return resource.stateupdatetxnReource.get({namespace:namespace,key:key,pagenumber:pagenumber, pagesize:pagesize,begintime:begintime,endtime:endtime})
-  }  
-
+  } 
 }
