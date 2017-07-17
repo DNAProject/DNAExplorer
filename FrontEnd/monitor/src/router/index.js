@@ -9,6 +9,7 @@ const Main = r => require.ensure([], () => r(require('../components/Main')), 'ma
 const Monitor = r => require.ensure([], () => r(require('../components/Monitor')), 'monitor')
 const nodeinfo = r => require.ensure([], () => r(require('../components/nodeinfo')), 'nodeinfo')
 const chaininfo = r => require.ensure([], () => r(require('../components/chaininfo')), 'chaininfo')
+const filtersearch = r => require.ensure([], () => r(require('../components/filtersearch')), 'filtersearch')
 
 const routes = [
   {
@@ -34,6 +35,10 @@ const routes = [
       {
         path:'/chaininfo',
         component:chaininfo
+      },
+      {
+        path:'/filtersearch/:namespace/:key/:page/:pagesize/:begintime/:endtime',
+        component:filtersearch
       }
 
     ]

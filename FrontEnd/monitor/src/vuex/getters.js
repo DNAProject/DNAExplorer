@@ -41,3 +41,10 @@ export const machineInfo = state => {
 export const oneNodeInfo = state => {
   return state.main.oneNodeInfo
 }
+//temporary for HoneyWell 
+export const nameSpace = state => {
+  return state.main.namespace
+}
+export const stateUpdateTxn = state => {
+  return state.main.stateupdatetxn
+}

@@ -140,3 +140,16 @@ export const oneNodeInfo = ({ commit }, params) => {
     commit(types.ONENODEINFO, {data})
   })
 }
+//temporary for HoneyWell 
+export const nameSpace = ({ commit }, params) => {
+  api.getNameSpace().then(response => {
+    var data = response.body
+    commit(types.NAMESPACE, {data})
+  })
+}
+export const stateUpdateTxn = ({ commit }, params) => {
+  api.getStateUpdateTxn(params.namespace,params.key,params.page,params.pagesize,params.begintime,params.endtime).then(response => {
+    var data = response.body
+    commit(types.STATEUPDATETXN, {data})
+  })
+}

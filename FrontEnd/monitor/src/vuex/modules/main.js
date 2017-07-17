@@ -13,7 +13,10 @@ const state = {
   degreeInfoNew:[],
   degreeSumByStatus: {},
   machineInfo:[],
-  oneNodeInfo:{}
+  oneNodeInfo:{},
+//temporary for HoneyWell 
+  namespace:[],
+  stateupdatetxn:[],
 }
 
 const mutations = {
@@ -78,6 +81,13 @@ const mutations = {
   },
   [types.ONENODEINFO] (state, { data }) {
     state.oneNodeInfo = data
+  },
+//temporary for HoneyWell 
+  [types.NAMESPACE] (state, { data }) {
+    state.namespace = data
+  },
+  [types.STATEUPDATETXN] (state, { data }) {
+    state.stateupdatetxn = data
   }
 
 

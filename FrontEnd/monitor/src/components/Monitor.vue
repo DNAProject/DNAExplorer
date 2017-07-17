@@ -105,7 +105,7 @@
   import '../assets/ebro/css/index.css'
   import { mapGetters, mapActions } from 'vuex'
   import Bottom from './bottom.vue'
-  import Top from './head.vue'
+  import Top from './head-main.vue'
   var Highcharts = require('highcharts');
   require('highcharts/modules/exporting')(Highcharts);
 
