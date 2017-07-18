@@ -49,7 +49,8 @@
         </li>
         <li class="col-sm-6 showdetial" @click="showDetails(index)">
         	<span class="col-sm-3">Desc:</span>
-        	<span class="col-sm-8">{{ JSON.parse(item.value).Desc }}</span>
+        	<!-- <span class="col-sm-8">{{ JSON.parse(item.value).Desc }}</span> -->
+          <span class="col-sm-8">{{ JSON.parse(item.value).Desc }}</span>
         	<i class="glyphicon glyphicon-chevron-right arrow" v-if="!showFlag[index]"></i>
         	<i class="glyphicon glyphicon-chevron-down arrow" v-if="showFlag[index]"></i>
         </li>
@@ -222,8 +223,8 @@
         if(this.value2 == undefined){
           this.value2 = "0000-00-00"
         }
-        var smarttime = this.value.replace(/\-/g, "");
-        var smarttimeend = this.value2.replace(/\-/g, "");
+        this.smarttime = this.value.replace(/\-/g, "");
+        this.smarttimeend = this.value2.replace(/\-/g, "");
 
         if (isNaN(this.smarttime)|| isNaN(this.smarttimeend)) {
         	this.smarttime=0;
