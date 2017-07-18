@@ -10,35 +10,34 @@
     <span class="filter-cakey-key filter-margin-top col-sm-6" style="color:white;">Select the NameSpace:</span>
     <span class="filter-cakey-value filter-margin-top col-sm-6">
     <select v-model="namespace" style="color: black;">
-      <option >请选择</option>
+      <option >Please Select</option>
       <option v-for="(item,index) in nameSpaceList" :value='item'>{{item}}</option>
     </select>
     </span>
     <span class="filter-appid-key filter-margin-top col-sm-6" style="color:white;">Entry the Key:</span>
     <span class="filter-appid-value filter-margin-top col-sm-6"><input v-model="key" style="border-radius: 5px;outline: none;"></span></br>
-    <span class="filter-time-key col-sm-6 filter-margin-top" style="color:white;">Select the time period :</span>
-    <span class="filter-time-start filter-margin-top col-sm-6" style="color:white;">StartTime ：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span></br>
-    <span class="col-sm-6"></span>
-    <span class="filter-time-end filter-margin-top  col-sm-6" style="color:white;">EndTime：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span></br>
+    <span class="filter-appid-key filter-margin-top col-sm-6" style="color:white;">StartTime:</span>
+    <span class="filter-time-start filter-margin-top col-sm-6" style="color:white;"><input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span></br>
+    <span class="filter-appid-key filter-margin-top col-sm-6" style="color:white;">EndTime:</span>
+    <span class="filter-time-start filter-margin-top col-sm-6" style="color:white;"><input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span></br>
     <span class="col-sm-12  filter-button"><button style="width:50%;max-width:90px" @click="filterData">Search</button></span>
  </div>
  <div class="select-date container phone" id="select-date" v-show="this.size!=64">
     <span  style="color:white;" >Select the NameSpace:
     <select v-model="nameSpace" style="color: black;">
-      <option value="default">请选择</option>
+      <option value="default">Please Select</option>
       <option v-for="(item,index) in nameSpaceList" value='item'>{{item}}</option>
     </select>
     </span>
-    <span  style="color:white;">Entry the Key:</span>
-    <input v-model="facilityKey" style="border-radius: 5px;outline: none;"></br></br>
-    <span style="color:white;">Select the time period:</span>
+    <span  style="color:white;">Entry the Key:
+    <input v-model="key" style="border-radius: 5px;outline: none;"></span>
     <span style="color:white;">StartTime ：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span>
     <span style="color:white;">EndTime：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span>
     <button style="width:60%;" @click="filterData">Search</button>
  </div>
  <div class="detial-content container" style="color:white;">
   
-   <h1  style="color:white;">设备信息 <span style="font-size: 16px;">共{{ allnum }}条</span></h1>
+   <h1  style="color:white;">Search Result  <span style="font-size: 16px;"> total:{{ allnum }}</span></h1>
 
      <!--ID搜索-->
     <div class="main-content">
@@ -56,11 +55,11 @@
         </li>
         <div v-if="showFlag[index]">
         <li class="col-sm-6">
-        	<span class="col-sm-3">高度:</span>
+        	<span class="col-sm-3">Height:</span>
         	<span class="col-sm-8">{{ item.height }}</span>
         </li>
         <li class="col-sm-6">
-        	<span class="col-sm-3">时间:</span>
+        	<span class="col-sm-3">Time:</span>
         	<span class="col-sm-8">{{ item.txtime }}</span>
         </li>
         <li class="col-xs-12">
@@ -73,13 +72,13 @@
    
  <div id="page" v-show="allpage!=1">
     <ul class="pagination" >
-      <li style="" @click="goto(1)" ><a>首 &nbsp;页</a> </li>
+      <li style="" @click="goto(1)" ><a>First &nbsp;Page</a> </li>
       <li v-show="current != 1" @click="current-- && goto(current--)" style=""><a>上一页</a></li>
       <li v-for="index in pages" v-show="index>0" @click="goto(index)" :class="{'active':current == index}" :key="index">
         <a>{{index}}</a>
       </li>
-      <li v-show="allpage != current && allpage != 0 && !isNaN(allpage)" @click="current++  &&  goto(current++)" style=""><a>下一页</a></li>
-      <li style="" @click="goto(allpage)" :class="{'active':current == allpage}" :key="allpage"><a>共{{allpage}}页</a> </li>
+      <li v-show="allpage != current && allpage != 0 && !isNaN(allpage)" @click="current++  &&  goto(current++)" style=""><a>Next Page</a></li>
+      <li style="" @click="goto(allpage)" :class="{'active':current == allpage}" :key="allpage"><a>Total：{{allpage}}</a> </li>
     </ul>
   </div>
 
