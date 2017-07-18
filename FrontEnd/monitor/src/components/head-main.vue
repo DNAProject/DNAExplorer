@@ -5,9 +5,9 @@
           <!--<img src="../../static/img/onchain-logo.png" class="logo"/>-->
           <span style="padding-left: 10px;" @click="back">DNA区块链监控平台</span> 
         </div>
-        <!--<div class="col-sm-6 col-xs-3" style="padding:0;">
-          <span style="font-size:18px;"@click="filtersearch">高级查询</span>
-        </div>-->
+        <div class="col-sm-6 col-xs-3" style="padding:0;text-align:right;">
+      		<span style="font-size:18px;margin:0 10px 0 0;"@click="filtersearch">高级查询</span>
+		</div>
       </div>
     </div>
 </template>
