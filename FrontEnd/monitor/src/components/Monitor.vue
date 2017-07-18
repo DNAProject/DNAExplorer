@@ -2,9 +2,6 @@
   <div id="monitor">
     <Top></Top>
     <div class="content-monitor">
-    	<div style=" color: #C6C7CD; width: 100%; text-align: center; margin-top: -20px;">
-          <span style="right:0;padding-right:10px;font-size:18px; cursor: pointer;"@click="filtersearch">高级查询</span>
-        </div>
       <div class="row">
         <div class="col-sm-4 col-xs-12 nav-list">
           
