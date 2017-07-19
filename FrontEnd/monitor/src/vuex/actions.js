@@ -153,3 +153,9 @@ export const stateUpdateTxn = ({ commit }, params) => {
     commit(types.STATEUPDATETXN, {data})
   })
 }
+export const addressData = ({ commit }, params) => {
+  api.getAddressData(params.address,params.page,params.pagesize).then(response => {
+    var data = response.body
+    commit(types.ADDRESSDATA, {data})
+  })
+}

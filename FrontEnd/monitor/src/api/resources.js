@@ -58,3 +58,4 @@ export const OneNodeInfoResource = Vue.resource(API_ROOT + 'node/service/getOneN
 //temporary for HoneyWell 
 export const stateupdatetxnReource = Vue.resource(API_ROOT + 'transaction/service/getstateupdatetxn{/namespace}{/key}{/pagenumber}{/pagesize}{/begintime}{/endtime}')
 export const namespaceReource = Vue.resource(API_ROOT + 'transaction/service/getnamespace') 
+export const addressdataReource = Vue.resource(API_ROOT + 'transaction/service/getaddressdata{/address}{/pagenumber}{/pagesize}')

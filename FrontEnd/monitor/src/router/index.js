@@ -37,7 +37,11 @@ const routes = [
         component:chaininfo
       },
       {
-        path:'/filtersearch/:namespace/:key/:page/:pagesize/:begintime/:endtime',
+        path:'/filtersearch/:selectby/:namespace/:key/:page/:pagesize/:begintime/:endtime',
+        component:filtersearch
+      },
+      {
+        path:'/filtersearch/:selectby/:address/:page/:pagesize',
         component:filtersearch
       }
 

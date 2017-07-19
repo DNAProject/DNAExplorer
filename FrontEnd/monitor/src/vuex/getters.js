@@ -48,3 +48,6 @@ export const nameSpace = state => {
 export const stateUpdateTxn = state => {
   return state.main.stateupdatetxn
 }
+export const addressData = state => {
+  return state.main.addressdata
+}

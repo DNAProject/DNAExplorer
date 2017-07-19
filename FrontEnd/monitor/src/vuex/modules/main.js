@@ -17,6 +17,7 @@ const state = {
 //temporary for HoneyWell 
   namespace:[],
   stateupdatetxn:[],
+  addressdata:[]
 }
 
 const mutations = {
@@ -88,6 +89,9 @@ const mutations = {
   },
   [types.STATEUPDATETXN] (state, { data }) {
     state.stateupdatetxn = data
+  },
+  [types.ADDRESSDATA] (state, { data }) {
+    state.addressdata = data
   }
 
 
