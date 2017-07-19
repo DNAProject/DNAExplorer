@@ -7,6 +7,15 @@
       </div>
   </div>
  <div class="select-date container pc row" id="select-date" v-show="this.size!=64">
+    <span class="filter-cakey-key filter-margin-top col-sm-6" style="color:white;">Select By:</span>
+    <span class="filter-cakey-value filter-margin-top col-sm-6">
+    <select v-model="selectBy" style="color: black;">
+      <option >Please Select</option>
+      <option value='namespace'>namespace</option>
+      <option value='address'>address</option>
+    </select>
+    </span>
+    <div v-if="selectBy =='namespace'">
     <span class="filter-cakey-key filter-margin-top col-sm-6" style="color:white;">Select the NameSpace:</span>
     <span class="filter-cakey-value filter-margin-top col-sm-6">
     <select v-model="namespace" style="color: black;">
@@ -20,27 +29,45 @@
     <span class="filter-time-start filter-margin-top col-sm-6" style="color:white;"><input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span></br>
     <span class="filter-appid-key filter-margin-top col-sm-6" style="color:white;">EndTime:</span>
     <span class="filter-time-start filter-margin-top col-sm-6" style="color:white;"><input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span></br>
+    </div>
+    <div v-if="selectBy !== 'namespace'">
+      <span class="filter-appid-key filter-margin-top col-sm-6" style="color:white;">Entry the Address:</span>
+      <span class="filter-appid-value filter-margin-top col-sm-6"><input v-model="address" style="border-radius: 5px;outline: none;"></span></br>
+    </div>
     <span class="col-sm-12  filter-button"><button style="width:50%;max-width:90px" @click="filterData">Search</button></span>
  </div>
  <div class="select-date container phone" id="select-date" v-show="this.size!=64">
-    <span  style="color:white;" >Select the NameSpace:
-    <select v-model="nameSpace" style="color: black;">
-      <option value="default">Please Select</option>
-      <option v-for="(item,index) in nameSpaceList" value='item'>{{item}}</option>
-    </select>
+    <span  style="color:white;" >Select By:
+      <select v-model="selectBy" style="color: black;">
+        <option >Please Select</option>
+        <option value='namespace'>namespace</option>
+        <option value='address'>address</option>
+      </select>
     </span>
-    <span  style="color:white;">Entry the Key:
-    <input v-model="key" style="border-radius: 5px;outline: none;"></span>
-    <span style="color:white;">StartTime ：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span>
-    <span style="color:white;">EndTime：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span>
+    <div v-if="selectBy =='namespace'">
+      <span  style="color:white;" >Select the NameSpace:
+        <select v-model="nameSpace" style="color: black;">
+          <option value="default">Please Select</option>
+          <option v-for="(item,index) in nameSpaceList" value='item'>{{item}}</option>
+        </select>
+      </span>
+      <span  style="color:white;">Entry the Key:
+      <input v-model="key" style="border-radius: 5px;outline: none;"></span>
+      <span style="color:white;">StartTime ：<input v-model="value" type="date" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span>
+      <span style="color:white;">EndTime：<input v-model="value2" type="date" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span>
+    </div>
+    <div v-if="selectBy !=='namespace'">
+      <span  style="color:white;">Entry the Address:
+      <input v-model="address" style="border-radius: 5px;outline: none;"></span>
+    </div>
     <button style="width:60%;" @click="filterData">Search</button>
  </div>
  <div class="detial-content container" style="color:white;">
   
    <h1  style="color:white;">Search Result  <span style="font-size: 16px;"> total:{{ allnum }}</span></h1>
 
-     <!--ID搜索-->
-    <div class="main-content">
+     <!--namespace搜索-->
+    <div class="main-content" v-if="selectBy =='namespace'">
      <ul  class="text-left col-sm-12" v-for="(item,index) in showlist">
         <li class="col-sm-6 showdetial" @click="showDetails(index)">
         	<span class="col-sm-3">Key:</span><span class="col-sm-9">{{ item.key }}</span>
@@ -70,6 +97,38 @@
         </div>
       </ul>
     </div>
+
+     <!--address搜索-->
+    <div class="main-content" v-if="selectBy !=='namespace'">
+     <ul  class="text-left col-sm-12" v-for="(item,index) in showlist">
+        <li class="col-sm-6 showdetial" @click="showDetails(index)">
+        	<span class="col-sm-3">HASH:</span><span class="col-sm-9">{{ item.HASH }}</span>
+          <!--<span v-if="!showFlag[index]">点击查看详细信息</span>
+          <span v-else>点击收起详细信息</span>-->
+        </li>
+        <li class="col-sm-6 showdetial" @click="showDetails(index)">
+        	<span class="col-sm-3">Desc:</span>
+        	<!-- <span class="col-sm-8">{{ JSON.parse(item.value).Desc }}</span> -->
+          <span class="col-sm-8">{{ JSON.parse(item.value).Desc }}</span>
+        	<i class="glyphicon glyphicon-chevron-right arrow" v-if="!showFlag[index]"></i>
+        	<i class="glyphicon glyphicon-chevron-down arrow" v-if="showFlag[index]"></i>
+        </li>
+        <div v-if="showFlag[index]">
+          <li class="col-sm-6">
+            <span class="col-sm-3">Height:</span>
+            <span class="col-sm-8">{{ item.height }}</span>
+          </li>
+          <li class="col-sm-6">
+            <span class="col-sm-3">Time:</span>
+            <span class="col-sm-8">{{ item.txtime }}</span>
+          </li>
+          <li class="col-xs-12">
+            <span class="col-sm-3" >Detail Information:</span>
+            <span class="col-sm-9"><pre id="pre">{{ JSON.parse(item.value) }}</pre></span>
+          </li>
+        </div>
+      </ul>
+    </div>
    
  <div id="page" v-show="allpage!=1">
     <ul class="pagination" >
@@ -96,6 +155,7 @@
     computed:{
       ...mapGetters({nameSpace: 'nameSpace'}),
       ...mapGetters({stateUpdateTxn: 'stateUpdateTxn'}),
+      ...mapGetters({addressData: 'addressData'}),
       pages:function(){
                 var pag = [];
                   if( this.current < this.showItem ){ //如果当前的激活的项 小于要显示的条数
@@ -119,8 +179,12 @@
           },
     created (){
       var params = this.$route.params 
-      this.$store.dispatch('nameSpace')
-      this.$store.dispatch('stateUpdateTxn',params)
+      if(params.selectBy == "namespace"){
+        this.$store.dispatch('nameSpace')
+        this.$store.dispatch('stateUpdateTxn',params) 
+      }else{
+        this.$store.dispatch('addressData',params) 
+      }
       Date.prototype.toLocaleString = function() {
 //        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(this);
           var Month=this.getMonth() + 1;
@@ -146,7 +210,6 @@
         return {
           isInputShow: false,
           params: {},
-          value:'',
           size:0,
           smarttime:0,
           smarttimeend:0,
@@ -154,6 +217,7 @@
           showItem:5,
           allpage:1,
           showlist:[],
+          selectBy:"namespace",
           id:'',
           namespace:'',
           allnum:'',
@@ -166,7 +230,11 @@
     },
     watch: {
       '$route': function() {
-          this.$store.dispatch('stateUpdateTxn',this.$route.params)
+          if(this.$route.params.selectBy == 'namespace'){
+            this.$store.dispatch('stateUpdateTxn',this.$route.params)
+          }else{
+            this.$store.dispatch('addressData',this.$route.params)
+          }
 //        this.size=this.$route.params.id.length
           this.id=this.$route.params.id
       },
@@ -182,12 +250,31 @@
       'stateUpdateTxn':function(){
         debugger
         this.showlist = this.stateUpdateTxn.data
+/*         if(this.showlist.length==0){
+          this.allnum=0
+          this.allpage=1
+        }else{
+          this.allnum=this.stateUpdateTxn.total
+          this.allpage=Math.ceil(this.allnum/5)
+        } */
+      },
+      'addressData':function(){
+        this.showlist = this.addressData.data
+      },
+      'showlist':function(){
         if(this.showlist.length==0){
           this.allnum=0
           this.allpage=1
         }else{
           this.allnum=this.stateUpdateTxn.total
           this.allpage=Math.ceil(this.allnum/5)
+        } 
+      },
+      'selectBy':function(){
+        if(this.selectBy =="namespace"){
+          this.$router.push({'path':'/filtersearch/namespace/0/0/1/5/0/0'})
+        }else{
+          this.$router.push({'path':'/filtersearch/address/0/1/5'})
         }
       }
     },
@@ -204,7 +291,7 @@
         }else{
           appid= this.appID
         } */
-        if(this.namespace =="" || this.namespace=="请选择"){
+        if(this.namespace =="" || this.namespace=="Please Select"){
           namespace = 0;
         }else{
           namespace = this.namespace;
@@ -223,8 +310,14 @@
         if(this.value2 == undefined){
           this.value2 = "0000-00-00"
         }
-        this.smarttime = this.value.replace(/\-/g, "");
-        this.smarttimeend = this.value2.replace(/\-/g, "");
+        this.smarttime = this.value.replace(/\-/g, "")+"000000";
+        this.smarttimeend = this.value2.replace(/\-/g, "")+"235959";
+        if(this.smarttime == "00000000000000"){
+          this.smarttime = 0;
+        }
+        if(this.smarttimeend == "00000000235959"){
+          this.smarttimeend = 0;
+        }
 
         if (isNaN(this.smarttime)|| isNaN(this.smarttimeend)) {
         	this.smarttime=0;

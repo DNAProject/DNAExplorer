@@ -19,7 +19,7 @@
         this.$router.push({'path': '/monitor'})
       },
       filtersearch:function(){
-        this.$router.push({'path':'/filtersearch/0/0/1/5/0/0'})
+        this.$router.push({'path':'/filtersearch/namespace/0/0/1/5/0/0'})
       }
     }
   }

@@ -59,5 +59,8 @@ export default {
 //}  
   getStateUpdateTxn: function (namespace,key,pagenumber,pagesize,begintime,endtime) {
     return resource.stateupdatetxnReource.get({namespace:namespace,key:key,pagenumber:pagenumber, pagesize:pagesize,begintime:begintime,endtime:endtime})
+  },
+  getAddressData: function (address,pagenumber,pagesize) {
+    return resource.addressdataReource.get({address:address,pagenumber:pagenumber, pagesize:pagesize})
   } 
 }
