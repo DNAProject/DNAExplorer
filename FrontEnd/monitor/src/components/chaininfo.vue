@@ -106,8 +106,8 @@
               <span class="col-sm-4 list-titlename">交易输入：</span>
               <div class="col-sm-8">
                 <li class="row row-ot" v-for="(item,index) in degreeList[exchangenum].inputs">
-                  <span class="col-sm-8 ot-item-address">{{item.address}}</span>
-                  <span class="col-sm-4 ot-item-value">-{{item.value}}</span>
+                  <span class="col-sm-8 ot-item-address">{{item.ADDRESS}}</span>
+                  <span class="col-sm-4 ot-item-value">-{{item.VALUE}}</span>
                 </li>
               </div>
             </li>
@@ -115,8 +115,8 @@
               <span class="col-sm-4 list-titlename">交易输出：</span>
               <div class="col-sm-8">
                 <li class="row row-ot" v-for="(item,index) in degreeList[exchangenum].outputs">
-                  <span class="col-sm-8 ot-item-address">{{item.address}}</span>
-                  <span class="col-sm-4 ot-item-value">{{item.value}}</span>
+                  <span class="col-sm-8 ot-item-address">{{item.ADDRESS}}</span>
+                  <span class="col-sm-4 ot-item-value">{{item.VALUE}}</span>
                 </li>
               </div>
             </li>
@@ -199,15 +199,15 @@
                 <span class="col-xs-12 phone-list-left" v-if="inputsShow(exchangenum)">
                   <span class="col-xs-4 title">交易输入:</span>
                   <span v-for="(items,indexs) in degreeList[exchangenum].inputs" class="col-xs-8">
-                    <span class="col-xs-12 ">{{items.address}}</span>
-                    <span class="clo-xs-12 ">{{items.value}}</span>
+                    <span class="col-xs-12 ">{{items.ADDRESS}}</span>
+                    <span class="clo-xs-12 ">{{items.VALUE}}</span>
                   </span>
                 </span>
                 <span class="col-xs-12 phone-list-left" v-if="outputsShow(exchangenum)">
                   <span class="col-xs-4 title">交易输出:</span>
                   <span v-for="(items,indexs) in degreeList[exchangenum].outputs" class="col-xs-8">
-                    <span class="col-xs-12 ">{{items.address}}</span>
-                    <span class="clo-xs-12 ">{{items.value}}</span>
+                    <span class="col-xs-12 ">{{items.ADDRESS}}</span>
+                    <span class="clo-xs-12 ">{{items.VALUE}}</span>
                   </span> 
                 </span>
               </div>
@@ -227,7 +227,6 @@
 
 <script>
   import '../assets/ebro/css/chaininfo.css'
-  import Bottom from './bottom.vue'
   import Top from './head.vue'
   import { mapGetters, mapActions } from 'vuex'
 
@@ -328,7 +327,6 @@
       }
     },
     components: {
-      Bottom,
       Top
     },
     beforeDestroy () {
