@@ -1,0 +1,108 @@
+<template>
+  <div id="chaininfo">
+    <Top></Top>
+  <div class="chaininfo">
+  <div class="header">
+      <div class="row">
+        
+        <div class="col-sm-2 col-xs-offset-10 back" @click="back"> 返回首页</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content-top ">
+
+        <div class="row chain-title">
+          <div class="col-md-4">
+            <span class="col-xs-4 blue">区块高度</span>
+            <span class="col-xs-6">{{ blockStatus.height }}</span>
+          </div>
+          <div class="col-md-5">
+            <span class="col-xs-4 blue">区块哈希</span>
+            <span v-if="blockList.length>0" class="col-xs-6">{{ blockList[0].hashS }}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <span class="col-xs-4 blue">交易数量</span>
+            <span class="col-xs-6">{{ blockStatus.txncount }}</span>
+          </div>
+          <div class="col-md-5">
+            <span class="col-xs-4 blue">区块平均生成时间</span>
+            <span class="col-xs-6">15s</span>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="content-bottom " v-show="degreeList.length!=0">
+        
+        <div class="row chain-list">
+          <ul>
+            <li class="blue">
+              <span class="col-xs-2">类型</span>
+              <span class="col-xs-2">交易时间</span>
+              <span class="col-xs-6">交易编号</span>
+              <span class="col-xs-2">区块高度</span>
+            </li>
+            <li v-for="degree in degreeList" class="color-white">
+              <span class="col-xs-2">{{ degree.txTypeDesc }}</span>
+              <span class="col-xs-2">{{ degree.date }}</span>
+              <span class="col-xs-6">{{ degree.txId }}</span>
+              <span class="col-xs-2">{{ degree.height }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div v-show="degreeList.length==0">
+        <div class="row chain-list chain-list-none" >
+                      暂时没有相应的交易信息！
+        </div>
+      </div>
+    </div>
+    </div>
+   
+    </div>
+</template>
+
+<script>
+  import '../assets/ebro/css/chaininfo.css'
+  import Bottom from './bottom.vue'
+  import Top from './head.vue'
+  import { mapGetters, mapActions } from 'vuex'
+
+
+  export default {
+    computed: mapGetters({
+      degreeList: 'degreeList',
+      blockList: 'blockList',
+      blockStatus: 'blockStatus'
+    }),
+    created () {
+      this.$store.dispatch('degreeList')
+     this.$store.dispatch('blockList')
+      this.$store.dispatch('blockStatus')
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('blockStatus')
+        this.$store.dispatch('blockList')
+        this.$store.dispatch('degreeList')
+      }, 2000)
+
+    },
+    methods:{
+      back:function(){
+        this.$router.push({'path': '/monitor'})
+      }
+    },
+    components: {
+      Bottom,
+      Top
+    },
+    beforeDestroy () {
+      clearInterval(this.intervalBlock)
+    },
+   }
+</script>
+
+<style>
+</style>

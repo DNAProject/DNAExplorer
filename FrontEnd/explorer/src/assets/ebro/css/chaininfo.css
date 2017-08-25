@@ -1,0 +1,207 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul li{
+  list-style: none;
+  text-align: center;
+  padding: 8px 0;
+}
+
+ul li span{
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap:break-word;
+}
+.header{
+    margin-top: -70px;
+    margin-left: 50px;
+    font-size: 18px;
+    color: #57d2ff;
+    padding: 0;
+}
+.back{
+  color: gray;
+  font-size: 14px;
+  text-align: center;
+  margin-top: -20px;
+}
+.back:hover{
+  cursor: pointer;
+  color: white;
+}
+.chaininfo-content{
+    float: left;
+    margin-top: 10px;
+    background-color: #212124;
+    margin-left: 35px;
+    margin-right: 20px;
+    padding: 20px 20px 50px 20px;
+    color: lightgray;
+}
+
+.list-left-block,.list-left-exchange,.list-right-block ,.list-right-exchange{
+  background-color: #25262C;
+}
+.list-left-block,.list-left-exchange{
+  padding: 10px 30px 40px 30px;
+}
+.list-left-exchange{
+  margin-top: 30px;
+}
+.list-right-exchange{
+  margin-top: 30px;
+  padding-bottom: 0px;
+}
+.itemSelected{
+  background-color: lightgrey;
+  color: #212124;
+}
+.list-right-block{
+  padding-bottom: 30px;
+}
+.list-left li{
+  border-bottom: 1px dashed darkgray;
+}
+.list-left li:hover{
+  cursor: pointer;
+} 
+.list-left .list-titlename:hover{
+  color:lightgray ;
+  cursor:context-menu;
+}
+
+.exchange-id{
+  overflow :hidden;
+  text-overflow:ellipsis; 
+  white-space:nowrap;
+}
+h4{
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+}
+.detial{
+  border-bottom: 2px dotted white;
+}
+.list-right .list-titlename{
+  text-align: right;
+}
+.list-right span{
+  text-align: left;
+}
+.list-right ul li{
+  padding: 10px 0;
+}
+
+.time-item{
+  /*padding: 0 !important;*/
+  position: absolute;
+  width: 150%;
+  left: -25%;
+}
+.row-ot{
+  padding: 0 0 3px 0 !important;
+}
+.ot-item-address{
+  padding-right: 0 !important;
+}
+.ot-item-value{
+  padding-left: 5px !important;
+}
+.phone{
+  display: none;
+}
+li.no-exchange{
+    font-size: 16px;
+    color: red;
+    border-bottom: none;
+  }
+  @media (max-width: 1000px){
+ .time-item{
+   position: inherit;
+   width: 88px;
+ }
+}
+@media only screen and (max-width:768px ) {
+  .pc{
+    display: none;
+  }
+  .phone{
+    display: block;
+  }
+  #block ul li,#exchange ul li{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .header{
+    margin-top: -15px;
+    margin-right: 50px;
+  }
+  .back{
+    padding: 0;
+  }
+  .chaininfo-content{
+    padding: 0;
+    margin: 30px 10px;
+    float: none;
+  }
+  h4{
+    margin: 0;
+    border-bottom: none;
+  }
+  .block-title,.exchange-title{
+    font-size: 17px;
+    text-align: center;
+    padding: 0 10px 10px 10px;
+  }
+  .list-left-block{
+    padding: 0 20px;
+  }
+  .hide{
+    display: none;
+  }
+  .active{
+    border-bottom: 2px solid white;
+  }
+  .list-left-exchange{
+    margin: 0;
+    padding: 0;
+  }
+  .list-left-block{
+    margin: 0;
+    padding: 0;
+  }
+  .phone-list-left{
+    padding-left: 10px;
+  }
+  .phone-list-left span{
+    overflow :hidden;
+    text-overflow:ellipsis; 
+    white-space:nowrap;
+    text-align: left;
+    padding-left: 0;
+  }
+  .phone-list-right{
+    padding-right: 0;
+  }
+  .phone-list-right span{
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .title{
+    font-weight:600;
+    color: #F2F2F2;
+  }
+  .ico{
+    padding: 0;
+  }
+  #no-exchange{
+    background-color: #212124;
+  }
+}
+@media only screen and (max-width:320px ) {
+	span.title{
+	  padding: 0;
+	}
+}

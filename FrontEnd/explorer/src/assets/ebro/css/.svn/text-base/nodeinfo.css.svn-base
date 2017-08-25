@@ -1,0 +1,65 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul li{
+  list-style: none;
+}
+
+span{
+    font-size: 15px;
+}
+.header{
+    margin-top:-70px;
+    margin-left: 50px;
+    font-size: 18px;
+    color: #57d2ff;
+}
+.content{
+   background-color: #212124;
+    margin-left: 35px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding: 0px 20px 20px 20px;
+    margin-top: 10px;
+}
+.content-top{
+    padding-top: 30px;
+    
+}
+#cpu-area,#cpu-pie,#memory-area,#memory-pie,#disk-area,#disk-pie{
+  min-height: 200px;
+}
+
+.showinfo{
+    padding-top: 20px;
+    color: white;
+}
+
+ .color-blue{
+    color: #57d2ff;
+    padding-left: 8px;
+}
+.time{
+    color: white;
+    margin-top: 20px;
+}
+.chart{
+    margin-top: 30px;
+}
+.back{
+  margin-top: -20px;
+  color: grey;
+  font-size: 14px;
+  text-align: center;
+}
+.back:hover{
+  cursor: pointer;
+  color: white;
+}
+@media only screen and (max-width:991px ) {
+	.time{
+	  margin-top: 0;
+	}
+}
