@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="NodeDao">
+    <resultMap id="BaseResultMap" type="com.onchain.projects.domain.Node">
+        <id column="ID" property="id"/>
+        <result column="URL" property="url"/>
+        <result column="BLOCK_STATUS" property="blockStatus"/>
+        <result column="NODETYPE" property="type"/>
+        <result column="UPDATETIME" property="date"/>
+        <result column="RPC_STATUS" property="rpcStatus"/>
+        <result column="SYSTEM_INFO" property="systemInfo"/>
+        <result column="RUNNING_TIME" property="runningTime"/>
+    </resultMap>
+
+
+    <select id="getNodeList" resultMap="BaseResultMap">
+        select * from tbl_pro_node
+        where 1=1
+        <if test="param != null and param !=''">
+            and username = #{param}
+        </if>
+    </select>
+
+    <select id="getAllNodeList" resultMap="BaseResultMap">
+        select *  from tbl_pro_node
+    </select>
+
+
+    <select id="getNodeNumByFlag" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*)
+        from tbl_pro_node
+        where 1=1
+        and rpc_status = #{rpcFlag,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getNodeUrl" resultType="java.lang.String">
+        select url from tbl_pro_node
+    </select>
+
+    <update id="updateNodeInfo" parameterType="java.util.Map">
+        update tbl_pro_node
+        set system_info =#{systemInfo},running_time =#{runningTime}
+        where url like #{ip}
+    </update>
+
+    <select id="getOneNode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from tbl_pro_node
+        where url = #{node}
+    </select>
+
+
+</mapper>

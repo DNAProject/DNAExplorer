@@ -1,0 +1,293 @@
+[ INFO ] [2017-08-19 17:30:11] com.onchain.projects.ExplorerWsApplication [48] - Starting ExplorerWsApplication on DESKTOP-RBHC9GE with PID 39444 (C:\WORK_ONCHAIN\repos2\products\explorer\target\classes started by DELL in C:\WORK_ONCHAIN\repos2\products\explorer)
+[ DEBUG] [2017-08-19 17:30:11] com.onchain.projects.ExplorerWsApplication [51] - Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+[ INFO ] [2017-08-19 17:30:11] com.onchain.projects.ExplorerWsApplication [641] - The following profiles are active: prod
+[ INFO ] [2017-08-19 17:30:12] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [582] - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5bfa9431: startup date [Sat Aug 19 17:30:12 CST 2017]; root of context hierarchy
+[ INFO ] [2017-08-19 17:30:13] org.hibernate.validator.internal.util.Version [30] - HV000001: Hibernate Validator 5.3.5.Final
+[ WARN ] [2017-08-19 17:30:13] org.mybatis.spring.mapper.ClassPathMapperScanner [166] - No MyBatis mapper was found in '[com.onchain.projects]' package. Please check your configuration.
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [89] - Tomcat initialized with port(s): 7070 (http)
+[ INFO ] [2017-08-19 17:30:15] org.apache.catalina.core.StandardService [179] - Starting service Tomcat
+[ INFO ] [2017-08-19 17:30:15] org.apache.catalina.core.StandardEngine [179] - Starting Servlet Engine: Apache Tomcat/8.5.14
+[ INFO ] [2017-08-19 17:30:15] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] - Initializing Spring embedded WebApplicationContext
+[ INFO ] [2017-08-19 17:30:15] org.springframework.web.context.ContextLoader [276] - Root WebApplicationContext: initialization completed in 2954 ms
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.web.servlet.ServletRegistrationBean [190] - Mapping servlet: 'dispatcherServlet' to [/]
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'characterEncodingFilter' to: [/*]
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'requestContextFilter' to: [/*]
+[ INFO ] [2017-08-19 17:30:15] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'simpleCORSFilter' to: [/*]
+[ ERROR] [2017-08-19 17:30:16] org.apache.tomcat.jdbc.pool.ConnectionPool [181] - Unable to create initial connections of pool.
+java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:283)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:203)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:735)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:667)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:482)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:77)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:82)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:68)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:84)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:136)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	at com.sun.proxy.$Proxy53.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:222)
+	at com.onchain.projects.dao.NodeDao.getNodeUrl(NodeDao.java:34)
+	at com.onchain.projects.dao.NodeDao$$FastClassBySpringCGLIB$$9df8afb9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)
+	at com.onchain.projects.dao.NodeDao$$EnhancerBySpringCGLIB$$125cd667.getNodeUrl(<generated>)
+	at com.onchain.projects.service.impl.NodeServiceImpl.getNodeUrl(NodeServiceImpl.java:45)
+	at com.onchain.projects.StartTask.init(StartTask.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:311)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:134)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.onchain.projects.ExplorerWsApplication.main(ExplorerWsApplication.java:11)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
+Caused by: java.lang.ClassNotFoundException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.apache.tomcat.jdbc.pool.ClassLoaderUtil.loadClass(ClassLoaderUtil.java:56)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:271)
+	... 70 common frames omitted
+Caused by: java.lang.ClassNotFoundException: oracle.jdbc.OracleDriver
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.tomcat.jdbc.pool.ClassLoaderUtil.loadClass(ClassLoaderUtil.java:38)
+	... 71 common frames omitted
+[ WARN ] [2017-08-19 17:30:16] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [550] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'startTask': Invocation of init method failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+### The error may exist in file [C:\WORK_ONCHAIN\repos2\products\explorer\target\classes\mybatis\mapper\NodeMapper.xml]
+### The error may involve NodeDao.getNodeUrl
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+[ INFO ] [2017-08-19 17:30:16] org.apache.catalina.core.StandardService [179] - Stopping service Tomcat
+[ INFO ] [2017-08-19 17:30:16] org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer [101] - 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+[ ERROR] [2017-08-19 17:30:16] org.springframework.boot.SpringApplication [815] - Application startup failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'startTask': Invocation of init method failed; nested exception is org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+### The error may exist in file [C:\WORK_ONCHAIN\repos2\products\explorer\target\classes\mybatis\mapper\NodeMapper.xml]
+### The error may involve NodeDao.getNodeUrl
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:137)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:409)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:866)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:542)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:737)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1162)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1151)
+	at com.onchain.projects.ExplorerWsApplication.main(ExplorerWsApplication.java:11)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
+Caused by: org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+### The error may exist in file [C:\WORK_ONCHAIN\repos2\products\explorer\target\classes\mybatis\mapper\NodeMapper.xml]
+### The error may involve NodeDao.getNodeUrl
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:77)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy53.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:222)
+	at com.onchain.projects.dao.NodeDao.getNodeUrl(NodeDao.java:34)
+	at com.onchain.projects.dao.NodeDao$$FastClassBySpringCGLIB$$9df8afb9.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:738)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:673)
+	at com.onchain.projects.dao.NodeDao$$EnhancerBySpringCGLIB$$125cd667.getNodeUrl(<generated>)
+	at com.onchain.projects.service.impl.NodeServiceImpl.getNodeUrl(NodeServiceImpl.java:45)
+	at com.onchain.projects.StartTask.init(StartTask.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:366)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:311)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:134)
+	... 23 common frames omitted
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+### The error may exist in file [C:\WORK_ONCHAIN\repos2\products\explorer\target\classes\mybatis\mapper\NodeMapper.xml]
+### The error may involve NodeDao.getNodeUrl
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:150)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:141)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:136)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 43 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:82)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:68)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:84)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:62)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:148)
+	... 50 common frames omitted
+Caused by: java.sql.SQLException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:283)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connect(PooledConnection.java:203)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.createConnection(ConnectionPool.java:735)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:667)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.init(ConnectionPool.java:482)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.<init>(ConnectionPool.java:154)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.pCreatePool(DataSourceProxy.java:118)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.createPool(DataSourceProxy.java:107)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:131)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:77)
+	... 60 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Unable to load class: oracle.jdbc.OracleDriver from ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2;ClassLoader:sun.misc.Launcher$AppClassLoader@e9e54c2
+	at org.apache.tomcat.jdbc.pool.ClassLoaderUtil.loadClass(ClassLoaderUtil.java:56)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.connectUsingDriver(PooledConnection.java:271)
+	... 70 common frames omitted
+Caused by: java.lang.ClassNotFoundException: oracle.jdbc.OracleDriver
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.tomcat.jdbc.pool.ClassLoaderUtil.loadClass(ClassLoaderUtil.java:38)
+	... 71 common frames omitted
+[ INFO ] [2017-08-19 17:32:04] com.onchain.projects.ExplorerWsApplication [48] - Starting ExplorerWsApplication on DESKTOP-RBHC9GE with PID 51644 (C:\WORK_ONCHAIN\repos2\products\explorer\target\classes started by DELL in C:\WORK_ONCHAIN\repos2\products\explorer)
+[ DEBUG] [2017-08-19 17:32:04] com.onchain.projects.ExplorerWsApplication [51] - Running with Spring Boot v1.5.3.RELEASE, Spring v4.3.8.RELEASE
+[ INFO ] [2017-08-19 17:32:04] com.onchain.projects.ExplorerWsApplication [641] - The following profiles are active: prod
+[ INFO ] [2017-08-19 17:32:05] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [582] - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@223f3642: startup date [Sat Aug 19 17:32:05 CST 2017]; root of context hierarchy
+[ INFO ] [2017-08-19 17:32:05] org.hibernate.validator.internal.util.Version [30] - HV000001: Hibernate Validator 5.3.5.Final
+[ WARN ] [2017-08-19 17:32:06] org.mybatis.spring.mapper.ClassPathMapperScanner [166] - No MyBatis mapper was found in '[com.onchain.projects]' package. Please check your configuration.
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [89] - Tomcat initialized with port(s): 7070 (http)
+[ INFO ] [2017-08-19 17:32:07] org.apache.catalina.core.StandardService [179] - Starting service Tomcat
+[ INFO ] [2017-08-19 17:32:07] org.apache.catalina.core.StandardEngine [179] - Starting Servlet Engine: Apache Tomcat/8.5.14
+[ INFO ] [2017-08-19 17:32:07] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] - Initializing Spring embedded WebApplicationContext
+[ INFO ] [2017-08-19 17:32:07] org.springframework.web.context.ContextLoader [276] - Root WebApplicationContext: initialization completed in 2098 ms
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.web.servlet.ServletRegistrationBean [190] - Mapping servlet: 'dispatcherServlet' to [/]
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'characterEncodingFilter' to: [/*]
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'httpPutFormContentFilter' to: [/*]
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'requestContextFilter' to: [/*]
+[ INFO ] [2017-08-19 17:32:07] org.springframework.boot.web.servlet.FilterRegistrationBean [258] - Mapping filter: 'simpleCORSFilter' to: [/*]
+[ DEBUG] [2017-08-19 17:32:08] dao.NodeDao.getNodeUrl [159] - ==>  Preparing: select url from tbl_pro_node 
+[ DEBUG] [2017-08-19 17:32:08] dao.NodeDao.getNodeUrl [159] - ==> Parameters: 
+[ DEBUG] [2017-08-19 17:32:08] dao.NodeDao.getNodeUrl [159] - <==      Total: 1
+[ DEBUG] [2017-08-19 17:32:08] com.onchain.projects.StartTask [37] - url0 is:54.223.29.200
+[ DEBUG] [2017-08-19 17:32:08] com.onchain.projects.StartTask [40] - total machineinfo_process have：1
+[ DEBUG] [2017-08-19 17:32:08] com.onchain.projects.StartTask [46] - the number0 machineinfo_process begin...
+[ DEBUG] [2017-08-19 17:32:08] com.onchain.projects.task.MachineInfoTask [56] - Thread-3. MachineInfoTask start run...
+[ INFO ] [2017-08-19 17:32:09] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [165] - Initializing ExecutorService  'clientInboundChannelExecutor'
+[ INFO ] [2017-08-19 17:32:09] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [165] - Initializing ExecutorService  'clientOutboundChannelExecutor'
+[ INFO ] [2017-08-19 17:32:09] org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler [165] - Initializing ExecutorService  'messageBrokerTaskScheduler'
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.socket.server.support.WebSocketHandlerMapping [362] - Mapped URL path [/endpointMonitor/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+[ INFO ] [2017-08-19 17:32:09] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor [165] - Initializing ExecutorService  'brokerChannelExecutor'
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.socket.messaging.WebSocketAnnotationMethodMessageHandler [330] - Mapped "{[/welcome],messageType=[MESSAGE]}" onto public com.onchain.projects.ws.web.param.ResponseMessage com.onchain.projects.ws.web.WsController.say(com.onchain.projects.ws.web.param.RequestMessage)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [534] - Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@223f3642: startup date [Sat Aug 19 17:32:05 CST 2017]; root of context hierarchy
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/blocks/service/getBlock/{height}],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.onchain.projects.web.BlockController.getBlock(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Integer)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/blocks/service/getBlockList/{pagenumber}/{pagesize}],methods=[GET]}" onto public java.util.Map com.onchain.projects.web.BlockController.getBlocksList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Integer,java.lang.Integer)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/blocks/service/getBlocks],methods=[GET]}" onto public java.util.List<com.onchain.projects.domain.Block> com.onchain.projects.web.BlockController.getBlocks(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/blocks/service/getCurrentSumInfo]}" onto public com.onchain.projects.domain.Summary com.onchain.projects.web.BlockController.getCurrentSumInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/machine/service/latest/{ipinfo}],methods=[GET]}" onto public com.onchain.projects.domain.Machine com.onchain.projects.web.MachineServerController.getServerInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/machine/service/all/{ipinfo}],methods=[GET]}" onto public java.util.List<com.onchain.projects.domain.Machine> com.onchain.projects.web.MachineServerController.getNewestServerInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/node/service/getOneNode/{nodeinfo}],methods=[GET]}" onto public com.onchain.projects.domain.Node com.onchain.projects.web.OnchainNodeController.getOneNode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/node/service/getNodeLocalDB]}" onto public com.onchain.projects.utils.common.PagedResult<com.onchain.projects.domain.Node> com.onchain.projects.web.OnchainNodeController.getAllNodes(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Integer,java.lang.Integer)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/node/service/getNodeLocalDBtotal]}" onto public com.onchain.projects.web.param.NodeInfo com.onchain.projects.web.OnchainNodeController.getNodesInfo(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/transaction/service/getTxnList/{pagenumber}/{pagesize}],methods=[GET]}" onto public java.util.Map com.onchain.projects.web.TransactionController.getTxnList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.Integer,java.lang.Integer)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/transaction/service/getTxn/{txid}],methods=[GET]}" onto public com.onchain.projects.domain.ViewTransaction com.onchain.projects.web.TransactionController.getTxnByTxid(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/transaction/service/getTxnByParam/{txid}/{blockheight}/{address}/{pagenumber}/{pagesize}/{starttime}/{endtime}],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.Object> com.onchain.projects.web.TransactionController.getTxnByParam(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Integer,java.lang.Integer)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/transaction/service/getTxnByAddr/{address}/{pagenumber}/{pagesize}],methods=[GET]}" onto public java.util.Map com.onchain.projects.web.TransactionController.getTxnByAddress(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String,java.lang.Integer,java.lang.Integer)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/transaction/service/getRecentlyList],methods=[GET]}" onto public java.util.List<com.onchain.projects.domain.ViewTransaction> com.onchain.projects.web.TransactionController.getDegreeRecentlyList(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.onchain.projects.ws.web.MsgController.hello() throws java.lang.Exception
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] - Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [362] - Mapped URL path [/H5] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [362] - Mapped URL path [/ws] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [362] - Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [362] - Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[ INFO ] [2017-08-19 17:32:09] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [362] - Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+[ DEBUG] [2017-08-19 17:32:10] com.onchain.projects.task.MachineInfoTask [170] - Thread-3 can not get machine info now....network reason
+[ INFO ] [2017-08-19 17:32:10] org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WelcomePageHandlerMapping [573] - Adding welcome page: class path resource [static/index.html]
+[ INFO ] [2017-08-19 17:32:10] org.springframework.jmx.export.annotation.AnnotationMBeanExporter [431] - Registering beans for JMX exposure on startup
+[ INFO ] [2017-08-19 17:32:10] org.springframework.context.support.DefaultLifecycleProcessor [343] - Starting beans in phase 2147483647
+[ INFO ] [2017-08-19 17:32:10] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler [157] - Starting...
+[ INFO ] [2017-08-19 17:32:10] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler [260] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+[ INFO ] [2017-08-19 17:32:10] org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler [166] - Started.
+[ INFO ] [2017-08-19 17:32:10] org.apache.coyote.http11.Http11NioProtocol [179] - Initializing ProtocolHandler ["http-nio-7070"]
+[ INFO ] [2017-08-19 17:32:10] org.apache.coyote.http11.Http11NioProtocol [179] - Starting ProtocolHandler ["http-nio-7070"]
+[ INFO ] [2017-08-19 17:32:10] org.apache.tomcat.util.net.NioSelectorPool [179] - Using a shared selector for servlet write/read
+[ INFO ] [2017-08-19 17:32:10] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [198] - Tomcat started on port(s): 7070 (http)
+[ INFO ] [2017-08-19 17:32:10] com.onchain.projects.ExplorerWsApplication [57] - Started ExplorerWsApplication in 6.498 seconds (JVM running for 7.024)

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BlockDao">
+    <resultMap id="BlockMap" type="com.onchain.projects.domain.Block">
+        <id column="HEIGHT" property="height"/>
+        <result column="HASH" property="hash"/>
+        <result column="PREVBLOCK" property="prevblock"/>
+        <result column="NEXTBLOCK" property="nextblock"/>
+        <result column="MERKLEROOT" property="merkleroot"/>
+        <result column="BLOCKTIME" property="timestamp"/>
+        <result column="NONCE" property="nonce"/>
+        <result column="MINER" property="miner"/>
+        <result column="TXNUM" property="txnum"/>
+        <result column="FEE" property="fee"/>
+        <result column="BLOCKSIZE" property="size"/>
+    </resultMap>
+
+    <resultMap id="SummaryMap" type="com.onchain.projects.domain.Summary">
+        <id column="HEIGHT" property="height"/>
+        <result column="TXNCOUNT" property="txncount"/>
+    </resultMap>
+
+    <select id="getSummaryInfo" resultMap="SummaryMap">
+        select * from tbl_pro_current
+    </select>
+
+    <select id="getBlockList" resultMap="BlockMap">
+        select *
+        from tbl_pro_blocks
+        order by height DESC
+        limit #{startnumber},#{endnumber}
+    </select>
+
+    <select id="getBlockListOra" resultMap="BlockMap">
+        select * from
+        (
+        select a.*, rownum rn
+        from (select * from tbl_pro_blocks order by height desc) a
+        )
+        <![CDATA[
+        where rn between #{startnumber} and #{endnumber}
+        ]]>
+    </select>
+
+    <select id="getBlockByHeight" resultMap="BlockMap">
+        select *
+        from tbl_pro_blocks
+        where height = #{height}
+    </select>
+
+
+</mapper>
