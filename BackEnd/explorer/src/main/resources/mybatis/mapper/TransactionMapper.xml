@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="TxnDao">
+    <resultMap id="BaseResultMap" type="com.onchain.projects.domain.Transaction">
+        <result column="txid" property="txId"/>
+        <result column="type" property="txType"/>
+        <result column="date" property="date"/>
+        <result column="height" property="height"/>
+        <result column="fee" property="fee"/>
+        <result column="cakey" property="caKey"/>
+        <result column="assetname" property="assetname"/>
+    </resultMap>
+
+    <resultMap id="UtxoMap" type="com.onchain.projects.domain.TransactionOutput">
+        <result column="txid" property="txId" jdbcType="VARCHAR"/>
+        <result column="outputid" property="outputId" jdbcType="INTEGER"/>
+        <result column="assetid" property="assetId" jdbcType="VARCHAR"/>
+        <result column="value" property="value" jdbcType="VARCHAR"/>
+        <result column="scripthash" property="scriptHash" jdbcType="VARCHAR"/>
+        <result column="spendflag" property="spendFlag" jdbcType="INTEGER"/>
+        <result column="assetname" property="assetName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="ViewTxnMap" type="com.onchain.projects.domain.ViewTransaction">
+        <result column="HEIGHT" property="height"/>
+        <result column="TXID" property="txId"/>
+        <result column="TXTYPE" property="txType"/>
+        <result column="TXTIME" property="date"/>
+        <result column="CAKEY" property="caKey"/>
+        <result column="ASSETNAME" property="assetname"/>
+        <result column="ASSETID" property="assetid"/>
+    </resultMap>
+
+    <resultMap id="TxnDetailMap" type="com.onchain.projects.domain.TransactionDetail">
+        <result column="TXID" property="txid"/>
+        <result column="TXTYPE" property="txtype"/>
+        <result column="SCRIPTHASH" property="scripthash"/>
+        <result column="TXTIME" property="txtime"/>
+        <result column="TXFLAG" property="txflag"/>
+        <result column="HEIGHT" property="height"/>
+        <result column="AMOUNT" property="amount"/>
+        <result column="FEE" property="fee"/>
+        <result column="ASSETID" property="assertId"/>
+        <result column="ASSETNAME" property="assertname"/>
+        <result column="TXINDEX" property="txindex"/>
+        <result column="PREVHASH" property="prevhash"/>
+        <result column="PREVINDEX" property="previndex"/>
+        <result column="TOHASH" property="tohash"/>
+        <result column="CAKEY" property="cakey"/>
+        <result column="SPENDFLAG" property="spendflag"/>
+        <result column="COUNTERPARTY" property="counterparty"/>
+    </resultMap>
+
+
+    <select id="getTxnOutput" resultType="java.util.Map">
+        select scripthash as ADDRESS, amount as VALUE
+        from tbl_pro_txn_details
+        where txid = #{txid}
+        and txflag = '+'
+    </select>
+
+    <select id="getTxnInput" resultType="java.util.Map">
+        select scripthash as ADDRESS, amount as VALUE
+        from tbl_pro_txn_details
+        where txid = #{txid}
+        and txflag = '-'
+    </select>
+
+    <select id="getTxnByHeight" resultMap="ViewTxnMap">
+        select *
+        from view_pro_transactions
+        where height = #{height}
+    </select>
+
+    <select id="getTxnByTxid" resultMap="ViewTxnMap">
+        select *
+        from view_pro_transactions
+        where txid = #{txid}
+    </select>
+
+    <select id="getTxnList" resultMap="ViewTxnMap">
+        select *
+        from view_pro_transactions
+        order by height DESC
+        limit #{startnumber},#{endnumber}
+    </select>
+
+    <select id="getTxnListOra" resultMap="ViewTxnMap">
+        select * from
+        (
+        select a.*, rownum rn
+        from (select * from view_pro_transactions order by height desc) a
+        )
+        <![CDATA[
+        where rn between #{startnumber} and #{endnumber}
+
+        ]]>
+    </select>
+
+    <!--    <select id="getTxnOutputByAddr" resultMap="TxnDetailMap">
+            select *
+            from tbl_pro_txn_details
+            where txflag = '+'
+            and scripthash = #{address}
+            order by height DESC
+            limit #{startnumber},#{endnumber}
+        </select>
+
+        <select id="getTxnInputByAddr" resultMap="TxnDetailMap">
+            select *
+            from tbl_pro_txn_details
+            where txflag = '-'
+            and scripthash = #{address}
+            order by height DESC
+            limit #{startnumber},#{endnumber}
+        </select>-->
+
+    <!--   <select id="getTxnOutputByAddrOra" resultMap="TxnDetailMap">
+           select * from
+           (
+           select a.*, rownum rn
+           from (select * from tbl_pro_txn_details where txflag = '+' and scripthash = #{address} order by height desc) a
+           )
+           <![CDATA[
+           where rn between #{startnumber} and #{endnumber}
+           ]]>
+       </select>
+
+       <select id="getTxnInputByAddrOra" resultMap="TxnDetailMap">
+           select * from
+           (
+           select a.*, rownum rn
+           from (select * from tbl_pro_txn_details where txflag = '-' and scripthash = #{address} order by height desc) a
+           )
+           <if test="endnumber != 0 and startnumber != 0">
+               <![CDATA[
+             where rn between #{startnumber} and #{endnumber}
+               ]]>
+           </if>
+       </select>-->
+
+    <select id="getAllincomeByAddr" resultType="java.lang.String">
+        select sum(amount)
+        from tbl_pro_txn_details
+        where txflag = '+'
+        and scripthash = #{address}
+    </select>
+
+    <select id="getBalanceByAddr" resultType="java.lang.String">
+        select sum(amount)
+        from tbl_pro_txn_details
+        where txflag = '+'
+        and scripthash = #{address}
+        and spendflag = '0'
+    </select>
+
+    <select id="getTxnByParam" resultType="java.util.Map">
+        select DISTINCT (txid) as TXID
+        from tbl_pro_txn_details
+        where 1=1
+        <if test='txid != "0"'>
+            and txid = #{txid}
+        </if>
+        <if test="blockheight != 0">
+            and height = #{blockheight}
+        </if>
+        <if test='address != "0"'>
+            and scripthash = #{address}
+        </if>
+        <if test="starttime != 0 and endtime != 0">
+            and txtime >= #{starttime}
+            <![CDATA[
+            and txtime <= #{endtime}
+            ]]>
+        </if>
+        order by height DESC
+    </select>
+
+
+    <select id="getTxnByParamOra" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT distinct(txid), min(height) as b
+        FROM tbl_pro_txn_details
+        where 1=1
+        <if test='txid != "0"'>
+            and txid = #{txid}
+        </if>
+        <if test="blockheight != 0">
+            and height = #{blockheight}
+        </if>
+        <if test='address != "0"'>
+            and scripthash = #{address}
+        </if>
+        <if test="starttime != 0 and endtime != 0">
+            and txtime >= #{starttime}
+            <![CDATA[
+            and txtime <= #{endtime}
+            ]]>
+        </if>
+        group by txid
+        order by b desc
+    </select>
+
+    <select id="getTxnInfo" parameterType="java.util.List" resultMap="ViewTxnMap">
+        select *
+        from
+        view_pro_transactions
+        where txid in
+        <foreach collection="list" item="item" index="index"
+                 open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        order by height desc
+    </select>
+
+    <select id="getTxnDetailById" resultMap="TxnDetailMap">
+        select *
+        from
+        tbl_pro_txn_details
+        where txid in
+        <foreach collection="array" item="item" index="index"
+                 open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        order by height desc
+    </select>
+
+    <!--    <select id="getBankIssuAsset" resultType="java.util.Map">
+            select ASSETID,ASSETNAME,sum(AMOUNT) as AMOUNT
+            from tbl_pro_txn_details
+            where SCRIPTHASH in
+            <foreach collection="array" item="item" index="index"
+                     open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            and SPENDFLAG = '1'
+            and TXFLAG = '+'
+            and TXTYPE = '1'
+            and COUNTERPARTY is null
+            GROUP BY ASSETID,ASSETNAME
+        </select>-->
+
+    <select id="getBankIssuAsset" resultType="java.util.Map">
+        select ASSETID, ASSETNAME, AMOUNT, TXTIME, TOHASH as OUTTXID
+        from tbl_pro_txn_details
+        where SCRIPTHASH in
+        <foreach collection="array" item="item" index="index"
+                 open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        and SPENDFLAG = '1'
+        and TXFLAG = '+'
+        and TXTYPE = '1'
+        and COUNTERPARTY is null
+        order by height DESC
+    </select>
+
+    <select id="getBankAssetFlow" resultType="java.util.Map" parameterType="java.util.Map">
+        select AMOUNT as OUTAMOUNT, SCRIPTHASH as OUTADDR, TXTIME AS TXTIME, TXID AS INTXID, TOHASH as OUTTXID, SPENDFLAG AS SPENDFLAG
+        from tbl_pro_txn_details
+        where TXTYPE = '1'
+        and ASSETID = #{assetid}
+        and TXFLAG = '+'
+        and COUNTERPARTY in
+        <foreach collection="bankaddr" item="value" index="index"
+                 open="(" close=")" separator=",">
+            #{value}
+        </foreach>
+    </select>
+
+    <select id="getAssetFlow" resultType="java.util.Map">
+        select  b.scripthash as INADDR, c.scripthash as OUTADDR,
+        b.prevhash as INTXID, c.AMOUNT as OUTAMOUNT,c.spendflag as SPENDFLAG,c.TOHASH as OUTTXID,b.TXTIME AS TXTIME
+        from tbl_pro_txn_details b inner join (
+        select a.AMOUNT, a.SCRIPTHASH, a.SPENDFLAG, a.TOHASH, a.TXID
+        from tbl_pro_txn_details a
+        where a.txtype = 128
+        and a.txflag = '+'
+        and txid = #{txid}) c
+        on b.txid = c.txid
+        where b.txflag = '-'
+    </select>
+
+    <!--    <select id="getBankAssetFlow" resultType="java.util.Map">
+            select b.amount , b.assetid , b.assetname ,b.scripthash as compaddr, c.scripthash as bankaddr, b.spendflag,
+            b.tohash
+            from tbl_pro_txn_details b inner join (
+            select a.tohash, a.scripthash
+            from tbl_pro_txn_details a
+            where a.txtype = 1
+            and a.scripthash in
+            <foreach collection="list" item="item" index="index"
+                     open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+            and a.txflag = '+'
+            and a.spendflag = 1) c
+            on b.txid = c.tohash
+            where b.txflag = '+'
+            order by b.height desc
+        </select>-->
+
+    <select id="getBank2CompanyFlow" resultType="java.util.Map">
+        select a.TXTIME, a.SCRIPTHASH AS OUTADDR, a.SPENDFLAG, a.TOHASH AS OUTTXID, a.AMOUNT, b.NAME AS ADDRNAME, b.TYPE as TYPE
+        from tbl_pro_txn_details a, tbl_pro_addr_info b
+        where txid = #{txid}
+        and txtype = 1
+        and txflag = '+'
+        and a.scripthash = b.address
+    </select>
+
+</mapper>
