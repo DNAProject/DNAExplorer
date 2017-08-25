@@ -1,0 +1,58 @@
+﻿@font-face {
+  font-family: 'iconfont';  /* project id 275921 */
+  src: url('http://at.alicdn.com/t/font_zh2oqe5b99ysyvi.eot');
+  src: url('http://at.alicdn.com/t/font_zh2oqe5b99ysyvi.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_zh2oqe5b99ysyvi.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_zh2oqe5b99ysyvi.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_zh2oqe5b99ysyvi.svg#iconfont') format('svg');
+}
+i { font-family:iconfont; font-style:normal }
+.my-table { line-height:1.5; margin-bottom:50px }
+.my-table ul { list-style:none; padding:0; margin:0 }
+.my-table .row { margin:0; padding-top:10px; padding-bottom:10px }
+.my-table div.title.row { font-weight:bold; line-height:1.5 }
+.my-table.striped ul > li:nth-of-type(2n+1) { background-color:#f9f9f9 }
+.my-table.click ul > li   { cursor:pointer }
+.my-table.striped ul > li.success, .my-table ul > li.success { background-color:#dff0d8 }
+.my-table.striped ul > li.info, .my-table ul > li.info    { background-color:#d9edf7 }
+.my-table.striped ul > li.warning, .my-table ul > li.warning { background-color:#fcf8e3 }
+.my-table.striped ul > li.danger, .my-table ul > li.danger  { background-color:#f2dede }
+.my-table div.title.row { border-bottom:1px solid #ddd }
+.my-table ul > li { border-top:1px solid #ddd }
+.my-table ul > li > div{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.my-table .empty { display:none; line-height:3; text-align:center }
+.ellipsis { overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+#view-index .homepage-header.cz-header { padding:100px 0 30px}
+
+h1 { letter-spacing:.3em }
+.lsgy{color:#333; margin-bottom:50px; letter-spacing:.3em}
+.lsgy h1{font-size:48px}
+.lsgy h3{font-size:24px; margin-top:36px}
+.system-state { background-color:#505050; background-image:url(../../images/bg.png); background-size:cover; background-position:center; background-attachment:fixed; padding:50px 0 }
+.system-state h1 { color:#fff; text-align:center; line-height:20px; font-size:24px }
+.system-state h3 { color:#59c2e6; }
+.system-state .value { margin:40px 0 20px; color:#59c2e6; font-size:48px }
+.system-state .unit { color:#59c2e6 }
+.system-state .col-sm-3 { transition:background-color .7s; cursor:default; }
+.system-state .col-sm-3:hover { background-color:rgba(0,0,0,.7);  }
+.system-state .cell-bordered-right { border-right-color:#555 }
+
+.cz-panel { position:relative; margin:50px 0; border:1px solid lightgray; padding:45px 30px 30px; border-radius:10px; background-color:#fff }
+.cz-panel::before{  content:""; position:absolute; top:0; left:0; width:100%; display:block; border-radius:10px 10px 0 0; height:10px; background-color:#009bc8; }
+.cz-panel header { border-bottom:1px solid lightgray; padding-bottom:15px; margin-bottom:15px }
+.cz-panel header span { font-size:18px; letter-spacing:.1em; margin-left:10px }
+.btn-cz-chain { float:right }
+
+.cz-chain { margin:20px 0 50px }
+.cz-chain header { margin-top:30px; font-size:18px; letter-spacing:.1em; margin-left:10px }
+.cz-chain ul { list-style:none; padding-left:0; margin:60px 0 80px }
+.cz-chain ul li { margin:40px 0  }
+.cz-chain ul li img { margin:-8px 20px 0; z-index:1; }
+@media only screen and (max-width: 768px) {
+    .cz-chain ul li img { margin:-8px 5px 0; }
+    .cz-chain ul { margin:0 -15px }
+}
+.cz-chain ul li .cz-line{position:relative}
+.cz-chain ul li .cz-line::before { content:" "; z-index:0; position:absolute; background-color:gray; left:50%; top:-20px; height:12px; width:1px; }
+.cz-chain ul li .cz-line::after { content:" "; z-index:0; position:absolute; background-color:gray; left:50%; bottom:-50px; height:50px; width:1px; }
+.cz-chain ul li .line-content { margin-top:-12px }

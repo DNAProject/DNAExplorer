@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#474C5E;}
+	.st1{clip-path:url(#SVGID_3_);}
+	.st2{clip-path:url(#SVGID_4_);}
+	.st3{fill:#E9BB7C;}
+	.st4{fill:#EFD48E;}
+	.st5{fill:#D5D7DE;}
+	.st6{fill:none;stroke:#474C5E;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st7{display:none;}
+	.st8{display:inline;}
+	.st9{display:inline;clip-path:url(#SVGID_7_);}
+	.st10{fill:#FFFFFF;}
+	.st11{fill:#B8BABF;}
+	.st12{fill:none;stroke:#B4B6BF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13{fill:none;stroke:#B8BABF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st14{fill:none;stroke:#B4B6BF;stroke-miterlimit:10;}
+	.st15{fill:#F8DBA1;}
+	.st16{clip-path:url(#SVGID_13_);}
+	.st17{fill:#688AB4;}
+	.st18{fill:#C0C1C4;}
+	.st19{fill:#C2C6D0;}
+	.st20{fill:none;stroke:#C0C1C4;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	
+		.st21{fill:none;stroke:#474C5E;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-dasharray:2,6;}
+	.st22{clip-path:url(#SVGID_19_);}
+	.st23{fill:#77A0D6;}
+	.st24{clip-path:url(#SVGID_23_);}
+	.st25{fill:#BE7474;}
+	.st26{fill:#9F6262;}
+	.st27{fill:none;stroke:#474C5E;stroke-width:2;stroke-miterlimit:10;}
+	.st28{fill:#E3E3E8;}
+	.st29{fill:#F7D9A1;}
+	.st30{fill:#B1D18F;}
+	.st31{fill:#87A26C;}
+	.st32{clip-path:url(#SVGID_29_);}
+	.st33{clip-path:url(#SVGID_33_);}
+	.st34{display:none;fill:none;stroke:#474C5E;stroke-width:2;stroke-miterlimit:10;}
+	.st35{fill:none;stroke:#474C5E;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st36{fill:none;stroke:#E3E3E8;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st37{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st38{fill:#DCA970;}
+	.st39{fill:#AFAFAF;}
+</style>
+<g id="Слой_3">
+</g>
+<g id="Слой_2">
+	<circle class="st21" cx="25" cy="25" r="24"/>
+	<g>
+		<g>
+			<defs>
+				<circle id="SVGID_21_" cx="25" cy="25" r="14"/>
+			</defs>
+			<defs>
+				<circle id="SVGID_22_" cx="25" cy="27" r="13"/>
+			</defs>
+			<use xlink:href="#SVGID_21_"  style="overflow:visible;fill:#96C7EB;"/>
+			<use xlink:href="#SVGID_22_"  style="overflow:visible;fill:#77A0D6;"/>
+			<clipPath id="SVGID_3_">
+				<use xlink:href="#SVGID_21_"  style="overflow:visible;"/>
+			</clipPath>
+			<clipPath id="SVGID_4_" class="st1">
+				<use xlink:href="#SVGID_22_"  style="overflow:visible;"/>
+			</clipPath>
+		</g>
+		<g>
+			<g>
+				<path class="st0" d="M25,12c7.2,0,13,5.8,13,13s-5.8,13-13,13s-13-5.8-13-13S17.8,12,25,12 M25,10c-8.3,0-15,6.7-15,15
+					s6.7,15,15,15s15-6.7,15-15S33.3,10,25,10L25,10z"/>
+			</g>
+		</g>
+		<g>
+			<path class="st17" d="M22,26l2-4v-4c0.1-0.4,0.6-1,1-1l1,0c2.3,1.2,2.9,4.1,2,7h3.6c1.2,0,2.2,1.1,2,2.4l-1.3,7
+				c-0.2,1-1,1.6-2,1.6h-5.9c-0.3,0-0.6-0.1-0.9-0.2L22,34V26z"/>
+			<path class="st10" d="M22,24l2-4v-4c0.1-0.4,0.6-1,1-1l1,0c2.3,1.2,2.9,4.1,2,7h3.6c1.2,0,2.2,1.1,2,2.4l-1.3,7
+				c-0.2,1-1,1.6-2,1.6h-5.9c-0.3,0-0.6-0.1-0.9-0.2L22,32V24z"/>
+			<path class="st6" d="M22,24l2-4v-4c0.1-0.4,0.6-1,1-1l1,0c2.3,1.2,2.9,4.1,2,7h3.6c1.2,0,2.2,1.1,2,2.4l-1.3,7
+				c-0.2,1-1,1.6-2,1.6h-5.9c-0.3,0-0.6-0.1-0.9-0.2L22,32V24z"/>
+			<path class="st17" d="M21,35h-2c-1.7,0-3-1.3-3-3v-6c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1v8C22,34.6,21.6,35,21,35z"/>
+			<path class="st10" d="M21,33h-2c-1.7,0-3-1.3-3-3v-6c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1v8C22,32.6,21.6,33,21,33z"/>
+			<path class="st6" d="M21,33h-2c-1.7,0-3-1.3-3-3v-6c0-0.6,0.4-1,1-1h4c0.6,0,1,0.4,1,1v8C22,32.6,21.6,33,21,33z"/>
+			<circle class="st0" cx="19" cy="26" r="1"/>
+		</g>
+	</g>
+	<circle class="st25" cx="8" cy="42" r="4"/>
+	<circle class="st26" cx="8" cy="43" r="3"/>
+	<circle class="st27" cx="8" cy="42" r="4"/>
+	<circle class="st28" cx="8" cy="10" r="5"/>
+	<circle class="st19" cx="8" cy="11" r="4"/>
+	<circle class="st27" cx="8" cy="10" r="5"/>
+	<g>
+		<circle class="st29" cx="41" cy="43" r="7"/>
+	</g>
+	<g>
+		<circle class="st3" cx="41" cy="44" r="5"/>
+	</g>
+	<g>
+		<path class="st0" d="M41,38c2.8,0,5,2.2,5,5s-2.2,5-5,5s-5-2.2-5-5S38.2,38,41,38 M41,36c-3.9,0-7,3.1-7,7c0,3.9,3.1,7,7,7
+			s7-3.1,7-7C48,39.1,44.9,36,41,36L41,36z"/>
+	</g>
+	<g>
+		<circle class="st30" cx="42" cy="8" r="8"/>
+	</g>
+	<g>
+		<circle class="st31" cx="42" cy="9" r="6"/>
+	</g>
+	<g>
+		<path class="st0" d="M42,2c3.3,0,6,2.7,6,6s-2.7,6-6,6s-6-2.7-6-6S38.7,2,42,2 M42,0c-4.4,0-8,3.6-8,8c0,4.4,3.6,8,8,8s8-3.6,8-8
+			C50,3.6,46.4,0,42,0L42,0z"/>
+	</g>
+	<line class="st27" x1="11" y1="13" x2="14" y2="16"/>
+	<line class="st27" x1="38" y1="13" x2="35" y2="16"/>
+	<line class="st27" x1="11" y1="39" x2="15" y2="35"/>
+	<line class="st27" x1="37" y1="39" x2="34" y2="36"/>
+	<polyline class="st6" points="39,8 41,10 45,6 	"/>
+	<circle class="st28" cx="8" cy="10" r="2"/>
+	<path class="st29" d="M39,40.9v4.2c0,0.7,0.7,1.1,1.3,0.8l3.3-2.1c0.6-0.4,0.6-1.2,0-1.6l-3.3-2.1C39.7,39.8,39,40.2,39,40.9z"/>
+	<path class="st25" d="M7.3,43.3l-0.6-0.6c-0.4-0.4-0.4-1,0-1.4l0.6-0.6c0.4-0.4,1-0.4,1.4,0l0.6,0.6c0.4,0.4,0.4,1,0,1.4l-0.6,0.6
+		C8.3,43.7,7.7,43.7,7.3,43.3z"/>
+</g>
+</svg>

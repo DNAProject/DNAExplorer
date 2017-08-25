@@ -1,0 +1,513 @@
+<<<<<<< .mine
+<template>
+  <div id="monitor">
+    <!--头部-->
+    <div class="header-monitor">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <p><span class="glyphicon glyphicon-leaf"></span>监控平台</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="content-monitor">
+      <!---->
+      <div class="nav">
+
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-one" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">交易数量</p>
+              <p>2323</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-two" @click="toNodeinfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-user"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">节点数量</p>
+              <p >{{ nodeStatus.totalCount}}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-three" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-dashboard"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">区块高度</p>
+              <p>{{ blockStatus.height }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-four" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-envelope"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">区块平均生成时间</p>
+              <p>15s</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--主体-->
+      <div class="main">
+        <div class="row">
+          <div class="col-md-7 main-left">
+            <p class="name">节点分布</p>
+            <img src="static/img/ditu3.png" width="100%" style="max-height: 500px;"/>
+          </div>
+          <div class="col-md-5 main-right">
+            <div class="main-header name">
+              <p>节点列表</p>
+            </div>
+            <div class="main-right-content">
+              <div class="row">
+                <div class="col-xs-2 nodelist">
+                  <ul>
+                    <li class="list-title">节点名称</li>
+                    
+                    <li v-for="item in nodeList"><router-link to="/nodeinfo">{{ item.id }}</router-link></li>
+                    
+                  </ul>
+                </div>
+                <div class="col-xs-3 nodelist">
+                  <ul>
+                    <li class="list-title">出块状态</li>
+                    <li v-for="item in nodeList">{{ item.blockStatus }}</li>
+                  </ul>
+                </div>
+                <div class="col-xs-3 nodelist">
+                  <ul>
+                    <li class="list-title">网络状态</li>
+                    <li v-for="item in nodeList">{{ item.rpcStatus }}</li>
+                  </ul>
+                </div>
+                <div class="col-xs-4 nodelist">
+                  <ul>
+                    <li class="list-title">时间</li>
+                    <li v-for="item in nodeList">{{ item.date }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="main-header name">
+              <p>节点类型</p>
+            </div>
+            
+            <div id="nodetype" style="width:100%;min-height:200px"></div>
+            <!--<div class="list">
+              <p ><span class="toleft glyphicon glyphicon-stop color-one"></span><span class="toleft ">共识节点</span><span class="toright">1</span></p>
+              <p ><span class="toleft glyphicon glyphicon-stop color-two"></span><span class="toleft ">全节点</span><span class="toright">2</span></p>
+              <p ><span class="toleft glyphicon glyphicon-stop color-three"></span><span class="toleft">轻节点</span><span class="toright">3</span></p>
+            </div>-->
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import '../assets/ebro/css/index.css'
+  import { mapGetters, mapActions } from 'vuex'
+  
+  var Highcharts = require('highcharts');
+  require('highcharts/modules/exporting')(Highcharts);
+  
+  
+  export default {
+    mounted : function() {
+    var chart = new Highcharts.Chart('nodetype',{
+      chart: {
+        plotBackgroundColor:null,
+        plotBorderWidth:null,
+        backgroundColor:'#282932',
+        },
+        title: {
+            text:' '
+        },
+        credits:{
+        enabled:false // 禁用版权信息
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        legend:{
+          align:'right',
+          color:'white',
+          itemStyle:{ cursor: 'pointer', color: 'white' },
+          itemHoverStyle: { color: 'gray' },
+          symbolRadius:'none',
+          layout:'vertical',
+          itemWidth:100,
+          itemMarginBottom:20
+        },
+        series: [{
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint:true,
+            data: [{
+              name:'共识节点',
+              color:'#D63092',
+              y:4
+            },{
+              name:'全节点',
+              color:'#96468D',
+              y:1
+            },{
+              name:'轻节点',
+              color:'#3E3F49',
+              y:1
+            }]
+        }],
+        exporting: {
+            enabled: false
+        }
+    });
+    $(".highcharts-point").css("stroke","#282932");
+},
+    computed: mapGetters({
+      degreeList: 'degreeList',
+      blockList: 'blockList',
+      nodeList: 'nodeList',
+      nodeStatus: 'nodeStatus',
+      blockStatus: 'blockStatus'
+    }),
+    created () {
+      this.format();
+      this.$store.dispatch('degreeList')
+      this.$store.dispatch('blockList')
+      this.$store.dispatch('nodeList')
+      this.$store.dispatch('nodeStatus')
+      this.$store.dispatch('blockStatus')
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('blockStatus')
+        this.$store.dispatch('nodeStatus')
+        this.$store.dispatch('lastBlock')
+        this.$store.dispatch('lastDegree')
+        this.$store.dispatch('blockList')
+        this.$store.dispatch('degreeList')
+        this.$store.dispatch('nodeList')
+      }, 500)
+    },
+    methods: {
+      toChaininfo:function(){
+        this.$router.push({'path': '/chaininfo'})
+      },
+      toNodeinfo:function(){
+        this.$router.push({'path':'/nodeinfo'})
+      },
+      format:function(){
+        var ip= "116.62.105.124:10332";
+        var realIp = ip.replace(/\./g,"_");
+        var index=realIp.indexOf(":");
+        realIp=realIp.substring(0,index);
+      }
+//    h5: function() {
+//      var stompClient = null;
+//      var socket = new SockJS('http://192.168.1.121:7070/endpointSang');
+//      stompClient = Stomp.over(socket);
+//      stompClient.connect({}, function(frame) {
+//        console.log('====Connected:' + frame);
+//        stompClient.subscribe('/topic/getDegree', function(response) {
+//          var bb = response.body;
+//          console.log("body");
+//          console.log(bb);
+//          var degree = JSON.parse(response.body);
+//          var degree0 = degree[0];
+//          console.log("json");
+//          console.log(degree);
+//          console.log("json 0")
+//          console.log(degree0);
+//          
+//        });
+//      });
+//    }
+    },
+    data(){
+      return{
+        
+      }
+    }
+  }  
+</script>
+
+<style>
+
+</style>=======
+<template>
+  <div id="monitor">
+    <!--头部-->
+    <div class="header-monitor">
+      <div class="row">
+        <div class="col-sm-6">
+          <p><span class="glyphicon glyphicon-leaf"></span>监控平台</p>
+        </div>
+      </div>
+    </div>
+    <div class="content-monitor">
+      <!---->
+      <div class="nav">
+
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-one" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-eye-open"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">交易数量</p>
+              <p>{{ blockStatus.txncount }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-two" @click="toNodeinfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-user"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">节点数量</p>
+              <p >{{ nodeStatus.totalCount}}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-three" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-dashboard"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">区块高度</p>
+              <p>{{ blockStatus.height }}</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12 nav-list nav-list-four" @click="toChaininfo">
+            <div class="nav-list-left">
+              <span class="glyphicon glyphicon-envelope"></span>
+            </div>
+            <div class="nav-list-right">
+              <p class="name">区块平均生成时间</p>
+              <p>15s</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--主体-->
+      <div class="main">
+        <div class="row">
+          <div class="col-md-7 main-left">
+            <p class="name">节点分布</p>
+            <img src="static/img/ditu3.png" width="100%" style="max-height: 500px;"/>
+          </div>
+          <div class="col-md-5 main-right">
+            <div class="main-header name">
+              <p>节点列表</p>
+            </div>
+            <div class="main-right-content">
+              <div class="row">
+                <div class="col-xs-3">
+                  <ul>
+                    <li class="list-title">节点名称</li>
+
+                    <li v-for="item in nodeList" @click="nodeInfo(item.url)">{{ item.id }}</li>
+
+                  </ul>
+                </div>
+                <div class="col-xs-3">
+                  <ul>
+                    <li class="list-title">出块状态</li>
+                    <li v-for="item in nodeList">{{ item.blockStatus }}</li>
+                  </ul>
+                </div>
+                <div class="col-xs-3">
+                  <ul>
+                    <li class="list-title">网络状态</li>
+                    <li v-for="item in nodeList">{{ item.rpcStatus }}</li>
+                  </ul>
+                </div>
+                <div class="col-xs-3">
+                  <ul>
+                    <li class="list-title">时间</li>
+                    <li v-for="item in nodeList">{{ item.date }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="main-header name">
+              <p>节点类型</p>
+            </div>
+
+            <div id="nodetype" style="width:100%;min-height:200px"></div>
+            <!--<div class="list">
+              <p ><span class="toleft glyphicon glyphicon-stop color-one"></span><span class="toleft ">共识节点</span><span class="toright">1</span></p>
+              <p ><span class="toleft glyphicon glyphicon-stop color-two"></span><span class="toleft ">全节点</span><span class="toright">2</span></p>
+              <p ><span class="toleft glyphicon glyphicon-stop color-three"></span><span class="toleft">轻节点</span><span class="toright">3</span></p>
+            </div>-->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import '../assets/ebro/css/index.css'
+  import { mapGetters, mapActions } from 'vuex'
+
+  var Highcharts = require('highcharts');
+  require('highcharts/modules/exporting')(Highcharts);
+
+  export default {
+
+    watch: {
+      'nodeStatus':function (val, oldVal) {
+        console.log("xxxx")
+        this.nodeType1 = val.type1Num;
+        this.nodeType2 = val.type2Num;
+        console.log(this.nodeType1)
+        console.log(this.nodeType2)
+
+        if(val.type1Num != oldVal.type1Num  )
+        {
+          this.high_one()
+        }else{
+          console.log("equals")
+        }
+
+      }
+    },
+
+    mounted : function() {
+      this.high_one();
+      $(".highcharts-point").css("stroke","#282932");
+  },
+    computed: mapGetters({
+      nodeList: 'nodeList',
+      nodeStatus: 'nodeStatus',
+      blockStatus: 'blockStatus'
+    }),
+    created () {
+      this.test()
+      this.$store.dispatch('nodeList')
+      this.$store.dispatch('nodeStatus')
+      this.$store.dispatch('blockStatus')
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('blockStatus')
+        this.$store.dispatch('nodeStatus')
+        this.$store.dispatch('nodeList')
+      }, 5000)
+    },
+    methods: {
+      test:function () {
+        var ip= '127.0.0.1';
+       // var e=new RegExp('.',"g");
+        var realIp = ip.replace(/./g,'_');
+        console.log(ip)
+        console.log(realIp)
+      },
+      toChaininfo:function(){
+        this.$router.push({'path': '/chaininfo'})
+      },
+      toNodeinfo:function(){
+        this.$router.push({'path':'/nodeinfo'})
+      },
+      nodeInfo:function (node_url) {
+       // var realIp = node_url.replace('_','.');
+        //139.196.113.85:7331
+        console.log(node_url)
+        var v1 = '192_168_1_103'
+        this.$router.push({'path': '/nodeinfo/'+v1})
+      },
+      high_one:function () {
+        new Highcharts.Chart('nodetype',{
+          chart: {
+            plotBackgroundColor:null,
+            plotBorderWidth:null,
+            backgroundColor:'#282932',
+//      spacing : [0, 0 ,0, -100]
+          },
+          title: {
+            text:' '
+          },
+          credits:{
+            enabled:false // 禁用版权信息
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend:{
+            align:'right',
+            color:'white',
+            itemStyle:{ cursor: 'pointer', color: 'white' },
+            itemHoverStyle: { color: 'gray' },
+            symbolRadius:'none',
+            layout:'vertical',
+            itemWidth:100,
+            itemMarginBottom:20
+          },
+          series: [{
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint:true,
+            data: [{
+              name:'验证节点',
+              color:'#D63092',
+              y:this.nodeType1
+            },{
+              name:'服务节点',
+              color:'#96468D',
+              y:this.nodeType2
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+      }
+
+    },
+    data(){
+      return{
+        nodeType1:'',
+        nodeType2:''
+      }
+    },
+    beforeDestroy () {
+      clearInterval(this.intervalBlock)
+    }
+  }
+</script>
+
+<style>
+
+</style>
+>>>>>>> .r313

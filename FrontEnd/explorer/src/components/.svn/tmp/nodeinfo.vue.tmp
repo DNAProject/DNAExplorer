@@ -1,0 +1,1220 @@
+<template>
+  <div id="nodeifon">
+    <div class="header">
+      <div class="row">
+        <div class="title col-sm-2">
+          <p>节点信息</p>
+        </div>
+        <div class="col-sm-3 col-xs-offset-7 back" @click="back"> 返回首页</div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="content-top">
+        <div class="select row">
+          <span class="col-sm-5">查看具体节点信息</span>
+<<<<<<< .mine
+          <select class="form-control col-sm-6 col-xs-12" >
+            <option >上海分布节点1</option>
+            <option >上海分布节点2</option>
+            <option >上海分布节点3</option>
+            <option >上海分布节点4</option>
+=======
+          <select class="form-control col-sm-6 col-xs-12" >
+            <option>{{ oneNodeInfo.id }}</option>
+            <option v-for="item in nodeList" v-if="item.id != oneNodeInfo.id">{{ item.id }}</option>
+>>>>>>> .r314
+          </select>
+        </div>
+
+        <div class="showinfo row">
+          <p>
+            <span class="color-blue col-sm-2">节点名称</span>
+            <span class="col-sm-3">{{ oneNodeInfo.id }}</span>
+            <span class="color-blue col-sm-2">操作系统版本</span>
+            <span class="col-sm-2">{{ oneNodeInfo.systemInfo }}</span>
+          </p>
+        </div>
+
+<<<<<<< .mine
+        <div class="time row">
+          <div>
+            <div class="col-sm-5">
+            <span class="color-blue">区块链系统启动时间</span>
+            <span>2017.02.12-14.32.13</span>
+            </div>
+            <div class="col-sm-5">
+            <span class="color-blue">网络状态</span>
+            <span class="">节点连接正常</span>
+            </div>
+          </div>
+=======
+        <div class="time row">
+          <div>
+            <div class="col-sm-5">
+              <span class="color-blue">区块链系统启动时间</span>
+              <span>{{ this.nowTime}}</span>
+            </div>
+            <div class="col-sm-5">
+              <span class="color-blue">网络状态</span>
+              <span class="">{{ oneNodeInfo.rpcStatus}}</span>
+            </div>
+          </div>
+>>>>>>> .r314
+        </div>
+
+
+        <div class="chart">
+          <div class="row">
+            <div class="col-sm-6" id="cpu-area" style="min-height: 200px;"></div>
+            <div class="col-sm-4" id="cpu-pie" style="min-height: 200px;"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6" id="memory-area" style="min-height: 200px;"></div>
+            <div class="col-sm-4" id="memory-pie" style="min-height: 200px;"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6" id="disk-area" style="min-height: 200px;"></div>
+            <div class="col-sm-4" id="disk-pie" style="min-height: 200px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import '../assets/ebro/css/nodeinfo.css'
+  import { mapGetters, mapActions } from 'vuex'
+  var Highcharts = require('highcharts');
+  require('highcharts/modules/exporting')(Highcharts);
+
+  export default {
+    
+    mounted:
+    function() {
+      this.cpu_high()
+      this.memory_high()
+      this.disk_high()
+<<<<<<< .mine
+      //cpu折线图
+      var chart = new Highcharts.Chart('cpu-area', {
+        title: {
+          text: 'CPU使用',
+          align:'left',
+          style:{
+            color:'#57d2ff',
+            fontSize:'16px'
+          }
+        },
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          backgroundColor: '#282932'
+        },
+        colors: ['#6B4259','#43415D'],
+        credits: {
+          enabled: false // 禁用版权信息
+        },
+        exporting: { //导出禁用
+          enabled: false
+        },
+        legend: {//禁用图例
+          enabled: false
+        },
+         xAxis: {
+                tickWidth: 0.5,
+//              type: 'datetime',
+//              dateTimeLabelFormats: {
+//                  millisecond: '%H:%M:%S.%L',
+//                  second: '%H:%M:%S',
+//                  minute: '%H:%M',
+//                  hour: '%H:%M',
+//                  day: '%m-%d',
+//                  week: '%m-%d',
+//                  month: '%Y-%m',
+//                  year: '%Y'
+//              }
+           categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+            },
+            tooltip: {
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%Y-%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+        yAxis: {
+          gridLineColor: '#212124',
+          max:100,
+          title: {
+            text: 'cpu'
+          },
+          plotLines: [{
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        plotOptions: {
+          area: {
+            fillColor: {
+              linearGradient: {
+                x1: 0.5,
+                y1: 0,
+                x2: 0.5,
+                y2: 1
+              },
+              stops: [
+                [0, Highcharts.getOptions().colors[5]],
+                [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]
+              ]
+            },
+            marker: {
+              radius: 2
+            },
+            lineWidth: 1,
+            states: {
+              hover: {
+                lineWidth: 1
+              }
+            },
+            threshold: null
+          }
+        },
+        series: [{
+          type: 'area',
+          name: 'CPU',
+          data: [70, 50, 40, 14, 18, 70, 25, 60, 23, 18, 13, 96,],
+//        pointStart: Date.UTC(2017, 7),
+//        pointInterval: 24 * 3600 * 1000 // one day
+        }]
+      });
+=======
+      this.cpu_line()
+      this.cpu_pie()
+      this.mem_line()
+      this.mem_pie()
+      this.dis_line()
+      this.dis_pie()
+      this.cpu_line()
+      this.mem_line()
+      this.dis_line()
+>>>>>>> .r314
+
+<<<<<<< .mine
+    //内存折线图
+      var chart = new Highcharts.Chart('memory-area', {
+        title: {
+          text: '内存使用',
+          align:'left',
+          style:{
+            color:'#57d2ff',
+            fontSize:'16px'
+          }
+        },
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          backgroundColor: '#282932'
+        },
+        colors: ['#6B4259','#43415D'],
+        credits: {
+          enabled: false // 禁用版权信息
+        },
+        exporting: { //导出禁用
+          enabled: false
+        },
+        legend: {//禁用图例
+          enabled: false
+        },
+         xAxis: {
+                tickWidth: 0.5,
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            tooltip: {
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%Y-%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+        yAxis: {
+          gridLineColor: '#212124',
+          title: {
+            text: 'cpu'
+          },
+          plotLines: [{
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        plotOptions: {
+          area: {
+            fillColor: {
+              linearGradient: {
+                x1: 0.5,
+                y1: 0,
+                x2: 0.5,
+                y2: 1
+              },
+              stops: [
+                [0, Highcharts.getOptions().colors[5]],
+                [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]
+              ]
+            },
+            marker: {
+              radius: 2
+            },
+            lineWidth: 1,
+            states: {
+              hover: {
+                lineWidth: 1
+              }
+            },
+            threshold: null
+          }
+        },
+        series: [{
+          type: 'area',
+          name: '内存',
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,],
+          pointStart: Date.UTC(2017, 7),
+          pointInterval: 24 * 3600 * 1000 // one day
+        }]
+      });
+
+      //内存饼图
+      
+    //磁盘折线图
+      var chart = new Highcharts.Chart('disk-area', {
+        title: {
+          text: '磁盘使用',
+          align:'left',
+          style:{
+            color:'#57d2ff',
+            fontSize:'16px'
+          }
+        },
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          backgroundColor: '#282932'
+        },
+        colors: ['#6B4259','#43415D'],
+        credits: {
+          enabled: false // 禁用版权信息
+        },
+        exporting: { //导出禁用
+          enabled: false
+        },
+        legend: {//禁用图例
+          enabled: false
+        },
+         xAxis: {
+                tickWidth: 0.5,
+                type: 'datetime',
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+            tooltip: {
+                dateTimeLabelFormats: {
+                    millisecond: '%H:%M:%S.%L',
+                    second: '%H:%M:%S',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%Y-%m-%d',
+                    week: '%m-%d',
+                    month: '%Y-%m',
+                    year: '%Y'
+                }
+            },
+        yAxis: {
+          gridLineColor: '#212124',
+          title: {
+            text: 'cpu'
+          },
+          plotLines: [{
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        plotOptions: {
+          area: {
+            fillColor: {
+              linearGradient: {
+                x1: 0.5,
+                y1: 0,
+                x2: 0.5,
+                y2: 1
+              },
+              stops: [
+                [0, Highcharts.getOptions().colors[5]],
+                [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]
+              ]
+            },
+            marker: {
+              radius: 2
+            },
+            lineWidth: 1,
+            states: {
+              hover: {
+                lineWidth: 1
+              }
+            },
+            threshold: null
+          }
+        },
+        series: [{
+          type: 'area',
+          name: '磁盘',
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6,],
+          pointStart: Date.UTC(2017, 7),
+          pointInterval: 24 * 3600 * 1000 // one day
+        }]
+      });
+
+      //磁盘饼图
+      
+    },
+    data () {
+      return {
+        cpu:'',
+        cpu2:'',
+        mem:'',
+        seleted:'a',
+        options:[
+        {text:'one',value:'a'},
+        {text:'two',value:'b'},
+        {text:'three',value:'c'}
+        ]
+      }
+    },
+
+    computed: mapGetters({
+      machineInfo:'machineInfo'
+    }),
+    created() {
+      
+      var params = this.$route.params
+      console.log(params)
+      this.$store.dispatch('machineInfo', params)
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('machineInfo', params)
+      }, 5000)
+    },
+    watch: {
+      'machineInfo': function(val, oldVal) {
+        console.log("===")
+        this.cpu = parseFloat(val[0].cpuUsedPer)
+        console.log(this.cpu)
+        this.cpu2 = 100 - this.cpu;
+        console.log(this.cpu2)
+        this.mem = parseFloat(val[0].memUsedPer)
+/*
+        if(val[0].cpuUsedPer == oldVal[0].cpuUsedPer){*/
+          this.cpu_high()
+/*        }else{
+          console.log("equals1")
+        }*/
+      }
+    },
+    methods: {
+      back: function() {
+        this.$router.push({
+          'path': '/monitor'
+        })
+      },
+      //cpu饼图
+      cpu_high:function () {  
+        new Highcharts.Chart('cpu-pie',{
+          chart: {
+            plotBackgroundColor:null,
+            plotBorderWidth:null,
+            backgroundColor:'#282932',
+          },
+          title: {
+            text: '当前CPU使用',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          credits:{
+            enabled:false // 禁用版权信息
+          },
+          tooltip: {
+            pointFormat: '{point.percentage:.1f}%'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend:{
+            align:'right',
+            color:'white',
+            itemStyle:{ cursor: 'pointer', color: 'white' },
+            itemHoverStyle: { color: 'gray' },
+            symbolRadius:'none',
+            layout:'vertical',
+            itemWidth:100,
+            itemMarginBottom:20
+          },
+          series: [{
+            type: 'pie',
+            innerSize: '60%',
+            name:" ",
+            colorByPoint:true,
+            data: [{
+              name:'已使用',
+              color:'#5B9BD5',
+//            y:this.cpu
+              y: 4
+            },{
+              name:'未使用',
+              color:'#ED7D31',
+//            y:this.cpu2
+              y:1
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+        $(".highcharts-point").css("stroke","#282932");
+      },
+      //内存饼图
+      memory_high:function(){
+      new Highcharts.Chart('memory-pie',{
+      chart: {
+        plotBackgroundColor:null,
+        plotBorderWidth:null,
+        backgroundColor:'#282932',
+//      spacing : [0, 0 ,0, -100]
+
+        },
+        title: {
+          text: '当前内存使用',
+          align:'left',
+          style:{
+            color:'#57d2ff',
+            fontSize:'16px'
+          }
+        },
+        credits:{
+        enabled:false // 禁用版权信息
+        },
+        tooltip: {
+            pointFormat: '{point.percentage:.1f}%'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        legend:{
+          align:'right',
+          color:'white',
+          itemStyle:{ cursor: 'pointer', color: 'white' },
+          itemHoverStyle: { color: 'gray' },
+          symbolRadius:'none',
+          layout:'vertical',
+          itemWidth:100,
+          itemMarginBottom:20
+        },
+        series: [{
+            type: 'pie',
+            innerSize: '60%',
+            name:" ",
+            colorByPoint:true,
+            data: [{
+              name:'已使用',
+              color:'#5B9BD5',
+              y:4
+            },{
+              name:'未使用',
+              color:'#ED7D31',
+              y:1
+            }]
+        }],
+        exporting: {
+            enabled: false
+        }
+    });
+=======
+>>>>>>> .r314
+<<<<<<< .mine
+=======
+    $(".highcharts-point").css("stroke","#282932");
+    },
+
+    data () {
+      return {
+        cpuUsed:0,
+        cpuUnUsed:0,
+        memUsed:0,
+        memUnUsed:0,
+        disUsed:0,
+        disUnUsed:0,
+        nowTime:'',
+        info:{
+          cpuUsedPer:'',
+          memUsedPer:'',
+          disUsedPer:'',
+          date:''
+        },
+        infoList:[
+          info
+        ],
+      }
+    },
+
+    computed: mapGetters({
+      machineInfo:'machineInfo',
+      oneNodeInfo:'oneNodeInfo',
+      nodeList:'nodeList'
+    }),
+
+    created() {
+      this.getNowFormatDate()
+      var params = this.$route.params
+      console.log("params="+params)
+      this.$store.dispatch('machineInfo', params)
+      this.$store.dispatch('oneNodeInfo', params)
+      this.$store.dispatch('nodeList')
+      this.intervalBlock = setInterval(() => {
+        this.$store.dispatch('machineInfo', params)
+        this.$store.dispatch('oneNodeInfo', params)
+      }, 10000)
+    },
+    watch: {
+      'machineInfo': function(val, oldVal) {
+        this.cpuUsed = parseFloat(val[0].cpuUsedPer)
+        this.cpuUnUsed = parseFloat(100 - this.cpuUsed);
+
+        this.memUsed = parseFloat(val[0].memUsedPer)
+        this.memUnUsed = parseFloat(100 - this.memUsed);
+
+        this.disUsed = parseFloat(val[0].disUsedPer);
+        this.disUnUsed = parseFloat(100 - this.disUsed);
+
+        this.infoList = val;
+        var datetemp = '';
+        var i = 0;
+        for (i ; i<this.infoList.length; i++){
+          datetemp = this.infoList[i].date
+          datetemp = datetemp.substr(10)
+          this.infoList[i].date = datetemp
+        }
+        console.log("!!!!!!!")
+        console.log(this.infoList)
+        console.log(this.infoList[0].cpuUsedPer)
+
+/*
+        if(val[0].cpuUsedPer == oldVal[0].cpuUsedPer){*/
+        this.cpu_pie()
+        this.mem_pie()
+        this.dis_pie()
+        this.cpu_line()
+        this.mem_line()
+        this.dis_line()
+/*        }else{
+          console.log("equals1")
+        }*/
+      }
+    },
+
+    methods: {
+      //格式化当前时间
+      getNowFormatDate:function() {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+          month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+          strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + date.getHours() + seperator2 + date.getMinutes()
+        + seperator2 + date.getSeconds();
+        this.nowTime = currentdate
+      },
+
+      nodeInfo:function (node_url) {
+        //192.168.1.103:8080转换成192_168_1_103
+        var index = node_url.indexOf(":");
+        var ipTemp = node_url.substring(0,index);
+        var realIp = ipTemp.replace(/\./g,"_");
+        this.$router.push({'path': '/nodeinfo/'+realIp})
+      },
+      back: function() {
+        this.$router.push({
+          'path': '/monitor'
+        })
+>>>>>>> .r314
+      },
+<<<<<<< .mine
+      disk_high:function(){
+        var chart = new Highcharts.Chart('disk-pie',{
+      chart: {
+        plotBackgroundColor:null,
+        plotBorderWidth:null,
+        backgroundColor:'#282932',
+
+        },
+        title: {
+          text: '当前磁盘使用',
+          align:'left',
+          style:{
+            color:'#57d2ff',
+            fontSize:'16px'
+          }
+        },
+        credits:{
+        enabled:false // 禁用版权信息
+        },
+        tooltip: {
+            pointFormat: '{point.percentage:.1f}%'
+        },
+        plotOptions: {
+=======
+      mem_pie:function () {
+        //内存饼图
+        var chart = new Highcharts.Chart('memory-pie',{
+          chart: {
+            plotBackgroundColor:null,
+            plotBorderWidth:null,
+            backgroundColor:'#282932',
+//      spacing : [0, 0 ,0, -100]
+          },
+          title: {
+            text: '当前内存使用率',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          credits:{
+            enabled:false // 禁用版权信息
+          },
+          tooltip: {
+            pointFormat: '<b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+>>>>>>> .r314
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend:{
+            align:'right',
+            color:'white',
+            itemStyle:{ cursor: 'pointer', color: 'white' },
+            itemHoverStyle: { color: 'gray' },
+            symbolRadius:'none',
+            layout:'vertical',
+            itemWidth:100,
+            itemMarginBottom:20
+          },
+          series: [{
+            name:'',
+            type: 'pie',
+            innerSize: '60%',
+            name:" ",
+            colorByPoint:true,
+            data: [{
+<<<<<<< .mine
+              name:'已使用',
+              color:'#5B9BD5',
+              y:4
+=======
+              name:'已使用',
+              color:'#5B9BD5',
+              y:this.memUsed
+>>>>>>> .r314
+            },{
+<<<<<<< .mine
+              name:'未使用',
+              color:'#ED7D31',
+              y:1
+=======
+              name:'未使用',
+              color:'#ED7D31',
+              y:this.memUnUsed
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+      },
+
+      dis_pie:function () {
+        //磁盘饼图
+        new Highcharts.Chart('disk-pie',{
+          chart: {
+            plotBackgroundColor:null,
+            plotBorderWidth:null,
+            backgroundColor:'#282932',
+          },
+          title: {
+            text: '当前磁盘使用率',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          credits:{
+            enabled:false // 禁用版权信息
+          },
+          tooltip: {
+            pointFormat: '<b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend:{
+            align:'right',
+            color:'white',
+            itemStyle:{ cursor: 'pointer', color: 'white' },
+            itemHoverStyle: { color: 'gray' },
+            symbolRadius:'none',
+            layout:'vertical',
+            itemWidth:100,
+            itemMarginBottom:20
+          },
+          series: [{
+            name:'',
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint:true,
+            data: [{
+              name:'已使用',
+              color:'#5B9BD5',
+              y:this.disUsed
+>>>>>>> .r314
+<<<<<<< .mine
+=======
+            },{
+              name:'未使用',
+              color:'#ED7D31',
+              y:this.disUnUsed
+>>>>>>> .r314
+            }]
+          }],
+          exporting: {
+            enabled: false
+<<<<<<< .mine
+        }
+    });
+    $(".highcharts-point").css("stroke","#282932");
+=======
+          }
+        });
+      },
+
+      cpu_pie:function () {
+        //cpu饼图
+        new Highcharts.Chart('cpu-pie',{
+          chart: {
+            plotBackgroundColor:null,
+            plotBorderWidth:null,
+            backgroundColor:'#282932',
+          },
+          title: {
+            text: '当前CPU使用率',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          credits:{
+            enabled:false // 禁用版权信息
+          },
+          tooltip: {
+            pointFormat: '<b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: false
+              },
+              showInLegend: true
+            }
+          },
+          legend:{
+            align:'right',
+            color:'white',
+            itemStyle:{ cursor: 'pointer', color: 'white' },
+            itemHoverStyle: { color: 'gray' },
+            symbolRadius:'none',
+            layout:'vertical',
+            itemWidth:100,
+            itemMarginBottom:20
+          },
+          series: [{
+            name:'',
+            type: 'pie',
+            innerSize: '60%',
+            colorByPoint:true,
+            data: [{
+              name:'已使用',
+              color:'#5B9BD5',
+              y:this.cpuUsed
+            },{
+              name:'未使用',
+              color:'#ED7D31',
+              y:this.cpuUnUsed
+            }]
+          }],
+          exporting: {
+            enabled: false
+          }
+        });
+>>>>>>> .r314
+      },
+
+      cpu_line:function () {
+        //cpu折线图
+        new Highcharts.Chart('cpu-area', {
+          title: {
+            text: 'CPU使用',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            backgroundColor: '#282932'
+          },
+          colors: ['#6B4259','#43415D'],
+          credits: {
+            enabled: false // 禁用版权信息
+          },
+          exporting: { //导出禁用
+            enabled: false
+          },
+          legend: {//禁用图例
+            enabled: false
+          },
+          xAxis: {
+            tickWidth: 0.5,
+            categories: [this.infoList[12].date, this.infoList[11].date, this.infoList[10].date, this.infoList[9].date, this.infoList[8].date, this.infoList[7].date, this.infoList[6].date, this.infoList[5].date,
+              this.infoList[4].date, this.infoList[3].date, this.infoList[2].date, this.infoList[1].date, this.infoList[0].date]
+          },
+          tooltip: {
+            dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%Y-%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+            }
+          },
+          yAxis: {
+            gridLineColor: '#212124',
+            title: {
+              text: 'cpu'
+            },
+            plotLines: [{
+              width: 1,
+              color: '#808080'
+            }]
+          },
+          plotOptions: {
+            area: {
+              fillColor: {
+                linearGradient: {
+                  x1: 0.5,
+                  y1: 0,
+                  x2: 0.5,
+                  y2: 1
+                },
+                stops: [
+                  [0, Highcharts.getOptions().colors[5]],
+                  [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]
+                ]
+              },
+              marker: {
+                radius: 2
+              },
+              lineWidth: 1,
+              states: {
+                hover: {
+                  lineWidth: 1
+                }
+              },
+              threshold: null
+            }
+          },
+          series: [{
+            type: 'area',
+            name: 'CPU',
+            data: [parseFloat(this.infoList[12].cpuUsedPer) ,parseFloat(this.infoList[11].cpuUsedPer) , parseFloat(this.infoList[10].cpuUsedPer),parseFloat(this.infoList[9].cpuUsedPer) ,
+              parseFloat(this.infoList[8].cpuUsedPer), parseFloat(this.infoList[7].cpuUsedPer),
+              parseFloat(this.infoList[6].cpuUsedPer), parseFloat(this.infoList[5].cpuUsedPer), parseFloat(this.infoList[4].cpuUsedPer),
+              parseFloat(this.infoList[3].cpuUsedPer), parseFloat(this.infoList[2].cpuUsedPer), parseFloat(this.infoList[1].cpuUsedPer),
+              parseFloat(this.infoList[0].cpuUsedPer)],
+          }]
+        });
+      },
+
+      mem_line:function () {
+        //内存折线图
+        new Highcharts.Chart('memory-area', {
+          title: {
+            text: '内存使用',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            backgroundColor: '#282932'
+          },
+          colors: ['#6B4259','#43415D'],
+          credits: {
+            enabled: false // 禁用版权信息
+          },
+          exporting: { //导出禁用
+            enabled: false
+          },
+          legend: {//禁用图例
+            enabled: false
+          },
+          xAxis: {
+            tickWidth: 0.5,
+            categories: [this.infoList[12].date, this.infoList[11].date, this.infoList[10].date,this.infoList[9].date, this.infoList[8].date, this.infoList[7].date, this.infoList[6].date, this.infoList[5].date,
+              this.infoList[4].date, this.infoList[3].date, this.infoList[2].date, this.infoList[1].date, this.infoList[0].date]
+          },
+          tooltip: {
+            dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%Y-%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+            }
+          },
+          yAxis: {
+            gridLineColor: '#212124',
+            title: {
+              text: 'mem'
+            },
+            plotLines: [{
+              width: 1,
+              color: '#808080'
+            }]
+          },
+          plotOptions: {
+            area: {
+              fillColor: {
+                linearGradient: {
+                  x1: 0.5,
+                  y1: 0,
+                  x2: 0.5,
+                  y2: 1
+                },
+                stops: [
+                  [0, Highcharts.getOptions().colors[5]],
+                  [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]
+                ]
+              },
+              marker: {
+                radius: 2
+              },
+              lineWidth: 1,
+              states: {
+                hover: {
+                  lineWidth: 1
+                }
+              },
+              threshold: null
+            }
+          },
+          series: [{
+            type: 'area',
+            name: '内存',
+            data: [parseFloat(this.infoList[12].memUsedPer) ,parseFloat(this.infoList[11].memUsedPer) , parseFloat(this.infoList[10].memUsedPer),parseFloat(this.infoList[9].memUsedPer) ,
+              parseFloat(this.infoList[8].memUsedPer), parseFloat(this.infoList[7].memUsedPer),
+              parseFloat(this.infoList[6].memUsedPer), parseFloat(this.infoList[5].memUsedPer), parseFloat(this.infoList[4].memUsedPer),
+              parseFloat(this.infoList[3].memUsedPer), parseFloat(this.infoList[2].memUsedPer), parseFloat(this.infoList[1].memUsedPer),
+              parseFloat(this.infoList[0].memUsedPer)],
+          }]
+        });
+      },
+      dis_line:function () {
+        //磁盘折线图
+        new Highcharts.Chart('disk-area', {
+          title: {
+            text: '磁盘使用',
+            align:'left',
+            style:{
+              color:'#57d2ff',
+              fontSize:'16px'
+            }
+          },
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            backgroundColor: '#282932'
+          },
+          colors: ['#6B4259','#43415D'],
+          credits: {
+            enabled: false // 禁用版权信息
+          },
+          exporting: { //导出禁用
+            enabled: false
+          },
+          legend: {//禁用图例
+            enabled: false
+          },
+          xAxis: {
+            tickWidth: 0.5,
+            categories: [this.infoList[12].date, this.infoList[11].date, this.infoList[10].date, this.infoList[9].date, this.infoList[8].date, this.infoList[7].date, this.infoList[6].date, this.infoList[5].date,
+              this.infoList[4].date, this.infoList[3].date, this.infoList[2].date, this.infoList[1].date, this.infoList[0].date]
+          },
+          tooltip: {
+            dateTimeLabelFormats: {
+              millisecond: '%H:%M:%S.%L',
+              second: '%H:%M:%S',
+              minute: '%H:%M',
+              hour: '%H:%M',
+              day: '%Y-%m-%d',
+              week: '%m-%d',
+              month: '%Y-%m',
+              year: '%Y'
+            }
+          },
+          yAxis: {
+            gridLineColor: '#212124',
+            title: {
+              text: 'dis'
+            },
+            plotLines: [{
+              width: 1,
+              color: '#808080'
+            }]
+
+          },
+          plotOptions: {
+            area: {
+              fillColor: {
+                linearGradient: {
+                  x1: 0.5,
+                  y1: 0,
+                  x2: 0.5,
+                  y2: 1
+                },
+                stops: [
+                  [0, Highcharts.getOptions().colors[5]],
+                  [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]
+                ]
+              },
+              marker: {
+                radius: 2
+              },
+              lineWidth: 1,
+              states: {
+                hover: {
+                  lineWidth: 1
+                }
+              },
+              threshold: null
+            }
+          },
+          series: [{
+            type: 'area',
+            name: '磁盘',
+            data: [parseFloat(this.infoList[12].disUsedPer) ,parseFloat(this.infoList[11].disUsedPer) , parseFloat(this.infoList[10].disUsedPer), parseFloat(this.infoList[9].disUsedPer) ,
+              parseFloat(this.infoList[8].disUsedPer), parseFloat(this.infoList[7].disUsedPer),
+              parseFloat(this.infoList[6].disUsedPer), parseFloat(this.infoList[5].disUsedPer), parseFloat(this.infoList[4].disUsedPer),
+              parseFloat(this.infoList[3].disUsedPer), parseFloat(this.infoList[2].disUsedPer), parseFloat(this.infoList[1].disUsedPer),
+              parseFloat(this.infoList[0].disUsedPer)],
+          }]
+        });
+      }
+
+    },
+    beforeDestroy () {
+      clearInterval(this.intervalBlock)
+    }
+  }
+
+</script>
+
+<style>
+
+</style>
