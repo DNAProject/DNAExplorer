@@ -20,9 +20,9 @@
             <span class="col-sm-2 col-xs-6">交易数</span>
             <span class="col-sm-3 pc">数据大小</span>-->
             <span class="col-sm-2 pc title">交易类型</span>
-            <span class="col-sm-5 col-xs-6 title">交易编号</span>
-            <span class="col-sm-2 col-xs-3 title">高度</span>
-            <span class="col-sm-2 col-xs-6 title">时间</span>
+            <span class="col-sm-5 pc title">交易编号</span>
+            <span class="col-sm-2 col-xs-4 title">高度</span>
+            <span class="col-sm-2 col-xs-8 title">时间</span>
             <span class="col-sm-1 pc title"></span>
           </li>
           <li v-for="item in showlist" style="line-height: 30px;">
@@ -31,9 +31,9 @@
             <span class="col-sm-2 col-xs-6">{{ item.txnum }}</span>
             <span class="col-sm-3 pc">{{ item.size }}</span> -->
             <span class="col-sm-2 pc">{{ item.txTypeDesc }}</span> 
-            <span class="col-sm-5 col-xs-3 click-able-item"style="cursor:pointer" @click="toTransactiondetail(item.txId)">{{ item.txId }}</span>
-            <span class="col-sm-2 col-xs-3" style="cursor:pointer"@click="toBlockDetail(item.height)">{{ item.height }}</span>
-            <span class="col-sm-2 col-xs-6">{{ item.datemap }}</span>
+            <span class="col-sm-5 pc click-able-item"style="cursor:pointer" @click="toTransactiondetail(item.txId)">{{ item.txId }}</span>
+            <span class="col-sm-2 col-xs-4" style="cursor:pointer"@click="toBlockDetail(item.height)">{{ item.height }}</span>
+            <span class="col-sm-2 col-xs-8">{{ item.datemap }}</span>
             <span class="col-sm-1 pc title"></span>
           </li>
         </ul>
@@ -48,6 +48,7 @@
             <li v-show="allpage != current && allpage != 0 && !isNaN(allpage)" @click="current++  &&  goto(current++)" style=""><a>下一页</a></li>
             <li style="" @click="goto(allpage)" ><a>末页</a> </li>
             <li style=""  :class="{'active':current == allpage}" :key="allpage"><a>共{{allpage}}页</a> </li>
+            <li ><input style="color: black; width: 60px;" type="text" onkeyup="this.value=this.value.replace(/\s+/g,'')" v-model="pagenumber"/>&nbsp;<a @click="goto(pagenumber)">跳转</a> </li>
           </ul>
         </div>
       </div>
@@ -162,13 +163,17 @@
           this.degreeList.reverse().reverse();  
       },
       goto:function(index){
-        if(index == this.current) {
-          return;
+        if(isNaN(index)||index>this.allpage||index==""){
+            alert("请输入正确的页数！");
         }else{
-          this.current = index;
+          if(index == this.current) {
+             return;
+           }else{
+             this.current = index;
+           }
+          this.$router.push({'path':'/transactioninfo/'+this.current+'/15'})
+          this.$store.dispatch('txnList',this.$route.params)
         }
-        this.$router.push({'path':'/transactioninfo/'+this.current+'/15'})
-        this.$store.dispatch('txnList',this.$route.params)
       },
       comdify:function(num){
         if(num == undefined){
@@ -320,6 +325,7 @@
   cursor: pointer;
 }
 .pagination>li>a{
+  float: none;
   border:0px;
   background-color: #212124;
 }
@@ -339,5 +345,8 @@
 }
 .click-able-item:hover{
   color: #08d2eb;
+}
+.active{
+  background-color: rgba(0,0,0,0);
 }
 </style>

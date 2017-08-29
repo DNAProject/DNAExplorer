@@ -22,27 +22,27 @@
       <option v-for="(item,index) in nameSpaceList" :value='item'>{{item}}</option>
     </select>
     </span> -->
-    <div class="col-sm-4 serach-option" style="color:white;" >模糊查询</div>
-    <div class="col-sm-8" style="margin-top: 10px;">
+    <div class="col-sm-2 serach-option" style="color:white;" > </div>
+    <div class="col-sm-9" style="margin-top: 10px;">
     	<span class="filter-appid-key filter-margin-top col-sm-2 " style="color:white;">开始时间:</span>
     	<span class="filter-time-start filter-margin-top col-sm-2" style="color:white;"><input v-model="value" class="starttime" name="" id="date" value=""   style="border-radius: 5px;outline: none;color:black;" placeholder="例：2017-01-01"/></span>
     	<span class="filter-appid-key filter-margin-top col-sm-2 " style="color:white;">结束时间:</span>
     	<span class="filter-time-start filter-margin-top col-sm-2" style="color:white;"><input v-model="value2" class="endtime" name="" id="date" value="" @change="getDate"   style="color:black;border-radius: 5px;outline: none;" placeholder="例：2017-01-10"/></span>
     	</span>
     </div>
-    <div class="col-sm-4 serach-option" style="color:white;">精准查询</div>
-    <div class="col-sm-8" style="margin-top:10px;">
+    <div class="col-sm-2 serach-option" style="color:white;"> </div>
+    <div class="col-sm-9" style="margin-top:10px;">
       <div class="col-sm-12" style="padding:0">
     	  <span class="filter-appid-key filter-margin-top col-sm-2 " style="color:white;text-align:right;">高度查询:</span>
-    	  <span class="filter-appid-value filter-margin-top col-sm-7"><input v-model="height" style="border-radius: 5px;outline: none;width: 100%;"></span>
+    	  <span class="filter-appid-value filter-margin-top col-sm-7"><input v-model="height" style="border-radius: 5px;outline: none;width: 100%;color: black;"></span>
     	</div>
       <div class="col-sm-12" style="padding:0">
         <span class="filter-appid-key filter-margin-top col-sm-2" style="color:white;">地址查询:</span>
-    	  <span class="filter-appid-value filter-margin-top col-sm-7"><input v-model="address" style="border-radius: 5px;outline: none;width: 100%;"></span>
+    	  <span class="filter-appid-value filter-margin-top col-sm-7"><input v-model="address" style="border-radius: 5px;outline: none;width: 100%;color: black;"></span>
       </div>
       <div class="col-sm-12" style="padding:0">
     		<span class="filter-appid-key filter-margin-top col-sm-2" style="color:white;">交易查询:</span>
-    		<span class="filter-appid-value filter-margin-top col-sm-7"><input v-model="txid" style="border-radius: 5px;outline: none; width: 100%;"></span>
+    		<span class="filter-appid-value filter-margin-top col-sm-7"><input v-model="txid" style="border-radius: 5px;outline: none; width: 100%;color: black;"></span>
       </div>
     </div>
     <!--修改：
@@ -160,6 +160,7 @@
       <li v-show="allpage != current && allpage != 0 && !isNaN(allpage)" @click="current++  &&  goto(current++)" style=""><a>下一页</a></li>
       <li style="" @click="goto(allpage)" ><a>末页</a> </li>
       <li style="" :class="{'active':current == allpage}" :key="allpage"><a>共：{{allpage}}页</a> </li>
+      <li ><input style="color: black; width: 60px;" type="text" onkeyup="this.value=this.value.replace(/\s+/g,'')" v-model="pagenumber"/>&nbsp;<a @click="goto(pagenumber)">跳转</a> </li>
     </ul>
   </div>
 
@@ -379,12 +380,16 @@
           this.showlist.reverse().reverse();  
       },
       goto:function(index){
-        if(index == this.current) {
-          return;
+        if(isNaN(index)||index>this.allpage||index==""){
+            alert("请输入正确的页数！");
         }else{
-          this.current = index;
-        }
-        this.filterData()       
+          if(index == this.current) {
+             return;
+           }else{
+             this.current = index;
+           }
+           this.filterData() 
+        }    
       }
     },
     components: {
@@ -450,7 +455,7 @@
     min-height: 40px;
     padding-left: 20px;
     font-size: 16px;
-    line-height: 40px;
+    /*line-height: 40px;*/
     list-style: none;
     
   }
@@ -548,6 +553,9 @@
     position: relative;
 
   }
+  .active{
+  background-color: rgba(0,0,0,0);
+}
   .pagination li{
     display: inline-block;
     margin:0 5px;
@@ -555,9 +563,9 @@
   .pagination li a{
     padding:.5rem 1rem;
     display:inline-block;
-    border:1px solid #ddd;
-    background:#fff;
-    color:black;
+    float: none;
+    border:1px none;
+    background:none;
   }
   .pagination li a:hover{
     background:#eee;

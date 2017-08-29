@@ -591,7 +591,7 @@
   cursor: pointer;
 }
 /*数字滚动插件的CSS可调整样式*/
-.mt-number-animate{ font-family: '微软雅黑'; line-height:40px; height: 40px;/*设置数字显示高度*/; font-size: 30px;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative; }
+.mt-number-animate{ font-family: '微软雅黑';width: 140px; line-height:40px; height: 40px;/*设置数字显示高度*/; font-size: 30px;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative; }
 .mt-number-animate .mt-number-animate-dot{ width: 15px;/*设置分割符宽度*/ line-height: 40px; float: left; text-align: center;}
 .mt-number-animate .mt-number-animate-dom{ width: 20px;/*设置单个数字宽度*/ text-align: center; float: left; position: relative; top: 0;}
 .mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left; color: #b8b8c2;}

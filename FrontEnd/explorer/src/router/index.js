@@ -21,7 +21,6 @@ const chaininfo = r => require.ensure([], () => r(require('../components/chainin
 const filtersearch = r => require.ensure([], () => r(require('../components/filtersearch')), 'filtersearch')
 const filtersearchaddress = r => require.ensure([], () => r(require('../components/filtersearchaddress')), 'filtersearchaddress')
 
-
 const routes = [
   {
     path: '/',

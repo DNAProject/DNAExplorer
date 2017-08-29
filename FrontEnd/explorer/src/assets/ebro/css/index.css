@@ -92,7 +92,8 @@ a:hover{
   color: #FFFFFF;
   font-size: 16px;
 }
-.normelPro{
+@media only screen and (min-width:768px ) {
+	.normelPro{
   position: absolute;
   right: 20px;
   bottom: 22px;
@@ -104,6 +105,8 @@ a:hover{
   bottom: 22px;
   color: white;
 }
+}
+
 .normelPro-pie>span{
   font-size: 12px;
 }
@@ -224,6 +227,9 @@ a:hover{
   .nav-list-name-mobile{
     width:100%;
   }
+  .nodeicon{
+    margin-top: 10px;
+  }
   .nodeicon-m{
     width: 10%;
     margin: 0;
@@ -296,14 +302,14 @@ a:hover{
   .main-right {
     top:60px;
   }
-  .normelPro-pie{
+  /*.normelPro-pie{
     top:20px;
     left: 0px;
   }
   .normelPro{
     top:60px;
     left: 0px;
-  }
+  }*/
 }
 .normelPro-right{
   max-width: 80px;

@@ -3,11 +3,14 @@
       <div class="row">
         <div class="col-sm-6 col-xs-9">
           <!--<img src="../../static/img/onchain-logo.png" class="logo"/>-->
-          <span style="padding-left: 10px;" @click="back">DNA浏览器</span> 
+          <span style="padding-left: 10px;" @click="back">DNA监控平台</span> 
         </div>
-        <div class="col-sm-6 col-xs-3" style="padding:0;text-align:right;">
+        <!--<div class="col-sm-6 col-xs-3" style="padding:0;text-align:right;">
       		<span style="font-size:18px;margin:0 10px 0 0;"@click="filtersearch">高级查询</span>
-		</div>
+		</div>-->
+		<div class="col-sm-6 col-xs-3" style="padding:0;text-align:right;">
+            <span style="font-size:18px;margin:0 10px 0 0;"@click="browser">浏览器>>></span>
+        </div>
       </div>
     </div>
 </template>
@@ -20,6 +23,9 @@
       },
       filtersearch:function(){
         this.$router.push({'path':'/filtersearch/namespace/0/0/1/10/0/0'})
+      },
+      browser:function(){
+        this.$router.push({'path':'/browser'})
       }
     }
   }

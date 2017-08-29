@@ -436,6 +436,7 @@
   color: #05a2b5;
 }
 .click-able-item:hover{
+  cursor: pointer;
   color: #08d2eb;
 }
 </style>
