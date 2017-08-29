@@ -11,9 +11,11 @@ span{
     font-size: 15px;
 }
 .header{
-    position: relative;
+    margin-top: -70px;
+    margin-left: 50px;
     font-size: 18px;
     color: #57d2ff;
+    padding: 0;
 }
 .content{
    background-color: #212124;

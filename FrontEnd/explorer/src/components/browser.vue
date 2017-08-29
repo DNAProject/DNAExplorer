@@ -4,63 +4,70 @@
     <div class="content-monitor">
       <div class="row">
         <div class="col-sm-12 col-xs-12">
+          
+          
           <div class="col-sm-6 col-xs-12 nav-list">
-            
+            <!--区块高度-->
             <div class="nav-list-one col-sm-6 col-xs-12">
-              <div class="col-xs-7 nav-list-name nav-list-name-mobile" style="text-align:left;">
+              <div class="col-xs-7 nav-list-name " style="text-align:left;">
                 <p class="numberRun number" >{{ blockStatusheight }}</p>
-                <p >当前区块高度</p>
+                <p class="number-name">当前区块高度</p>
               </div>
-              <div class="col-xs-5 nodeicon mobile-noshow" >
+              <div class="col-xs-5 nodeicon " >
                 <span class="icon icon-signal icon-monitor"></span>
               </div> 
             </div>
-
-            <div class="nav-list-two col-sm-6 col-xs-3" >
-              <div class="col-xs-7 nav-list-name nav-list-name-m"  style="text-align:left;">
+            <!--节点数量-->
+            <div class="nav-list-two col-sm-6 col-xs-12" >
+              <div class="col-xs-7 nav-list-name "  style="text-align:left;">
                 <p class="number nodeNum-m">{{ nodeStatus.totalCount}}</p>
-                <p class="nodeText-m">节点数量</p>
+                <p class="nodeText-m number-name">节点数量</p>
               </div>
-              <div class="col-xs-5 nodeicon nodeicon-m">
-                <span class="icon icon-sitemap icon-sitemap-m icon-monitor"></span>
+              <div class="col-xs-5 nodeicon ">
+                <span class="icon icon-sitemap  icon-monitor"></span>
               </div>
             </div>
+            <!--平均输出时间-->
             <div class="nav-list-one col-sm-6 col-xs-12">
-              <div class="col-xs-7 nav-list-name nav-list-name-mobile" style="text-align:left;">
+              <div class="col-xs-7 nav-list-name" style="text-align:left;">
                 <p class=" number" >15s</p>
-                <p >平均出块时间</p>
+                <p class="number-name">平均出块时间</p>
               </div>
-              <div class="col-xs-5 nodeicon mobile-noshow">
+              <div class="col-xs-5 nodeicon">
                 <span class="icon icon-time icon-monitor"></span>
               </div> 
             </div>
-            
+            <!--交易数量-->
             <div class="nav-list-three col-sm-6 col-xs-12"> 
-              <div class="col-xs-7 nav-list-name nav-list-name-m" style="text-align:left;">
-                <p class="number exchangeNum-m">{{ txncount }}</p>
-                <p class="exchangeText-m">交易数量</p>
+              <div class="col-xs-7 nav-list-name " style="text-align:left;">
+                <p class="number">{{ txncount }}</p>
+                <p class="number-name">交易数量</p>
               </div>
-              <div class="col-xs-5 nodeicon nodeicon-m">
-                <span class="icon icon-exchange icon-exchange-m icon-monitor"></span>
+              <div class="col-xs-5 nodeicon ">
+                <span class="icon icon-exchange  icon-monitor"></span>
               </div>
-            </div><br>
+            </div>
           </div>
+          
+          
           <div class="col-sm-6 col-xs-12 ">
             <!-- <p class="main-left-title">节点类型</p> -->
-            <div id="allnode" class="col-sm-6  col-xs-12 mobile-noshow" ></div>
+            <div id="allnode" class="col-sm-6  col-xs-12 mobile-noshow"></div>
             <div id="normalnode" class="col-sm-6 col-xs-12 mobile-noshow"></div>
-            <div class="normelPro-pie col-xs-12-m-l normelPro-right mobile-show">
+            <div class="normelPro-pie col-xs-12 normelPro-right mobile-show">
               <span >验证节点:{{nodeType1}}</span></br>
               <span >服务节点:{{nodeType2}}</span>            
             </div>
-            <div class="normelPro col-xs-12-m-l normelPro-right">
+            <div class="normelPro col-xs-12 normelPro-right">
               <span >正常节点占比:</span>
               <span >{{ (nornum/(nornum+dannum)*100).toFixed(1) }}%</span>
             </div>
           </div>
         </div>
+        
+        <!--最新区块-->
         <span class="col-sm-6">
-          <div class="col-sm-12" style="border-bottom: 1px solid white;margin-bottom: 10px;">
+          <div class="col-sm-12 " style="border-bottom: 1px solid white;margin-bottom: 10px;">
             <span class="col-sm-6">
               <h1>最新区块</h1>
             </span>
@@ -68,22 +75,24 @@
               <h5 style="cursor:pointer">查看更多>>></h5>
             </span><br>
           </div> 
-          <hr />
+
           <ul>
             <li>
-              <span class="col-sm-2 col-xs-4 listTitle">高度</span>
-              <span class="col-sm-5 col-xs-6 listTitle">时间</span>
-              <span class="col-sm-2 col-xs-6 listTitle">交易数</span>
+              <span class="col-sm-2 col-xs-5 listTitle">高度</span>
+              <span class="col-sm-5 col-xs-7 listTitle">时间</span>
+              <span class="col-sm-2 pc listTitle">交易数</span>
               <span class="col-sm-3 pc listTitle">数据大小</span>
             </li>
             <li v-for="(item,index) in blockListShow">
-              <span class="col-sm-2 col-xs-4" style="cursor:pointer" @click="toBlockDetail(item.height)"  :class="(index%2 == 1) ? 'withBcakgroundColor click-able-item' : 'withoutBcakgroundColor click-able-item' " >{{ item.height }}</span>
+              <span class="col-sm-2 col-xs-5" style="cursor:pointer" @click="toBlockDetail(item.height)"  :class="(index%2 == 1) ? 'withBcakgroundColor click-able-item' : 'withoutBcakgroundColor click-able-item' " >{{ item.height }}</span>
               <span class="col-sm-5 pc" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">{{ item.timestamp }}</span>
-              <span class="col-sm-2 col-xs-6" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">{{ item.txnum }}</span>
+              <span class="col-sm-2 col-xs-7" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">{{ item.txnum }}</span>
               <span class="col-sm-3 pc" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">{{ item.size }} 字节</span> 
             </li>
           </ul>
         </span>
+        
+        <!--最新交易-->
         <span class="col-sm-6">
           <div class="col-sm-12" style="border-bottom: 1px solid white;margin-bottom: 10px;">
             <span class="col-sm-6">
@@ -93,7 +102,7 @@
               <h5 style="cursor:pointer">查看更多>>></h5>
             </span><br>
           </div>
-<!--           <hr /> -->
+
             <ul style="height: 20px;margin-bottom: 0px;padding:0;" class="col-sm-12">
               <span class="col-sm-3 pc listTitle">交易类型</span>
               <span class="col-sm-3 pc listTitle">交易块高度</span>
@@ -103,8 +112,8 @@
             <ul v-for="(item,index) in txnListShow" >
               <span class="col-sm-3 pc" style="margin-top:10px" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">{{ item.txTypeDesc }}</span>
               <span class="col-sm-2 pc" style="margin-top:10px" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">{{ item.height }}</span>
-              <span class="col-sm-6 col-xs-12" style="margin-top:10px;cursor:pointer" @click="toTransactiondetail(item.txId)" :class="(index%2 == 1) ? 'withBcakgroundColor click-able-item' : 'withoutBcakgroundColor click-able-item' ">{{ item.txId.substr(0,25) }}...</span>
-              <div class="col-sm-1" @click="showDetails(index)" style="padding:0;margin-top:10px;cursor:pointer" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">
+              <span class="col-sm-6 col-xs-11" style="margin-top:10px;cursor:pointer" @click="toTransactiondetail(item.txId)" :class="(index%2 == 1) ? 'withBcakgroundColor click-able-item' : 'withoutBcakgroundColor click-able-item' ">{{ item.txId.substr(0,25) }}...</span>
+              <div class="col-sm-1 col-xs-1" @click="showDetails(index)" style="padding:0;margin-top:10px;cursor:pointer" :class="(index%2 == 1) ? 'withBcakgroundColor' : 'withoutBcakgroundColor' ">
                 <span class="col-sm-12" style="padding:0;" >
                   <i class="glyphicon glyphicon-menu-right arrow" style="top:0px;" v-if="!showFlag[index]"></i>
                   <i class="glyphicon glyphicon-menu-down arrow"style="top:0px;" v-if="showFlag[index]"></i>
@@ -601,6 +610,7 @@
    margin: 0;
  }
  #allnode,#normalnode{
+   max-height: 236px;
    min-height:180px
  }
 /*.nodeIcon1,.nodeIcon2,.nodeIcon3,.nodeIcon4 {
@@ -736,8 +746,35 @@
   cursor: auto !important;
 }
 /*数字滚动插件的CSS可调整样式*/
-.mt-number-animate{ font-family: '微软雅黑'; line-height:40px; height: 40px;/*设置数字显示高度*/; font-size: 30px;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative; width: 112px;}
+.mt-number-animate{ font-family: '微软雅黑'; line-height:40px; height: 40px;/*设置数字显示高度*/; font-size: 30px;/*设置数字大小*/ overflow: hidden; display: inline-block; position: relative; min-width: 112px;}
 .mt-number-animate .mt-number-animate-dot{ width: 15px;/*设置分割符宽度*/ line-height: 40px; float: left; text-align: center;}
 .mt-number-animate .mt-number-animate-dom{ width: 16px;/*设置单个数字宽度*/ text-align: center; float: left; position: relative; top: 0;}
 .mt-number-animate .mt-number-animate-dom .mt-number-animate-span{ width: 100%; float: left; color: #b8b8c2;}
+
+li span{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+ul span{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+@media only screen and (max-width:910px ) {
+  h1{
+    font-size: 30px;
+  }
+	.number-name{
+	  font-size: 12px;
+	}
+}
+@media only screen and (max-width:768px ) {
+	.pc{
+	  display: none;
+	}
+	.number-name{
+    font-size: 16px;
+  }
+}
 </style>

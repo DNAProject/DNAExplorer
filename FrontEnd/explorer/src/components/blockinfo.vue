@@ -20,7 +20,7 @@
             <span class="col-sm-2 col-xs-6">交易数</span>
             <span class="col-sm-3 pc">数据大小</span>-->
             <span class="col-sm-2 col-xs-3 title">高度</span>
-            <span class="col-sm-6 col-xs-6 title">区块MerKle根</span>
+            <span class="col-sm-6 pc title">区块MerKle根</span>
             <span class="col-sm-2 col-xs-6 title">时间</span>
             <span class="col-sm-1 col-sx-3 title">交易数</span>
             <span class="col-sm-1 pc title">数据大小</span>
@@ -31,7 +31,7 @@
             <span class="col-sm-2 col-xs-6">{{ item.txnum }}</span>
             <span class="col-sm-3 pc">{{ item.size }}</span> -->
             <span class="col-sm-2 col-xs-3 click-able-item" style="cursor:pointer" @click="toBlockDetail(item.height)">{{ item.height }}</span>
-            <span class="col-sm-6 col-xs-3">{{ item.merkleroot }}</span>
+            <span class="col-sm-6 pc">{{ item.merkleroot }}</span>
             <span class="col-sm-2 col-xs-6">{{ item.timestamp }}</span>
             <span class="col-sm-1 col-xs-3">{{ item.txnum }}</span>
             <span class="col-sm-1 pc">{{ item.size }} 字节</span> 
@@ -46,8 +46,9 @@
               <a style="font-size:14px;">{{index}}</a>
             </li>
             <li v-show="allpage != current && allpage != 0 && !isNaN(allpage)" @click="current++  &&  goto(current++)" style=""><a>下一页</a></li>
-            <li style="" @click="goto(allpage)" ><a>末页</a> </li>
-            <li style=""  :class="{'active':current == allpage}" :key="allpage"><a>共：{{allpage}}页</a> </li>
+            <li  @click="goto(allpage)" ><a>末页</a> </li>
+            <li  :class="{'active':current == allpage}" :key="allpage"><a>共：{{allpage}}页</a> </li>
+            <li ><input style="color: black; width: 60px;" type="text" onkeyup="this.value=this.value.replace(/\s+/g,'')" v-model="pagenumber"/>&nbsp;<a @click="goto(pagenumber)">跳转</a> </li>
           </ul>
         </div>
       </div>
@@ -123,13 +124,18 @@
           this.degreeList.reverse().reverse();  
       },
       goto:function(index){
-        if(index == this.current) {
-          return;
+        if(isNaN(index)||index>this.allpage||index==""){
+            alert("请输入正确的页数！");
         }else{
-          this.current = index;
+          if(index == this.current) {
+             return;
+           }else{
+             this.current = index;
+           }
+          this.$router.push({'path':'/blockinfo/'+this.current+'/15'})
+          this.$store.dispatch('blockListNew',this.$route.params)
         }
-        this.$router.push({'path':'/blockinfo/'+this.current+'/15'})
-        this.$store.dispatch('blockListNew',this.$route.params)
+        
       },
       comdify:function(num){
         if(num == undefined){
@@ -280,9 +286,16 @@
 .showMoreDetail:hover{
   cursor: pointer;
 }
+.active{
+  background-color: rgba(0,0,0,0);
+}
 .pagination>li>a{
+  float: none;
   border:0px;
   background-color: #212124;
+}
+.pagination>li>a:hover{
+    cursor: pointer;
 }
 .title{
 	font-size: 16px;

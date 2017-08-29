@@ -50,7 +50,7 @@
         this.$router.push({'path': '/monitor'})
       },
       back:function(){
-        this.$router.push({'path': '/monitor'})
+        this.$router.push({'path': '/browser'})
       },
       filtersearch:function(){
         this.$router.push({'path':'/filtersearch/0/0/0/1/15/0/0'})
