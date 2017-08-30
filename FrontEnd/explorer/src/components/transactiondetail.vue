@@ -26,13 +26,13 @@
           </li>
           <li v-for="(item,index) in txnByTxid.inputs">
             <span class="col-sm-3 col-xs-4">输入{{index+1}}</span>
-            <span class="col-sm-9 col-xs-8 underline click-able-item" @click="toAddressDetail(item.ADDRESS)">{{item.ADDRESS}}</span>
-            <!--<span class="col-sm-3 col-xs-6 underline" style="text-align:right">{{item.VALUE}} </span>-->
+            <span class="col-sm-7 col-xs-8 underline click-able-item" @click="toAddressDetail(item.ADDRESS)">{{item.ADDRESS}}</span>
+            <span class="col-sm-2 col-xs-6 underline" style="text-align:right">{{item.VALUE}} </span>
           </li>
           <li v-for="(item,index)  in txnByTxid.outputs">
             <span class="col-sm-3 col-xs-4">输出{{index+1}}</span>
-            <span class="col-sm-9 col-xs-8 underline click-able-item" @click="toAddressDetail(item.ADDRESS)">{{item.ADDRESS}}</span>
-            <!--<span class="col-sm-3 col-xs-6 underline" style="text-align:right">{{item.VALUE}} </span>-->
+            <span class="col-sm-7 col-xs-8 underline click-able-item" @click="toAddressDetail(item.ADDRESS)">{{item.ADDRESS}}</span>
+            <span class="col-sm-2 col-xs-6 underline" style="text-align:right">{{item.VALUE}} </span>
           </li>
 <!--           <li>
             <span class="col-sm-3 col-xs-4">输入金额</span>
