@@ -37,8 +37,8 @@ public class TransactionController {
     @Value("${db_mode}")
     private String dbMode;
 
-    @Value("${nsh_account}")
-    private String NshAccount;
+/*    @Value("${nsh_account}")
+    private String NshAccount;*/
 
     private String currentMethod() {
         return new Exception("").getStackTrace()[1].getMethodName();
@@ -362,7 +362,7 @@ public class TransactionController {
      *   OUTTXID：银行发行给商户的转账交易id
      **/
 
-    @RequestMapping(value = "/getBankIssuAsset", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/getBankIssuAsset", method = RequestMethod.GET)
     @ResponseBody
     public List<Map> getBankIssuAsset(HttpServletRequest request, HttpServletResponse response) {
 
@@ -375,10 +375,10 @@ public class TransactionController {
     }
 
 
-/*    *
+*//*    *
      * 农商行定制，可视化资产流通情况接口
      * 获取从银行发行到企业，企业再往下流通的资产流通情况
-     **/
+     **//*
 
     @RequestMapping(value = "/getAssetFlow4Comp/{txid}", method = RequestMethod.GET)
     @ResponseBody
@@ -441,11 +441,11 @@ public class TransactionController {
         return resultMap;
     }
 
-/*    *
+*//*    *
      * 农商行定制，可视化资产流通情况接口
      *
      * 获取从可视化树中某个节点再往下流通的资产流通情况
-     * */
+     * *//*
 
     @RequestMapping(value = "/getAssetFlow/{txid}", method = RequestMethod.GET)
     @ResponseBody
@@ -560,7 +560,7 @@ public class TransactionController {
         resultMap.put("3",mer2merList3);
 
         return resultMap;
-    }
+    }*/
 
 
 }
