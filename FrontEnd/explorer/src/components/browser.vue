@@ -30,7 +30,7 @@
             <!--平均输出时间-->
             <div class="nav-list-one col-sm-6 col-xs-12">
               <div class="col-xs-7 nav-list-name" style="text-align:left;">
-                <p class=" number" >15s</p>
+                <p class=" number" >6s</p>
                 <p class="number-name">平均出块时间</p>
               </div>
               <div class="col-xs-5 nodeicon">
