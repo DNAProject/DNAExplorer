@@ -14,14 +14,14 @@
           <ul v-if="blockList.length>0">
           	<li class="list-titlename col-sm-12 col-xs-12">
           	  <span class="col-sm-3 col-xs-3">高度</span>
-          	  <span class="col-sm-3 col-xs-3">生成时间</span>
-          	  <span class="col-sm-3 col-xs-3">交易数</span>
+          	  <span class="col-sm-4 col-xs-4">生成时间</span>
+          	  <span class="col-sm-2 col-xs-2">交易数</span>
           	  <span class="col-sm-3 col-xs-3">大小</span>
           	</li>
           	<li v-for="(item,index) in blockList" class="col-sm-12 col-xs-12 block" v-if="index<7" @click="showblockdetial(index)">
           	  <span class="col-sm-3 col-xs-3">{{item.height}}</span>
-          	  <span class="col-sm-3 col-xs-3"><div class="time-item" >{{item.timestamp}}</div></span>
-          	  <span class="col-sm-3 col-xs-3">{{item.txnum}}</span>
+          	  <span class="col-sm-4 col-xs-4"><div class="time-item" >{{item.timestamp}}</div></span>
+          	  <span class="col-sm-2 col-xs-2">{{item.txnum}}</span>
           	  <span class="col-sm-3 col-xs-3">{{item.size}}</span>
           	</li>
           </ul>
@@ -32,14 +32,14 @@
           <ul v-if="degreeList.length>0">
             <li class="list-titlename col-sm-12 col-xs-12">
               <span class="col-sm-3 col-xs-3">交易ID</span>
-              <span class="col-sm-3 col-xs-3">时间</span>
-              <span class="col-sm-3 col-xs-3">高度</span>
+              <span class="col-sm-4 col-xs-4">时间</span>
+              <span class="col-sm-2 col-xs-2">高度</span>
               <span class="col-sm-3 col-xs-3">类型</span>
             </li>
             <li v-for="(item,index) in degreeList" class="col-sm-12 exhange col-xs-12" v-if="index<3" @click="showexchangedetial(index)">
               <span class="col-sm-3 col-xs-3 exchange-id">{{item.txId}}</span>
-              <span class="col-sm-3 col-xs-3"><div class="time-item">{{item.date}}</div></span>
-              <span class="col-sm-3 col-xs-3">{{item.height}}</span>
+              <span class="col-sm-4 col-xs-4"><div class="time-item">{{item.date}}</div></span>
+              <span class="col-sm-2 col-xs-2">{{item.height}}</span>
               <span class="col-sm-3 col-xs-3">{{item.txTypeDesc}}</span>
             </li>
           </ul>
@@ -238,6 +238,20 @@
       blockList: 'blockList',
       blockStatus: 'blockStatus'
     }),
+    watch:{
+      'degreeList':function(){
+        var delist =this.degreeList;
+        for(var i=0;i<delist.length;i++){
+          var year=delist[i].date.substring(0,4); 
+          var month=delist[i].date.substring(4,6);
+          var day=delist[i].date.substring(6,8);
+          var hour=delist[i].date.substring(8,10);
+          var min=delist[i].date.substring(10,12);
+          var sec=delist[i].date.substring(12,14);
+          this.degreeList[i].date=year+'-'+month+'-'+day+' '+hour+':'+min+':'+sec;
+        }
+      }
+    },
     created () {
       this.$store.dispatch('degreeList')
      this.$store.dispatch('blockList')
