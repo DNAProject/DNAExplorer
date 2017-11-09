@@ -25,13 +25,13 @@
             <span class="col-sm-1 col-sx-3 title">交易数</span>
             <span class="col-sm-1 pc title">数据大小</span>
           </li>
-          <li v-for="item in showlist" style="line-height: 30px;">
+          <li v-for="item in showlist" style="line-height: 30px;" >
             <!--<span class="col-sm-2 col-xs-4" @click="toBlockDetail(item.height)">{{ item.height }}</span>
             <span class="col-sm-5 pc">{{ item.timestamp }}</span>
             <span class="col-sm-2 col-xs-6">{{ item.txnum }}</span>
             <span class="col-sm-3 pc">{{ item.size }}</span> -->
             <span class="col-sm-2 col-xs-3 click-able-item" style="cursor:pointer" @click="toBlockDetail(item.height)">{{ item.height }}</span>
-            <span class="col-sm-6 pc">{{ item.merkleroot }}</span>
+            <span class="col-sm-6 pc">{{ item.merkleroot.substring(0,50) }}...</span>
             <span class="col-sm-2 col-xs-6">{{ item.timestamp }}</span>
             <span class="col-sm-1 col-xs-3">{{ item.txnum }}</span>
             <span class="col-sm-1 pc">{{ item.size }} 字节</span> 
